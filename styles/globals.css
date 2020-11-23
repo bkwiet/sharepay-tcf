@@ -14,3 +14,24 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.navProjectBar {
+  width: 130px;
+  height: 100%;
+  background: grey;
+  display: flex;
+  flex-direction: column;
+}
+.navBar {
+  background-color: rgb(116, 116, 196);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 1vh;
+}
+.mainContainer {
+  background-color: black;
+  height: 81vh;
+  display: flex;
+  background: lightgray;
+}
