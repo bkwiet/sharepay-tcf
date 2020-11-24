@@ -16,9 +16,10 @@ export const Layout: React.FC<Props> = ({ children, isLoggedIn }) => {
   return (
     <>
       <Head>
+        <title>Tout Compte Fait</title>
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <link rel="bkwiet corp icon" href="favicon.png" type="image/x-icon" />
+        <link rel="bkwiet corp icon" href="wallet.ico" type="image/x-icon" />
         <script src="https://kit.fontawesome.com/95a069202e.js" crossOrigin="anonymous"></script>
       </Head>
       <Header />
