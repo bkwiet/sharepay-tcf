@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@fwl/oauth2": "^0.1.3",
     "bootstrap": "^4.5.3",
     "mongodb": "^3.6.3",
     "next": "10.0.2",

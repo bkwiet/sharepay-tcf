@@ -6,7 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   const { session } = pageProps;
   return (
-    <Provider session={session}>
+    <Provider options={{ site: process.env.SITE }} session={session}>
       <Component {...pageProps} />
     </Provider>
   );
