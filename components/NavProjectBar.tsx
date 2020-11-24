@@ -2,7 +2,7 @@ import React from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
-const NavProjectBar: React.FC<NavProjectBarProps> = ({}) => {
+const NavProjectBar: React.FC = ({}) => {
   const router = useRouter();
   const styles = {
     link: {
