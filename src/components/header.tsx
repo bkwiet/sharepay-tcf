@@ -9,6 +9,13 @@ export const Header: React.FC = () => {
       <header>
         <nav>
           <p>
+            <a
+              href="/projects"
+            >
+              <button className="signInButton">Projects</button>
+            </a>
+          </p>
+          <p>
             {!session && (
               <a
                 href="/api/auth/signin"

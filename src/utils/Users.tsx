@@ -1,8 +1,15 @@
 import { getDatabase } from "./database"
 
-export async function findOneUser(): Promise<void> {
+export async function findUserById(user_idkey:string): Promise<void> {
   console.log("appel ouverture getDatabase" );
   const mongodb = await getDatabase();
-  const requete = await mongodb.db().collection("users").findOne({user_idkey: "00000001"});
-  console.log(requete);
+  const user = await mongodb.db().collection("users").findOne({ user_idkey: user_idkey });
+  return user;
+};
+
+export async function findUserByEmail( email: string): Promise<void> {
+  console.log("appel ouverture getDatabase" );
+  const mongodb = await getDatabase();
+  const user = await mongodb.db().collection("users").findOne({email: email});
+  return user;
 };
