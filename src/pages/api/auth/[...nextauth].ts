@@ -113,7 +113,7 @@ const options = {
 
   // To be fixed soon or ..... not
   //[next-auth][error][adapter_connection_error] MongoServerSelectionError: getaddrinfo ENOTFOUND cluster0.wkttl.mongodb.net
-  // database: process.env.MONGODBURI,
+  // database: process.env.MONGODB_URI,
 };
 
 const authHandler: NextApiHandler = (req, res) => NextAuth(req, res, options);
