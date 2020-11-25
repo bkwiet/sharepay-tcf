@@ -1,52 +1,70 @@
 import React from "react";
-import NavBar from "../components/NavBar";
-export const Header: React.FC = () => {
-  return (
-    <>
-      <header>
+import { Navbar, Nav } from "react-bootstrap";
+import Link from "next/link";
+import { signin, signout, useSession } from "next-auth/client";
+import styles from "../../public/styles/Header.module.css";
 
-        <nav>
-          <p>
+export const Header: React.FC = () => {
+  const [session, loading] = useSession();
+
+  return (
+    <header>
+      <Navbar className={styles.nav} expand="lg" fixed="top">
+        <Navbar.Brand className={styles.logo_brand} href="/">
+          {" "}
+          <img src="pictures/brand_logo.jpg" alt="brand_logo" />{" "}
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="tfc-navbar" />
+        <Navbar.Collapse id="tfc-navbar">
+          <Nav className={"mr-auto " + styles.navbar}>
+            <Nav.Link href="#pricing">Start</Nav.Link>
+            <Nav.Link href="#features">About</Nav.Link>
+          </Nav>
+          <Nav className={styles.navbar}>
             {!session && (
-              <a
-                href="/api/auth/signin"
-                onClick={(e) => {
-                  e.preventDefault();
-                  signin();
-                }}
-              >
-                <button className="signInButton">Sign in</button>
-              </a>
-            )}
-            {session && (
-              <>
-                <Link href="/profile">
-                  <a>
-                    <span style={{ backgroundImage: `url(${session.user.image})` }} className="avatar" />
-                  </a>
-                </Link>
-                <span className="email">{session.user.email}</span>
-                <a
-                  href="/api/auth/signout"
+              <Link href="/api/auth/signin">
+                <Nav.Link
                   onClick={(e) => {
                     e.preventDefault();
-                    signout();
+                    signin();
                   }}
+                  className="signInButton"
+                  href="login"
                 >
-                  <button className="signOutButton">Sign out</button>
-                </a>
+                  Sign in
+                </Nav.Link>
+              </Link>
+            )}
+
+            {session && (
+              <>
+                <Link href="/profile" passHref>
+                  <Nav.Link>
+                    <i className={"fas fa-user-circle mr-2 " + styles.avatar}></i>
+                    <span className={styles.username}>{session.user.email}</span>
+                  </Nav.Link>
+                </Link>
+
+                <Link href="/api/auth/signout">
+                  <Nav.Link
+                    onClick={(e) => {
+                      e.preventDefault();
+                      signout();
+                    }}
+                    className="signOutButton"
+                    href="logout"
+                  >
+                    Sign out
+                  </Nav.Link>
+                </Link>
               </>
             )}
-          </p>
-        </nav>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
 
-        <NavBar></NavBar>
-        <nav> </nav>
-
-
-        <style jsx>{``}</style>
-      </header>
-    </>
+      <style jsx>{``}</style>
+    </header>
   );
 };
 
