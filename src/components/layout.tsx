@@ -1,7 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import Header from "./header";
-import styles from "../../styles/Layout.module.css";
+import styles from "../../public/styles/Layout.module.css";
 import NavProjectBar from "../components/NavProjectBar";
 // type Props = {
 //   setPage: React.Dispatch<React.SetStateAction<string>>;
@@ -25,12 +25,7 @@ export const Layout: React.FC = ({ children }) => {
 
       <Header />
 
-      <div className="MainContenairCss">
-        <NavProjectBar></NavProjectBar>
-      </div>
-      <div className={""}>
-        <main className={""}>{children}</main>
-      </div>
+      <main className={" " + styles.main}>{children}</main>
     </>
   );
 };
