@@ -4,6 +4,7 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background-color: rgb(55, 53, 53);
 }
 
 a {
@@ -13,4 +14,19 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+.NavBar {
+  background-color: rgb(62, 101, 143);
+  display: flex;
+  justify-content: flex-end;
+  padding: 4px;
+}
+.navProjectBar {
+  height: 95vh;
+  background-color: grey;
+  display: table-row;
+}
+.MainContenairCss {
+  display: flex;
 }
