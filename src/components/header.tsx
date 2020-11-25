@@ -1,20 +1,11 @@
 import React from "react";
-import Link from "next/link";
-import { signin, signout, useSession } from "next-auth/client";
-
+import NavBar from "../components/NavBar";
 export const Header: React.FC = () => {
-  const [session, loading] = useSession();
   return (
     <>
       <header>
+
         <nav>
-          <p>
-            <a
-              href="/projects"
-            >
-              <button className="signInButton">Projects</button>
-            </a>
-          </p>
           <p>
             {!session && (
               <a
@@ -48,6 +39,10 @@ export const Header: React.FC = () => {
             )}
           </p>
         </nav>
+
+        <NavBar></NavBar>
+        <nav> </nav>
+
 
         <style jsx>{``}</style>
       </header>

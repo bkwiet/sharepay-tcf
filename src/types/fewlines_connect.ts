@@ -19,4 +19,9 @@ export type Profile = {
   sub: string;
 };
 
-export type User = { name: string; email: string; image: string; accessToken?: string };
+export type User = {
+  name: string;
+  email: string;
+  image: string;
+  accessToken?: string;
+};
