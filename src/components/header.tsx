@@ -1,18 +1,21 @@
 import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
 import Link from "next/link";
-import { signin, signout, useSession } from "next-auth/client";
+import { Session, signin, signout } from "next-auth/client";
 import styles from "../../public/styles/Header.module.css";
 
-export const Header: React.FC = () => {
-  const [session, loading] = useSession();
-
+type Props = {
+  session: Session;
+  loading: boolean;
+};
+export const Header: React.FC<Props> = ({ session, loading }) => {
   return (
     <header>
       <Navbar className={styles.nav} expand="lg" fixed="top">
         <Navbar.Brand className={styles.logo_brand} href="/">
           {" "}
-          <img src="pictures/brand_logo.jpg" alt="brand_logo" />{" "}
+          <img className="mr-2" src="/pictures/brand_logo.jpg" alt="brand_logo" />
+          <span>TCF</span>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="tfc-navbar" />
         <Navbar.Collapse id="tfc-navbar">
