@@ -1,9 +1,10 @@
 
 import { getDatabase } from "./database"
 
-export async function findOneProject(): Promise<void> {
+export async function findProjectById(idkey:string): Promise<void> {
   console.log("appel ouverture getDatabase" );
+  console.log("valeur de idkey",idkey);
   const mongodb = await getDatabase();
-  const requete = await mongodb.db().collection("Projects").findOne({idkey: "00000001"});
-  console.log(requete);
+  const project = await mongodb.db().collection("projects").findOne({idkey: idkey});
+  return project;
 };

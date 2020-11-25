@@ -1,7 +1,7 @@
 import { MongoClient } from "mongodb";
 
 const MONGODB_URI = process.env.MONGODB_URI;
-console.log("MONGODB_URI =",MONGODB_URI);
+//console.log("MONGODB_URI =",MONGODB_URI);
 
 let cachedDb: MongoClient = null;
 
