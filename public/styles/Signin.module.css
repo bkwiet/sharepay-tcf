@@ -1,9 +1,10 @@
 .login {
   padding-top: 25vh;
   height: 100vh;
+  min-height: 250px;
   flex-direction: column;
   align-items: center;
-  background-image: url("/pictures/background_green.jpg");
+  background-image: url("/pictures/background_green.png");
   background-attachment: fixed;
   background-size: cover;
   background-position: center;
@@ -13,13 +14,13 @@
   width: 150px;
   height: 150px;
   border-radius: 15px;
-  border: 1px solid rgb(99 0 0);
+  border: 2px solid rgb(115 4 4);
 }
 
 .login button {
   /* background-color: rgb(86 86 86 / 41%); */
-  background-color: rgb(41 40 40);
-  color: rgb(193 193 193);
+  background-color: rgb(84 84 84 / 52%);
+  color: rgb(249 249 249);
   border-radius: 15px;
   border-color: rgb(95 1 1);
   width: 17rem;

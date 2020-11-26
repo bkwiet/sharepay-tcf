@@ -5,6 +5,12 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
     Helvetica Neue, sans-serif;
   background-color: rgb(55, 53, 53);
+  color: white;
+}
+
+h1 {
+  color: black;
+  text-align: center;
 }
 
 a {
@@ -14,6 +20,10 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+.container {
+  padding-top: 10vh;
 }
 
 /* .carousel-caption {

@@ -1,12 +1,14 @@
 import React from "react";
 import { providers, signIn } from "next-auth/client";
+import { GetServerSideProps, NextPage } from "next";
 import Layout from "../../components/layout";
 import Head from "next/head";
-import { Button } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import styles from "../../../public/styles/Signin.module.css";
 
-export default function SignIn({ providers }) {
-  let icon;
+const SignIn: NextPage = ({ providers }) => {
+  const [email, setEmail] = React.useState("");
+
   return (
     <>
       <Head>
@@ -15,7 +17,7 @@ export default function SignIn({ providers }) {
       <Layout>
         <div className={"d-flex " + styles.login}>
           <img className={styles.logo} src="/pictures/brand_logo_mod.jpg" alt="brand_logo" />
-          <h1>Sign in to start your journey</h1>
+          <h1>Let's begin your journey !</h1>
           <div className={""}>
             {Object.values(providers).map((provider) => (
               <div key={provider.name}>
@@ -23,7 +25,6 @@ export default function SignIn({ providers }) {
                   {provider.id === "connect" ? <img src="/pictures/icons/fewlines.ico" alt="connect_logo" /> : null}
                   {provider.id === "google" ? <img src="/pictures/icons/google.png" alt="connect_logo" /> : null}
                   {provider.id === "github" ? <img src="/pictures/icons/github.png" alt="connect_logo" /> : null}
-                  {/* {provider.id === "email" ? <img src="/pictures/icons/mail.png" alt="connect_logo" /> : null} */}
                   Sign in with {provider.name}
                 </Button>
               </div>
@@ -33,15 +34,15 @@ export default function SignIn({ providers }) {
       </Layout>
     </>
   );
-}
-// export const getServerSideProps: GetServerSideProps = async (context) => {
-//   const list_providers = await providers(context);
-//   return {
-//     providers: list_providers,
-//   };
-// };
-SignIn.getInitialProps = async (context) => {
+};
+
+export default SignIn;
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const list_providers = await providers();
   return {
-    providers: await providers(context),
+    props: {
+      providers: list_providers,
+    },
   };
 };

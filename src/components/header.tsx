@@ -41,6 +41,7 @@ export const Header: React.FC<Props> = ({ session, loading }) => {
 
             {session && (
               <>
+                <Nav.Link href={"/projects?email="+session.user.email}>My Projects</Nav.Link>
                 <Link href="/profile" passHref>
                   <Nav.Link>
                     <i className={"fas fa-user-circle mr-2 " + styles.avatar}></i>
