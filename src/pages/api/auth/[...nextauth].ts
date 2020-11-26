@@ -9,7 +9,7 @@ const options = {
 
   pages: {
     signIn: "/auth/signin",
-    // signOut: '/auth/signout',
+    signOut: "/",
     // error: '/auth/error', // Error code passed in query string as ?error=
     // verifyRequest: '/auth/verify-request', // (used for check email message)
     newUser: "/auth/registration",
@@ -34,7 +34,6 @@ const options = {
       idToken: true,
       state: false,
       profile: (profile: Profile) => {
-        // console.log("Profile form object :", profile);
         return {
           id: "connect",
           name: profile.email,
@@ -57,21 +56,11 @@ const options = {
       clientId: process.env.GITHUB_ID || "",
       clientSecret: process.env.GITHUB_SECRET || "",
     }),
-    // Providers.Email({
-    //   server: process.env.EMAIL_SERVER,
-    //   from: process.env.EMAIL_FROM,
-    // }),
   ],
 
   callbacks: {
     signIn: async (user: User, tokens: Tokens, profile: Profile) => {
-      // console.log("SignIn Callback");
-      // console.log("user values :", user);
-      // console.log("Profile values :", profile);
-      // console.log("Tokens values :", tokens);
-
       if (tokens.provider === "connect" && tokens.accessToken) {
-        // console.log("Connect in action");
         const oauthClientConstructorProps: OAuth2ClientConstructor = {
           openIDConfigurationURL: process.env.CONNECT_OPEN_ID || "",
           clientID: process.env.CONNECT_CLIENT_ID || "",
@@ -84,7 +73,6 @@ const options = {
         const oauthClient = new OAuth2Client(oauthClientConstructorProps);
 
         const decoded = await oauthClient.verifyJWT(tokens.accessToken, String(process.env.CONNECT_JWT_ALGORITHM));
-        // console.log("Token decoded :", decoded);
 
         if (decoded) {
           user.accessToken = tokens.accessToken;
@@ -97,7 +85,6 @@ const options = {
     },
 
     jwt: async function jwt(token, user: User) {
-      // console.log("JWT Callback :", token, user);
       if (user) {
         token = {
           username: user.name,
@@ -114,8 +101,11 @@ const options = {
       session.user.email = token.email;
       session.accessToken = token.accessToken;
 
-      // console.log("Session Callback", session);
-      return session;
+      return Promise.resolve(session);
+    },
+
+    redirect: async (url, baseUrl) => {
+      return url.startsWith(baseUrl) ? Promise.resolve("/") : Promise.resolve(baseUrl);
     },
   },
 

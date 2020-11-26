@@ -207,10 +207,10 @@
     "@types/bson" "*"
     "@types/node" "*"
 
-"@types/next-auth@^3.1.16":
-  version "3.1.16"
-  resolved "https://registry.yarnpkg.com/@types/next-auth/-/next-auth-3.1.16.tgz#039864e8079ab1b24d7332dfeec61277dc6e0554"
-  integrity sha512-B5PhZ7LcxqoB/Hmi+qlVZCAY7s23kMBpuFDrIuQ5tIcGwl7yZ9rrut20/tGU6AGPxEdaeUyJhaIrWnr0q7fg7g==
+"@types/next-auth@^3.1.17":
+  version "3.1.17"
+  resolved "https://registry.yarnpkg.com/@types/next-auth/-/next-auth-3.1.17.tgz#0add26a2af73c621b8564cf829a23c2957edb8eb"
+  integrity sha512-mHFObJ/udYC8bg0Vy2R8ycu0riRKYjvL6iPkVS5maqYtLlYtK0/qK2qRz1vuGONa8wO77hrUapE+rZylRt+c4A==
   dependencies:
     "@types/node" "*"
     "@types/react" "*"
