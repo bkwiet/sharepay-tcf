@@ -14,7 +14,7 @@ export default function SignIn({ providers }) {
       </Head>
       <Layout>
         <div className={"d-flex " + styles.login}>
-          <img className={styles.logo} src="/pictures/brand_logo.jpg" alt="brand_logo" />
+          <img className={styles.logo} src="/pictures/brand_logo_mod.jpg" alt="brand_logo" />
           <h1>Sign in to start your journey</h1>
           <div className={""}>
             {Object.values(providers).map((provider) => (
