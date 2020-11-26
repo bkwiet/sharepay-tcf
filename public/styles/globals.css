@@ -16,6 +16,10 @@ a {
   box-sizing: border-box;
 }
 
+/* .carousel-caption {
+  top: 40vh;
+  color: black;
+} */
 /* .NavBar {
   background-color: rgb(62, 101, 143);
   display: flex;
