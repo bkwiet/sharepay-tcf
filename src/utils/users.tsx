@@ -11,5 +11,6 @@ export async function findUserByEmail( email: string): Promise<void> {
   console.log("appel ouverture getDatabase" );
   const mongodb = await getDatabase();
   const user = await mongodb.db().collection("users").findOne({email: email});
+  console.log(user);
   return user;
 };
