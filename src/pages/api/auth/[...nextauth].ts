@@ -12,7 +12,7 @@ const options = {
     // signOut: '/auth/signout',
     // error: '/auth/error', // Error code passed in query string as ?error=
     // verifyRequest: '/auth/verify-request', // (used for check email message)
-    // newUser: null // If set, new users will be directed here on first sign in
+    newUser: "/auth/registration",
   },
 
   providers: [

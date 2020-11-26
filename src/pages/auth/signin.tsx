@@ -10,7 +10,7 @@ export default function SignIn({ providers }) {
   return (
     <>
       <Head>
-        <title>Tout Compte Fait - Homepage</title>
+        <title>Tout Compte Fait - Sign in</title>
       </Head>
       <Layout>
         <div className={"d-flex " + styles.login}>
