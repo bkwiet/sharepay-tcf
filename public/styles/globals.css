@@ -16,6 +16,10 @@ a {
   box-sizing: border-box;
 }
 
+.container {
+  padding-top: 10vh;
+}
+
 /* .carousel-caption {
   top: 40vh;
   color: black;

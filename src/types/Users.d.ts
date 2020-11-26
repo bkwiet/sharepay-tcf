@@ -1,8 +1,11 @@
 export type Users = {
+  name:string,
+  email: string,
+  createdAt: Date,
+  updatedAt: Date, 
   user_idkey: string,
   firstname: string,
   lastname: string,
-  email: string,
   rib: string,
   date_created : string,
   date_last_connect: string,
