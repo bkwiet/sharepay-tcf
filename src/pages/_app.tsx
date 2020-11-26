@@ -2,6 +2,7 @@ import type { AppProps } from "next/app";
 import { Provider } from "next-auth/client";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../public/styles/globals.css";
+import "reflect-metadata";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   const { session } = pageProps;

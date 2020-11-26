@@ -7,6 +7,14 @@ import { Profile, Tokens, User } from "../../../types/fewlines_connect";
 const options = {
   site: process.env.SITE || "http://localhost:3000",
 
+  pages: {
+    signIn: "/auth/signin",
+    // signOut: '/auth/signout',
+    // error: '/auth/error', // Error code passed in query string as ?error=
+    // verifyRequest: '/auth/verify-request', // (used for check email message)
+    newUser: "/auth/registration",
+  },
+
   providers: [
     // XAV ->> Solve the issue for the "Error: Missing or invalid provider account"
     // Add the id of the provider in the profile
@@ -26,7 +34,7 @@ const options = {
       idToken: true,
       state: false,
       profile: (profile: Profile) => {
-        console.log("Profile form object :", profile);
+        // console.log("Profile form object :", profile);
         return {
           id: "connect",
           name: profile.email,
@@ -49,10 +57,10 @@ const options = {
       clientId: process.env.GITHUB_ID || "",
       clientSecret: process.env.GITHUB_SECRET || "",
     }),
-    Providers.Email({
-      server: process.env.EMAIL_SERVER,
-      from: process.env.EMAIL_FROM,
-    }),
+    // Providers.Email({
+    //   server: process.env.EMAIL_SERVER,
+    //   from: process.env.EMAIL_FROM,
+    // }),
   ],
 
   callbacks: {
@@ -111,9 +119,10 @@ const options = {
     },
   },
 
-  // To be fixed soon or ..... not
+  // XAV ->> Solve the issue for :
   //[next-auth][error][adapter_connection_error] MongoServerSelectionError: getaddrinfo ENOTFOUND cluster0.wkttl.mongodb.net
-  // database: process.env.MONGODB_URI,
+  // https://github.com/nextauthjs/next-auth/issues/833
+  database: process.env.MONGODB_URI_TEST,
 };
 
 const authHandler: NextApiHandler = (req, res) => NextAuth(req, res, options);
