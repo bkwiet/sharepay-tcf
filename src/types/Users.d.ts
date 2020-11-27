@@ -3,7 +3,7 @@ export type Users = {
   email: string,
   createdAt: Date,
   updatedAt: Date, 
-  user_idkey: string,
+  user_idkey: number,
   firstname: string,
   lastname: string,
   rib: string,
@@ -12,7 +12,7 @@ export type Users = {
   date_last_payment: string,
   actif: boolean,
   projects: {
-    idkey:string,
+    idkey:number,
     name:string
   }[]
 }

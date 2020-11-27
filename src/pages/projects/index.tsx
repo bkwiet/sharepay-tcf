@@ -49,9 +49,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   let projects: { idkey: string; name: string }[] = [];
 
-  user.projects.map((project: { idkey: string; name: string }) => {
-    projects.push({ idkey: project.idkey, name: project.name });
-  });
+  if (user.projects) {
+    user.projects.map((project: { idkey: string; name: string }) => {
+      projects.push({ idkey: project.idkey, name: project.name });
+    });
+  }
   console.log(projects);
 
   // Pass data to the page via props
