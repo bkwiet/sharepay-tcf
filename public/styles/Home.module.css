@@ -11,10 +11,12 @@
 .base_button {
   width: 100%;
   justify-content: center;
+  margin-left: 0;
 }
 .main_button {
   width: 450px;
   height: 250px;
+
   background-color: rgb(21 20 20 / 49%);
   border: 1px solid rgb(144 136 136);
   border-radius: 15px;
