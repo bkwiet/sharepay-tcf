@@ -25,13 +25,13 @@ const Home: NextPage = ({ session, user }) => {
 
             <div className={"row mt-3 " + styles.base_button}>
               <div className={"col-sm-12 col-md-5 mr-2 mb-2 " + styles.main_button}>
-                <h3><i className="fas fa-campground"></i> Profile</h3>
+                <h3> Profile</h3>
                 <p> Add description -> of the element  </p>
               </div>
 
               <div className={"col-sm-12 col-md-5 mr-2 mb-2 " + styles.main_button}>
                   <h3>Start a new Project</h3>
-                  <p> Add description -> of the element  </p>
+                  <p> Add description -> of the element </p>
               </div>
 
               <div className={"col-sm-12 col-md-5 mr-2 mb-2 " + styles.main_button}>

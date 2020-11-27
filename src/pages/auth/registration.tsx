@@ -5,6 +5,8 @@ import { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 import { Button, Container, Form } from "react-bootstrap";
 import styles from "../../../public/styles/Registration.module.css";
+import { findUserByEmail } from "../../utils/users";
+import { Sharepay_user } from "../../types/Users";
 
 type Props = {
   session: Session;
@@ -43,6 +45,7 @@ const Registration: NextPage<Props> = ({ session }) => {
                     value={username}
                     placeholder="Enter your username"
                     onChange={(e) => setUsername(e.target.value)}
+                    required
                   />
                 </Form.Group>
 
@@ -56,6 +59,7 @@ const Registration: NextPage<Props> = ({ session }) => {
                     value={firstname}
                     placeholder="Enter your firstname"
                     onChange={(e) => setFirstname(e.target.value)}
+                    required
                   />
                 </Form.Group>
 
@@ -69,6 +73,7 @@ const Registration: NextPage<Props> = ({ session }) => {
                     value={lastname}
                     placeholder="Enter your lastname"
                     onChange={(e) => setLastname(e.target.value)}
+                    required
                   />
                 </Form.Group>
 
@@ -82,6 +87,7 @@ const Registration: NextPage<Props> = ({ session }) => {
                     value={phonenum}
                     placeholder="Enter your mobile number"
                     onChange={(e) => setPhonenum(e.target.value)}
+                    required
                   />
                 </Form.Group>
 
@@ -102,9 +108,31 @@ export default Registration;
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const session = await getSession(context);
 
-  return {
-    props: {
-      session,
-    },
-  };
+  if (session) {
+    // Dans le utils/users il faut retourner le bon type pour la promesse
+    const user = await findUserByEmail(String(session.user.email));
+    if (user.username) {
+      return {
+        props: {},
+        redirect: {
+          permanent: false,
+          destination: "/",
+        },
+      };
+    } else {
+      return {
+        props: {
+          session,
+        },
+      };
+    }
+  } else {
+    return {
+      props: {},
+      redirect: {
+        permanent: false,
+        destination: "/auth/signin",
+      },
+    };
+  }
 };
