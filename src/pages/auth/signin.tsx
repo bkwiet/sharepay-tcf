@@ -16,8 +16,8 @@ const SignIn: NextPage = ({ providers }) => {
       </Head>
       <Layout>
         <div className={"d-flex " + styles.login}>
-          <img className={styles.logo} src="/pictures/brand_logo_mod.jpg" alt="brand_logo" />
           <h1>Let's begin your journey !</h1>
+          <img className={styles.logo} src="/pictures/brand_logo_mod.jpg" alt="brand_logo" />
           <div className={""}>
             {Object.values(providers).map((provider) => (
               <div key={provider.name}>

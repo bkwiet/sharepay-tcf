@@ -1,12 +1,16 @@
 import React from "react";
-import { getSession } from "next-auth/client";
+import { getSession, Session } from "next-auth/client";
 import Layout from "../../components/layout";
 import { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
-import { Button, Container, Form, InputGroup, Col, Row } from "react-bootstrap";
+import { Button, Container, Form } from "react-bootstrap";
 import styles from "../../../public/styles/Registration.module.css";
 
-const Registration: NextPage = ({ session }) => {
+type Props = {
+  session: Session;
+};
+
+const Registration: NextPage<Props> = ({ session }) => {
   const [username, setUsername] = React.useState("");
   const [firstname, setFirstname] = React.useState("");
   const [lastname, setLastname] = React.useState("");
