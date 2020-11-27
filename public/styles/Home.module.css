@@ -6,5 +6,33 @@
 }
 
 .username {
-  color: rgb(212 11 76);
+  color: rgb(169 9 9);
+}
+.base_button {
+  width: 100%;
+  justify-content: center;
+  margin-left: 0;
+}
+.main_button {
+  width: 450px;
+  height: 250px;
+
+  background-color: rgb(21 20 20 / 49%);
+  border: 1px solid rgb(144 136 136);
+  border-radius: 15px;
+  padding: 2rem;
+  cursor: pointer;
+}
+.main_button h3 {
+  color: rgb(234 141 24);
+}
+
+div.main_button:hover {
+  background-color: rgb(21 20 20 / 79%);
+  border: 1px solid rgb(117, 2, 2);
+}
+
+div.main_button:active {
+  transform: scale(0.98);
+  box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
 }

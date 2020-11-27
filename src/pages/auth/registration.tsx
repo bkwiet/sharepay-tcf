@@ -21,7 +21,7 @@ const Registration: NextPage<Props> = ({ session }) => {
         <title>Tout Compte Fait - Registration</title>
       </Head>
       <Layout>
-        <Container className={"w-75 " + styles.register}>
+        <Container className={" " + styles.register}>
           {session && (
             <>
               <h1>Welcome</h1>

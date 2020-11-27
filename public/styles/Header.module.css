@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@600&display=swap");
 .nav {
-  background-color: rgb(39 39 39);
+  /* background-color: rgb(39 39 39); */
+  background-color: rgb(0 0 0 / 60%);
   border-bottom: 1px solid rgb(185 185 185);
 }
 .nav {
@@ -8,28 +9,41 @@
 }
 
 .nav a {
-  color: white !important;
+  color: rgb(210 210 210) !important;
 }
 
 .nav a:hover {
-  color: rgb(137, 137, 137) !important;
+  color: rgb(217, 157, 74) !important;
 }
 
 .logo_brand img {
   height: 26px;
   width: 26px;
-  border-radius: 5px;
-  border: 1px solid rgb(47 21 21);
 }
 
 .logo_brand span {
   font-family: "Sansita Swashed", cursive;
-  color: hsl(0deg 0% 0% / 75%);
-  text-shadow: 1px 1px 1px rgb(179 179 179);
+  color: hsl(0deg 97% 34% / 75%);
+  text-shadow: 1px 1px 1px hsl(0deg 0% 0%);
 }
 
 .username {
-  color: rgb(165 117 8);
+  padding: 6px;
+  color: rgb(117 113 113);
+  border: 1px solid rgb(119 119 119);
+  background-color: rgb(0 0 0 / 38%);
+  border-radius: 15px;
+}
+
+.username:hover {
+  color: rgb(159, 6, 6);
+  border: 1px solid rgb(208, 208, 208);
+  background-color: rgb(0 0 0 / 50%);
+}
+
+.username:active {
+  transform: scale(0.98);
+  box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
 }
 
 .avatar {
