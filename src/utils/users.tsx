@@ -8,18 +8,16 @@ export async function findUserById(user_idkey:string): Promise<void> {
 };
 
 export async function findUserByEmail( email: string): Promise<void> {
-  console.log("appel ouverture getDatabase" );
   const mongodb = await getDatabase();
   const user = await mongodb.db().collection("users").findOne({email: email});
-  console.log(user);
   return user;
 };
 
-export async function newUserIdKey(): Promise<Number> {
+export async function newUserIdKey(): Promise<number> {
   const mongodb = await getDatabase();
   const maxIdKey = await mongodb.db().collection("users").find().sort({user_idkey:-1}).limit(1).toArray();
 
-  // return la nouvelle valeur user_idkey
+  // calcul du nouveau user_idkey pour creation d'un user dans collection users
   let userIdKey =0;
   if (maxIdKey) {
     userIdKey = maxIdKey[0].user_idkey + 1;

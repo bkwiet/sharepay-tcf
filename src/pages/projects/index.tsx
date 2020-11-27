@@ -6,7 +6,7 @@ import Layout from "../../components/layout";
 import { Container } from "react-bootstrap";
 
 type Projects = {
-  idkey: string;
+  idkey: Number;
   name: string;
 };
 
@@ -24,7 +24,7 @@ const listProject: React.FC<{ projects: Projects[] }> = ({ projects }) => {
           <h1>My projects</h1>
           {projects.map((project) => {
             return (
-              <div className="col-12 col-sm-6 col-md-4 d-flex align-items-stretch mb-5" key={project.idkey}>
+              <div className="col-12 col-sm-6 col-md-4 d-flex align-items-stretch mb-5 text-dark" key={project.idkey}>
                 <a href={"/projects/" + project.idkey}>
                   <p>{project.name}</p>
                 </a>
@@ -47,7 +47,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const user = await findUserByEmail(email);
   console.log(user);
 
-  let projects: { idkey: string; name: string }[] = [];
+  let projects: { idkey: Number; name: string }[] = [];
 
   if (user.projects) {
     user.projects.map((project: { idkey: string; name: string }) => {
