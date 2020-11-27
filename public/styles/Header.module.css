@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@600&display=swap");
 .nav {
-  background-color: rgb(51 51 51);
+  background-color: rgb(39 39 39);
   border-bottom: 1px solid rgb(185 185 185);
 }
 .nav {
@@ -18,13 +18,14 @@
 .logo_brand img {
   height: 26px;
   width: 26px;
-  border-radius: 50%;
-  border: 1px solid rgb(236 162 25);
+  border-radius: 5px;
+  border: 1px solid rgb(47 21 21);
 }
 
 .logo_brand span {
   font-family: "Sansita Swashed", cursive;
-  color: rgb(136 136 135);
+  color: hsl(0deg 0% 0% / 75%);
+  text-shadow: 1px 1px 1px rgb(179 179 179);
 }
 
 .username {

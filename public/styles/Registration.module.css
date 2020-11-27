@@ -1,0 +1,62 @@
+.register {
+  margin-top: -58px;
+  padding-top: 20vh;
+  height: 100vh;
+  min-height: 250px;
+  /* background-image: url("/pictures/background_red.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center; */
+}
+.mail input {
+  color: rgb(138 210 44);
+  font-weight: bold;
+  background-color: rgb(105 105 105) !important;
+}
+.register form {
+  width: 500px;
+  margin: auto;
+  padding: 2rem;
+  background-color: rgb(0 0 0 / 18%);
+  border: 1px solid rgb(154 154 154);
+  border-radius: 15px;
+}
+
+.register small {
+  margin: auto;
+  margin-left: 30%;
+  color: rgb(72 38 3);
+  font-size: 1rem;
+}
+
+.register form div {
+  display: inline-flex;
+}
+
+.register form label {
+  width: 80px;
+  margin-right: 2rem;
+  color: rgb(0 0 0);
+}
+
+.register form input {
+  width: 250px;
+  background-color: rgb(56 54 54);
+  color: rgb(193 193 193);
+}
+
+.register form button {
+  display: block;
+  margin-left: 40vh;
+  background-color: rgb(47 36 36 / 66%);
+  color: rgb(173 173 173);
+  border-color: rgb(204 126 33);
+}
+
+.register form button:hover {
+  display: block;
+  margin-left: 40vh;
+  background-color: rgb(47 36 36 / 30%);
+  color: rgb(138 210 44);
+  border-color: rgb(140, 5, 5);
+}

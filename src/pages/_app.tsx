@@ -7,7 +7,7 @@ import "reflect-metadata";
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   const { session } = pageProps;
   return (
-    <Provider options={{ site: process.env.SITE }} session={session}>
+    <Provider session={session}>
       <Component {...pageProps} />
     </Provider>
   );

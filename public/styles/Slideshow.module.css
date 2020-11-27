@@ -1,0 +1,72 @@
+@import url("https://fonts.googleapis.com/css2?family=Mitr:wght@300&display=swap");
+
+.carousucre {
+  margin-top: -58px;
+}
+.carousucre img {
+  height: 100vh;
+  filter: blur(4px);
+}
+
+.caption h3 {
+  font-size: 2rem;
+  color: rgb(249 169 49);
+  /* text-align: center; */
+}
+
+.caption p {
+  /* text-align: justify; */
+}
+
+.caption blockquote {
+  font-size: 1.5rem;
+  color: rgb(171 163 163);
+}
+
+.logo {
+  height: 100px !important;
+  width: 100px;
+  filter: blur(0px) !important;
+  border: 1px solid rgb(113 109 109);
+  border-radius: 15px;
+}
+
+.caption {
+  padding: 3rem;
+  height: fit-content;
+  min-height: 250px;
+  /* width: 50%; */
+  /* left: 25%; */
+  background-color: rgb(0 0 0 / 70%);
+  border: 1px solid rgb(150 144 144);
+  top: 30vh;
+  color: rgb(236 236 236);
+  border-radius: 15px;
+  font-size: 2rem;
+  font-family: "Mitr", sans-serif;
+}
+
+@media only screen and (max-width: 768px) {
+  .caption {
+    top: 20vh;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .caption {
+    /* top: 15vh; */
+    font-size: 1.5rem;
+    padding: 1rem;
+  }
+  .caption p {
+    text-align: left;
+  }
+}
+@media only screen and (max-height: 700px) {
+  .caption {
+    font-size: 1rem;
+  }
+
+  .caption h3 {
+    font-size: 1rem;
+  }
+}

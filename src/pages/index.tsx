@@ -1,66 +1,52 @@
 import Head from "next/head";
-import styles from "../../public/styles/Home.module.css";
+import { GetServerSideProps, NextPage } from "next";
+import { getSession } from "next-auth/client";
 import Layout from "../components/layout";
-import { Carousel } from "react-bootstrap";
+import Slideshow from "../components/slideshow";
+import styles from "../../public/styles/Home.module.css";
+import { findUserByEmail } from "../utils/users";
+import { Container } from "react-bootstrap";
 
-export default function Home() {
+const Home: NextPage = ({ session, user }) => {
+  // console.log("inside home", user);
   return (
     <>
       <Head>
         <title>Tout Compte Fait - Homepage</title>
       </Head>
       <Layout>
-        <Carousel className={styles.carousucre} controls={false} interval={3000}>
-          <Carousel.Item>
-            <img className="d-block w-100" src="pictures/slideshow/slide_0.jpg" alt="First slide" />
-
-            <Carousel.Caption className={styles.caption}>
-              <h3>Tout Compte Fait </h3>
-              <p>L'application sur-mesure pour partager vos dépenses avec vos ami(e)s ou collaborateurs-trices.</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-
-          <Carousel.Item>
-            <img className="d-block w-100" src="pictures/slideshow/slide_1.jpg" alt="second slide" />
-
-            <Carousel.Caption className={styles.caption}>
-              <h3>Transactions sécurisées</h3>
-              <p>Payez avec votre moyen de paiement favoris, de VISA à Paypal ou avec vos Cryptomonnaies.</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-
-          <Carousel.Item>
-            <img className="d-block w-100" src="pictures/slideshow/slide_2.jpg" alt="Fourth slide" />
-
-            <Carousel.Caption className={styles.caption}>
-              <h3>Partage On-The-Go</h3>
-              <p>
-                Que vous soyez en vacance, au restaurant ou sur le point de mettre un route votre projet, vous pouvez répartir en
-                seulement quelques clics les contributions financières.
-              </p>
-            </Carousel.Caption>
-          </Carousel.Item>
-
-          <Carousel.Item>
-            <img className="d-block w-100" src="pictures/slideshow/slide_4.jpg" alt="Fifth slide" />
-
-            <Carousel.Caption className={styles.caption}>
-              <h3>Avancement en temps réel</h3>
-              <p>Gardez un oeil sur l'état de vos investissements et remboursements et dormez sur vos deux oreilles.</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-
-          <Carousel.Item>
-            <img className="d-block w-100" src="pictures/slideshow/slide_5.jpg" alt="Sixth slide" />
-
-            <Carousel.Caption className={styles.caption}>
-              <h3>Les bons comptes font les bons amis</h3>
-              <blockquote>'Good accounts make good friends'</blockquote>
-              <p>Tentez l'aventure avec nous dès maintenant via notre application !</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-        </Carousel>
+        {!session ? (
+          <Slideshow />
+        ) : (
+          <Container className={styles.home}>
+            <h1>
+              Welcome <span className={styles.username}>{user.username}</span>
+            </h1>
+          </Container>
+        )}
       </Layout>
     </>
   );
-}
+};
+
+export default Home;
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const session = await getSession(context);
+  let user;
+  if (session) {
+    user = await findUserByEmail(String(session.user.email));
+    const _user = JSON.parse(JSON.stringify(user));
+    console.log(_user);
+    return {
+      props: {
+        session,
+        user: _user,
+      },
+    };
+  } else {
+    return {
+      props: {},
+    };
+  }
+};
