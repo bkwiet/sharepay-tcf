@@ -26,18 +26,22 @@ const Home: NextPage = ({ session, user }) => {
             <div className={"row mt-3 " + styles.base_button}>
               <div className={"col-sm-12 col-md-5 mr-2 mb-2 " + styles.main_button}>
                 <h3>Profile</h3>
+                <p> Add description -> of the element  </p>
               </div>
 
               <div className={"col-sm-12 col-md-5 mr-2 mb-2 " + styles.main_button}>
-                <h3>Start a new Project</h3>
+                  <h3>Start a new Project</h3>
+                  <p> Add description -> of the element  </p>
               </div>
 
               <div className={"col-sm-12 col-md-5 mr-2 mb-2 " + styles.main_button}>
-                <h3>On going Projects</h3>
+                  <h3>On going Projects</h3>
+                  <p> Add List of last projects -> Or display "there is no project to displa" </p>
               </div>
 
               <div className={"col-sm-12 col-md-5 mr-2 mb-2 " + styles.main_button}>
-                <h3>Your project</h3>
+                  <h3>Feature to determine</h3>
+                  <p>Feature to determine</p>
               </div>
             </div>
           </Container>
