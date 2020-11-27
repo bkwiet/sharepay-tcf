@@ -1,19 +1,19 @@
 export type Projects = {
-  idkey: string,
   name: string,
   summary: string,
+  idkey: number,
+  actif: boolean,
+  amount: number,
+  admin_idkey: number,
   date_opened: string,
   date_ended: string,
-  amount: number,
-  admin_idkey: string,
-  actif: boolean,
-  user_projects: {
-    user_idkey: string,
+  users: {
+    user_idkey: number,
     firstname: string,
     lastname: string,
   }[],
   payments: {
-    user_idkey: string,
+    user_idkey: number,
     date_payment: string,
     summary: string,
     amount: number,

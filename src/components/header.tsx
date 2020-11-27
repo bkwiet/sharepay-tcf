@@ -40,6 +40,7 @@ export const Header: React.FC<Props> = ({ session, loading }) => {
 
             {session && (
               <>
+                <Nav.Link href={"/projects/createproject"}>Create New Project</Nav.Link>
                 <Link href="/profile" passHref>
                   <Nav.Link>
                     <span className={styles.username}>{session.user.email}</span>
