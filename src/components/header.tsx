@@ -14,14 +14,13 @@ export const Header: React.FC<Props> = ({ session, loading }) => {
       <Navbar className={styles.nav} expand="lg" fixed="top">
         <Navbar.Brand className={styles.logo_brand} href="/">
           {" "}
-          {/* <img className="mr-2" src="/pictures/brand_logo.jpg" alt="brand_logo" /> */}
           <span>TCF</span>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="tfc-navbar" />
         <Navbar.Collapse id="tfc-navbar">
           <Nav className={"mr-auto " + styles.navbar}>
-            <Nav.Link href="#pricing">Start</Nav.Link>
-            <Nav.Link href="#features">About</Nav.Link>
+            {session && <Nav.Link href={"/projects?email=" + session.user.email}>Projects</Nav.Link>}
+            <Nav.Link href="#features">Contact</Nav.Link>
           </Nav>
           <Nav className={styles.navbar}>
             {!session && (
@@ -41,7 +40,6 @@ export const Header: React.FC<Props> = ({ session, loading }) => {
 
             {session && (
               <>
-                <Nav.Link href={"/projects?email=" + session.user.email}>My Projects</Nav.Link>
                 <Link href="/profile" passHref>
                   <Nav.Link>
                     <span className={styles.username}>{session.user.email}</span>

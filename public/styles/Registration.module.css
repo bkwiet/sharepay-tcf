@@ -3,16 +3,15 @@
   padding-top: 20vh;
   height: 100vh;
   min-height: 250px;
-  /* background-image: url("/pictures/background_red.jpg");
-  background-attachment: fixed;
-  background-size: cover;
-  background-position: center; */
+  justify-content: center;
 }
+
 .mail input {
   color: rgb(138 210 44);
   font-weight: bold;
   background-color: rgb(105 105 105) !important;
 }
+
 .register form {
   width: 500px;
   margin: auto;
