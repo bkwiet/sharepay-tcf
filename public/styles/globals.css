@@ -4,8 +4,12 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
     Helvetica Neue, sans-serif;
-  background-color: rgb(55, 53, 53);
   color: white;
+  background-image: url("/pictures/background.jpeg");
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  background-color: rgb(55, 53, 53);
 }
 
 h1 {
@@ -21,26 +25,3 @@ a {
 * {
   box-sizing: border-box;
 }
-
-.container {
-  padding-top: 10vh;
-}
-
-/* .carousel-caption {
-  top: 40vh;
-  color: black;
-} */
-/* .NavBar {
-  background-color: rgb(62, 101, 143);
-  display: flex;
-  justify-content: flex-end;
-  padding: 4px;
-}
-.navProjectBar {
-  height: 95vh;
-  background-color: grey;
-  display: table-row;
-}
-.MainContenairCss {
-  display: flex;
-} */

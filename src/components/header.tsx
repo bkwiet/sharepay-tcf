@@ -5,7 +5,7 @@ import { Session, signin, signout } from "next-auth/client";
 import styles from "../../public/styles/Header.module.css";
 
 type Props = {
-  session: Session;
+  session: Session | undefined | null;
   loading: boolean;
 };
 export const Header: React.FC<Props> = ({ session, loading }) => {
@@ -14,7 +14,7 @@ export const Header: React.FC<Props> = ({ session, loading }) => {
       <Navbar className={styles.nav} expand="lg" fixed="top">
         <Navbar.Brand className={styles.logo_brand} href="/">
           {" "}
-          <img className="mr-2" src="/pictures/brand_logo.jpg" alt="brand_logo" />
+          {/* <img className="mr-2" src="/pictures/brand_logo.jpg" alt="brand_logo" /> */}
           <span>TCF</span>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="tfc-navbar" />
@@ -41,10 +41,9 @@ export const Header: React.FC<Props> = ({ session, loading }) => {
 
             {session && (
               <>
-                <Nav.Link href={"/projects?email="+session.user.email}>My Projects</Nav.Link>
+                <Nav.Link href={"/projects?email=" + session.user.email}>My Projects</Nav.Link>
                 <Link href="/profile" passHref>
                   <Nav.Link>
-                    <i className={"fas fa-user-circle mr-2 " + styles.avatar}></i>
                     <span className={styles.username}>{session.user.email}</span>
                   </Nav.Link>
                 </Link>
