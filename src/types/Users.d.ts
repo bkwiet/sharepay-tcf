@@ -6,6 +6,7 @@ export type Users = {
   createdAt: Date;
   updatedAt: Date;
   user_idkey: string;
+  username: string;
   firstname: string;
   lastname: string;
   rib: string;
