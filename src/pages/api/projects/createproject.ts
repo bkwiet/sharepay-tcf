@@ -3,8 +3,8 @@ import { getDatabase } from "../../../utils/database";
 import { newProjectIdKey } from "../../../utils/projects";
 import { findUserByEmail } from "../../../utils/users";
 import { firstUpper } from "../../../utils/functions";
-import { Users } from "../../../types/users";
-import { Projects } from "../../../types/projects";
+import { Users } from "../../../types/Users";
+import { Projects } from "../../../types/Projects";
 
 export default async (request: NextApiRequest, response: NextApiResponse): Promise<void> => {
   // Will need to check if a new user or not ( maybe before the API endpoint call)
@@ -81,9 +81,8 @@ export default async (request: NextApiRequest, response: NextApiResponse): Promi
       .db()
       .collection("users")
       .updateOne({ user_idkey: user.user_idkey }, { $set: { ...user } })
-      .then((result) => console.log("DB ========= ", result))
       .catch((error) => console.log(error))
-      .finally(() => response.redirect("/"));
+      .finally(() => response.redirect("/projects"));
   } else {
     response.redirect("/auth/signin");
   }

@@ -1,18 +1,6 @@
 import { getDatabase } from "./database";
 import { Users } from "../types/Users";
-
-export async function findUserById(user_idkey: string): Promise<Users> {
-  console.log("appel ouverture getDatabase");
-  const mongodb = await getDatabase();
-  const user = await mongodb.db().collection("users").findOne({ user_idkey: user_idkey });
-  return user;
-}
-
-export async function findUserByEmail(email: string): Promise<Users> {
-  const mongodb = await getDatabase();
-  const user = await mongodb.db().collection("users").findOne({ email: email });
-  return user;
-}
+import { Projects } from "../types/Projects";
 
 export async function newUserIdKey(): Promise<number> {
   const mongodb = await getDatabase();
@@ -28,4 +16,23 @@ export async function newUserIdKey(): Promise<number> {
     userIdKey = 1;
   }
   return userIdKey;
+}
+
+export async function findUserById(user_idkey: string): Promise<Users> {
+  console.log("appel ouverture getDatabase");
+  const mongodb = await getDatabase();
+  const user = await mongodb.db().collection("users").findOne({ user_idkey: user_idkey });
+  return user;
+}
+
+export async function findUserByEmail(email: string): Promise<Users> {
+  const mongodb = await getDatabase();
+  const user = await mongodb.db().collection("users").findOne({ email: email });
+  return user;
+}
+
+export async function findUserProjects(user_idkey: string): Promise<Projects[]> {
+  const mongodb = await getDatabase();
+  const projects = await mongodb.db().collection("projects").find({ admin_idkey: user_idkey }).toArray();
+  return projects;
 }

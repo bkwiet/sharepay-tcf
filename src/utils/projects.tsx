@@ -1,12 +1,5 @@
 import { getDatabase } from "./database";
-
-export async function findProjectById(idkey: Number): Promise<void> {
-  console.log("appel ouverture getDatabase");
-  console.log("valeur de idkey", idkey);
-  const mongodb = await getDatabase();
-  const project = await mongodb.db().collection("projects").findOne({ idkey: idkey });
-  return project;
-}
+import { Projects } from "../types/Projects";
 
 export async function newProjectIdKey(): Promise<number> {
   const mongodb = await getDatabase();
@@ -21,4 +14,12 @@ export async function newProjectIdKey(): Promise<number> {
   }
 
   return IdKey;
+}
+
+export async function findProjectById(idkey: Number): Promise<Projects> {
+  console.log("appel ouverture getDatabase");
+  console.log("valeur de idkey", idkey);
+  const mongodb = await getDatabase();
+  const project = await mongodb.db().collection("projects").findOne({ idkey: idkey });
+  return project;
 }

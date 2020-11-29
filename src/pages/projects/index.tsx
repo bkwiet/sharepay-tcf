@@ -2,43 +2,48 @@ import React from "react";
 import { GetServerSideProps } from "next";
 import { getSession, Session } from "next-auth/client";
 import { findUserByEmail } from "../../utils/users";
+import { findProjectById } from "../../utils/projects";
 import { Users } from "../../types/Users";
+import { Projects } from "../../types/Projects";
 import Head from "next/head";
+import Link from "next/link";
 import Layout from "../../components/layout";
-import { Container } from "react-bootstrap";
-import styles from "../../../public/styles/CreateProject.module.css";
-
-type Projects = {
-  idkey: Number;
-  name: string;
-};
+import { Container, Card } from "react-bootstrap";
+import styles from "../../../public/styles/Projects.module.css";
 
 const ProjectIndex: React.FC<{ projects: Projects[] }> = ({ projects }) => {
-  console.log("arrivee typeof projects", typeof projects);
-  console.log(projects);
-
+  console.log("Gimme", projects);
   return (
     <>
       <Head>
         <title>Tout Compte Fait - My Projects</title>
         <style>{`
+          html,
           body {
             background-image: url("/pictures/background_project.jpeg") !important;
           }
         `}</style>
       </Head>
       <Layout>
-        <Container className={"dontTouchPoka " + styles.creation}>
+        <Container className={"dontTouchPoka "}>
           <h1>My projects</h1>
-          {projects.map((project) => {
-            return (
-              <div className="col-12 col-sm-6 col-md-4 d-flex align-items-stretch mb-5 text-dark" key={project.idkey}>
-                <a href={"/projects/show/" + project.idkey}>
-                  <p>{project.name}</p>
-                </a>
-              </div>
-            );
-          })}
+          <div className={styles.timeline}>
+            {projects.map((project) => {
+              return (
+                <Card className={"mb-4 " + styles.card} key={project.idkey}>
+                  <Card.Body>
+                    <Card.Subtitle className="mb-2 text-muted">Project name</Card.Subtitle>
+                    <Card.Title>{project.name}</Card.Title>
+                    <Card.Subtitle className="mb-2 text-muted">Budget</Card.Subtitle>
+                    <Card.Text>{project.amount + " €"}</Card.Text>
+                    <Card.Subtitle className="mb-2 text-muted">Summary</Card.Subtitle>
+                    <Card.Text>{project.summary}</Card.Text>
+                    <Card.Link href={"/projects/show/" + project.idkey}>Manage propect</Card.Link>
+                  </Card.Body>
+                </Card>
+              );
+            })}
+          </div>
         </Container>
       </Layout>
     </>
@@ -53,23 +58,17 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const session = await getSession(context);
 
   if (session) {
-    const user: Users = await findUserByEmail(String(session.user.email));
+    const _projects = await findUserByEmail(String(session.user.email)).then((user) => {
+      return async () => Promise.all(user.projects.map(async (project) => await findProjectById(parseInt(project.idkey))));
+    });
 
-    let projects: { idkey: Number; name: string }[] = [];
+    const swap = await _projects();
+    const projects = JSON.parse(JSON.stringify(swap));
 
-    if (user.projects) {
-      user.projects.map((project: { idkey: string; name: string }) => {
-        projects.push({ idkey: project.idkey, name: project.name });
-      });
-    }
-    console.log(projects);
-
-    // Pass data to the page via props
     return {
-      props: {
-        projects: projects,
-      },
+      props: { projects },
     };
+    // Pass data to the page via props
   } else {
     return {
       props: {},

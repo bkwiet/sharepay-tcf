@@ -1,26 +1,30 @@
 .timeline {
-  background-color: #1d1d1d;
-  min-height: 100vh;
-  margin: 0;
-  font-family: "Droid Sans", sans-serif;
+  margin-top: 5rem;
+}
+.timeline .card {
+  background-color: rgb(21 21 21 / 78%);
+  border: 1px solid rgb(224 224 224 / 72%);
+  border-radius: 10px;
+  margin-left: 2rem;
+  min-width: 500px;
 }
 .timeline:before {
+  min-height: 100vh;
   content: "";
   position: fixed;
-  top: 0px;
-  left: 50%;
-  bottom: 0px;
+  width: 3px;
+  top: 0;
+  /* bottom: 0px; */
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
-  width: 4px;
-  background-color: #fff;
+  background-color: rgb(122, 5, 5);
 }
 .timeline .entries {
-  width: calc(100% - 80px);
-  max-width: 800px;
+  width: 300px;
   margin: auto;
   position: relative;
-  left: -5px;
+  left: -31%;
+  overflow-wrap: normal;
 }
 .timeline .entries .entry {
   width: calc(50% - 80px);
@@ -49,7 +53,7 @@
   top: 50%;
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
-  right: -73px;
+  left: -58px;
   z-index: 1000;
 }
 .timeline .entries .entry .title.big:before {
@@ -58,10 +62,10 @@
   -webkit-transform: translate(8px, -50%);
   transform: translate(8px, -50%);
 }
-.timeline .entries .entry ..timeline {
+.timeline .entries .entry .body {
   color: #aaa;
 }
-.timeline .entries .entry ..timeline p {
+.timeline .entries .entry .body p {
   line-height: 1.4em;
 }
 .timeline .entries .entry:nth-child(2n) {

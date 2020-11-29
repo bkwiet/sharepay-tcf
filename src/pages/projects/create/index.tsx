@@ -19,6 +19,11 @@ const Registration: NextPage<Props> = ({ session }) => {
     <>
       <Head>
         <title>Tout Compte Fait - New Project</title>
+        <style>{`
+          body {
+            background-image: url("/pictures/background_project.jpeg") !important;
+          }
+        `}</style>
       </Head>
       <Layout>
         <Container className={"dontTouchPoka " + styles.creation}>
