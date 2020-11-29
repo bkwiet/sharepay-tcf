@@ -10,6 +10,8 @@ import Link from "next/link";
 import Layout from "../../components/layout";
 import { Container, Card } from "react-bootstrap";
 import styles from "../../../public/styles/Projects.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCogs } from "@fortawesome/free-solid-svg-icons";
 
 const ProjectIndex: React.FC<{ projects: Projects[] }> = ({ projects }) => {
   console.log("Gimme", projects);
@@ -31,14 +33,23 @@ const ProjectIndex: React.FC<{ projects: Projects[] }> = ({ projects }) => {
             {projects.map((project) => {
               return (
                 <Card className={"mb-4 " + styles.card} key={project.idkey}>
-                  <Card.Body>
+                  <Card.Body className={styles.body}>
                     <Card.Subtitle className="mb-2 text-muted">Project name</Card.Subtitle>
-                    <Card.Title>{project.name}</Card.Title>
+                    <Card.Title className={styles.title}>{project.name}</Card.Title>
+                    <Card.Subtitle className={"mb-2 text-muted " + styles.cupcup}>
+                      Creation date : To fix no creation date or end creation
+                    </Card.Subtitle>
+                    <Card.Subtitle className={"mb-2 text-muted " + styles.cupcup}>Participants : To add</Card.Subtitle>
+                    <hr className={styles.separator} />
                     <Card.Subtitle className="mb-2 text-muted">Budget</Card.Subtitle>
                     <Card.Text>{project.amount + " €"}</Card.Text>
                     <Card.Subtitle className="mb-2 text-muted">Summary</Card.Subtitle>
                     <Card.Text>{project.summary}</Card.Text>
-                    <Card.Link href={"/projects/show/" + project.idkey}>Manage propect</Card.Link>
+                    <hr className={styles.separator} />
+                    <Card.Link href={"/projects/show/" + project.idkey}>
+                      {" "}
+                      <FontAwesomeIcon icon={faCogs} /> Manage Project
+                    </Card.Link>
                   </Card.Body>
                 </Card>
               );

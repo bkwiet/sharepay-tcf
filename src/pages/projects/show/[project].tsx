@@ -1,7 +1,7 @@
 import { GetServerSideProps } from "next";
 import React from "react";
 import { findProjectById } from "../../../utils/projects";
-import { Projects } from "../../../types/projects";
+import { Projects } from "../../../types/Projects";
 import Layout from "../../../components/layout";
 
 const affOneProject: React.FC<{ project: Projects }> = ({ project }) => {
@@ -11,7 +11,7 @@ const affOneProject: React.FC<{ project: Projects }> = ({ project }) => {
   return (
     <Layout>
       <div className="container">
-        <div className="card mt-5">
+        <div className="mt-5">
           <div className="row">
             <div className="col">
               <h1 className="col text-center">{project.name}</h1>

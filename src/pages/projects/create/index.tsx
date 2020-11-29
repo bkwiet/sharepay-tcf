@@ -20,8 +20,9 @@ const Registration: NextPage<Props> = ({ session }) => {
       <Head>
         <title>Tout Compte Fait - New Project</title>
         <style>{`
+          html,
           body {
-            background-image: url("/pictures/background_project.jpeg") !important;
+            background-image: url("/pictures/background_create.jpeg") !important;
           }
         `}</style>
       </Head>

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Session, signin, signout } from "next-auth/client";
 import styles from "../../public/styles/Header.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCampground, faProjectDiagram, faQrcode } from "@fortawesome/free-solid-svg-icons";
+import { faCampground, faProjectDiagram, faQrcode, faPlusSquare, faHandHoldingUsd } from "@fortawesome/free-solid-svg-icons";
 
 type Props = {
   session: Session | undefined | null;
@@ -27,7 +27,13 @@ export const Header: React.FC<Props> = ({ session, loading }) => {
                   <FontAwesomeIcon icon={faCampground} /> Home
                 </Nav.Link>
                 <Nav.Link href={"/projects"}>
-                  <FontAwesomeIcon icon={faProjectDiagram} /> Projects
+                  <FontAwesomeIcon icon={faProjectDiagram} /> My Projects
+                </Nav.Link>
+                <Nav.Link href={"/projects/create"}>
+                  <FontAwesomeIcon icon={faPlusSquare} /> Start Project
+                </Nav.Link>
+                <Nav.Link href={"#"}>
+                  <FontAwesomeIcon icon={faHandHoldingUsd} /> Paiement
                 </Nav.Link>
               </>
             )}
