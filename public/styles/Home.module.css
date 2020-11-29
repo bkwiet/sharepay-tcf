@@ -30,6 +30,7 @@
 div.main_button:hover {
   background-color: rgb(21 20 20 / 79%);
   border: 1px solid rgb(117, 2, 2);
+  color: rgb(194, 194, 194);
 }
 
 div.main_button:active {
