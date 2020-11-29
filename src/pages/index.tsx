@@ -23,10 +23,10 @@ const Home: NextPage = ({ session, user }) => {
           <Slideshow />
         ) : (
           <Container className={styles.home}>
-            <h1>
-           
-              Welcome <span className={styles.username}>{user.username}</span>
-            </h1>
+            <div className="marquee-rtl">
+    <div>Welcome <span className={styles.username}>{user.username}</span></div>
+</div>
+         
 
             <div className={"row mt-3 " + styles.base_button}>
 
