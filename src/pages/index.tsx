@@ -8,8 +8,11 @@ import { findUserByEmail } from "../utils/users";
 import { Container, Button } from "react-bootstrap";
 import Link from "next/link";
 
+
 const Home: NextPage = ({ session, user }) => {
   // console.log("inside home", user);
+  //console.log("afficher le 1er projet pour le bouton AccesProjects", user.projects ,"------------------", user.projects[0])
+
   return (
     <>
       <Head>
@@ -25,10 +28,14 @@ const Home: NextPage = ({ session, user }) => {
             </h1>
 
             <div className={"row mt-3 " + styles.base_button}>
+
+            <Link href="/profile">
+
               <div className={"col-sm-12 col-md-5 mr-2 mb-2 " + styles.main_button}>
                 <h3><i className="fas fa-campground"></i> Profile </h3>
-                <p> if you need to modify your profil, click here  </p>
+                <p> Edit your Profile  </p>
               </div>
+              </Link>
               <Link href={"/projects/createproject"}>
 
               <div className={"col-sm-12 col-md-5 mr-2 mb-2 " + styles.main_button}>
@@ -36,11 +43,12 @@ const Home: NextPage = ({ session, user }) => {
                   <p>Here, you can add a Project and assign it to your friends to start sharing your payments. </p>
               </div>
               </Link>
+              <Link href={"/projects?email=" + session.user.email}>
               <div className={"col-sm-12 col-md-5 mr-2 mb-2 " + styles.main_button}>
                   <h3>Access your Projects </h3>
-                  <p> Add List of last projects -> Or display "there is no project to displa" </p>
+        <p> Add List of last projects -> Or display "there is no project to displa" </p>
               </div>
-
+              </Link>
               <div className={"col-sm-12 col-md-5 mr-2 mb-2 " + styles.main_button}>
                   <h3>Feature to determine </h3>
                   <p>Feature to determine</p>
