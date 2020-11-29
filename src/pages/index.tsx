@@ -24,8 +24,8 @@ const Home: NextPage = ({ session, user }) => {
         ) : (
           <Container className={styles.home}>
             <div className="marquee-rtl">
-    <div>Welcome <span className={styles.username}>{user.username}</span></div>
-</div>
+                 <div>Welcome <span className={styles.username}>{user.username}</span></div>
+            </div>
          
 
             <div className={"row mt-3 " + styles.base_button}>
@@ -34,7 +34,7 @@ const Home: NextPage = ({ session, user }) => {
 
               <div className={"col-sm-12 col-md-5 mr-2 mb-2 " + styles.main_button}>
                 <h3><i className="fas fa-campground"></i> Profile </h3>
-                <p> Edit your Profile  </p>
+                <p> Edit your Profile. </p>
               </div>
               </Link>
               <Link href={"/projects/createproject"}>
@@ -47,12 +47,12 @@ const Home: NextPage = ({ session, user }) => {
               <Link href={"/projects?email=" + session.user.email}>
               <div className={"col-sm-12 col-md-5 mr-2 mb-2 " + styles.main_button}>
                   <h3>Access your Projects </h3>
-        <p> Add List of last projects -> Or display "there is no project to displa" </p>
+                   <p> Add List of last projects -> Or display "there is no project to displa" </p>
               </div>
               </Link>
               <div className={"col-sm-12 col-md-5 mr-2 mb-2 " + styles.main_button}>
-                  <h3>Feature to determine </h3>
-                  <p>Feature to determine</p>
+                  <h3>Payments Story </h3>
+                  <p>Consult your payments History.</p>
               </div>
             </div>
           </Container>
