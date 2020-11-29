@@ -26,7 +26,7 @@ const Home: NextPage = ({ session, user }) => {
             <div className={"row mt-3 " + styles.base_button}>
               <div className={"col-sm-12 col-md-5 mr-2 mb-2 " + styles.main_button}>
                 <h3><i className="fas fa-campground"></i> Profile</h3>
-                <p> Add description -> of the element  </p>
+                <p> Edit your profile :</p><p> if you need to modify your profil, click here  </p>
               </div>
 
               <div className={"col-sm-12 col-md-5 mr-2 mb-2 " + styles.main_button}>
