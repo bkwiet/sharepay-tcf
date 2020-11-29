@@ -24,6 +24,7 @@ const Home: NextPage = ({ session, user }) => {
         ) : (
           <Container className={styles.home}>
             <h1>
+           
               Welcome <span className={styles.username}>{user.username}</span>
             </h1>
 
