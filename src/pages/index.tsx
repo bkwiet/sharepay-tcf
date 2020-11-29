@@ -6,6 +6,7 @@ import Slideshow from "../components/slideshow";
 import styles from "../../public/styles/Home.module.css";
 import { findUserByEmail } from "../utils/users";
 import { Container, Button } from "react-bootstrap";
+import Link from "next/link";
 
 const Home: NextPage = ({ session, user }) => {
   // console.log("inside home", user);
@@ -25,22 +26,23 @@ const Home: NextPage = ({ session, user }) => {
 
             <div className={"row mt-3 " + styles.base_button}>
               <div className={"col-sm-12 col-md-5 mr-2 mb-2 " + styles.main_button}>
-                <h3><i className="fas fa-campground"></i> Profile</h3>
-                <p> Edit your profile :</p><p> if you need to modify your profil, click here  </p>
+                <h3><i className="fas fa-campground"></i> Profile </h3>
+                <p> if you need to modify your profil, click here  </p>
               </div>
+              <Link href={"/projects/createproject"}>
 
               <div className={"col-sm-12 col-md-5 mr-2 mb-2 " + styles.main_button}>
-                  <h3>Start a new Project</h3>
-                  <p> Add description -> of the element  </p>
+                  <h3>Start a new Project </h3>
+                  <p>Here, you can add a Project and assign it to your friends to start sharing your payments. </p>
               </div>
-
+              </Link>
               <div className={"col-sm-12 col-md-5 mr-2 mb-2 " + styles.main_button}>
-                  <h3>On going Projects</h3>
+                  <h3>Access your Projects </h3>
                   <p> Add List of last projects -> Or display "there is no project to displa" </p>
               </div>
 
               <div className={"col-sm-12 col-md-5 mr-2 mb-2 " + styles.main_button}>
-                  <h3>Feature to determine</h3>
+                  <h3>Feature to determine </h3>
                   <p>Feature to determine</p>
               </div>
             </div>
