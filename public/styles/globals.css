@@ -72,7 +72,7 @@ a {
 .marquee-rtl {
   color: black;
   max-width: 30em; /* largeur de la fenêtre */
-  margin: 1em auto 2em;
+
   border: 10px solid#f0f0ff00;
   overflow: hidden; /* masque tout ce qui dépasse */
   box-shadow: 0 0.25em 0.5em rgba(204, 204, 204, 0),
