@@ -3,15 +3,15 @@ import { GetServerSideProps } from "next";
 import { getSession, Session } from "next-auth/client";
 import { findUserByEmail } from "../../utils/users";
 import { findProjectById } from "../../utils/projects";
-import { Users } from "../../types/Users";
-import { Projects } from "../../types/Projects";
+import { Users } from "../../types/users";
+import { Projects } from "../../types/projects";
 import Head from "next/head";
 import Link from "next/link";
 import Layout from "../../components/layout";
 import { Container, Card } from "react-bootstrap";
 import styles from "../../../public/styles/Projects.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCogs } from "@fortawesome/free-solid-svg-icons";
+import { faCogs, faUserPlus  } from "@fortawesome/free-solid-svg-icons";
 
 const ProjectIndex: React.FC<{ projects: Projects[] }> = ({ projects }) => {
   console.log("Gimme", projects);
@@ -49,6 +49,9 @@ const ProjectIndex: React.FC<{ projects: Projects[] }> = ({ projects }) => {
                     <Card.Link href={"/projects/show/" + project.idkey}>
                       {" "}
                       <FontAwesomeIcon icon={faCogs} /> Manage Project
+                    </Card.Link>
+                    <Card.Link href={"/projects/adduser"}>
+                      <FontAwesomeIcon icon={faUserPlus} id="iconAddUser" /> Add User
                     </Card.Link>
                   </Card.Body>
                 </Card>

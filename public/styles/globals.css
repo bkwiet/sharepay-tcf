@@ -118,3 +118,8 @@ a {
   height: 100vh;
   min-height: 250px;
 }
+
+#iconAddUser {
+  padding-left: 1rem;
+  color: rgb(66, 66, 194);
+}

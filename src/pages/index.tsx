@@ -5,7 +5,7 @@ import Layout from "../components/layout";
 import Slideshow from "../components/slideshow";
 import styles from "../../public/styles/Home.module.css";
 import { findUserByEmail } from "../utils/users";
-import { Users } from "../types/Users";
+import { Users } from "../types/users";
 import { Container, Button } from "react-bootstrap";
 import Link from "next/link";
 
