@@ -10,12 +10,11 @@ export type Users = {
   firstname: string;
   lastname: string;
   rib: string;
-  date_created: string;
   date_last_connect: string;
   date_last_payment: string;
   actif: boolean;
   projects: {
-    idkey: string;
+    idkey: number;
     name: string;
   }[];
 };

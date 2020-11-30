@@ -5,11 +5,16 @@ import Layout from "../components/layout";
 import Slideshow from "../components/slideshow";
 import styles from "../../public/styles/Home.module.css";
 import { findUserByEmail } from "../utils/users";
-import { Users } from "../types/Users";
+import { Users } from "../types/users";
 import { Container, Button } from "react-bootstrap";
 import Link from "next/link";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFolderPlus, faProjectDiagram, faUserAstronaut } from "@fortawesome/free-solid-svg-icons";
+import {
+  faFolderPlus,
+  faProjectDiagram,
+  faUserAstronaut,
+} from "@fortawesome/free-solid-svg-icons";
 
 type Props = {
   session: Session;
@@ -18,6 +23,8 @@ type Props = {
 
 const Home: NextPage<Props> = ({ session, user }) => {
   // console.log("inside home", user);
+  //console.log("afficher le 1er projet pour le bouton AccesProjects", user.projects ,"------------------", user.projects[0])
+
   return (
     <>
       <Head>
@@ -28,43 +35,63 @@ const Home: NextPage<Props> = ({ session, user }) => {
           <Slideshow />
         ) : (
           <Container className={"dontTouchPoka " + styles.home}>
-            <h1>
-              Welcome <span className={styles.username}>{user.username}</span>
-            </h1>
+            <div className="marquee-rtl">
+              <h1>
+                Welcome <span className={styles.username}>{user.username}</span>
+              </h1>
+            </div>
+
             <div className={"row mt-3 " + styles.base_button}>
               <Link href="/projects/create">
-                <div className={"col-sm-12 col-md-5 mr-2 mb-2 " + styles.main_button}>
+                <div
+                  className={
+                    "col-sm-12 col-md-5 mr-2 mb-2 " + styles.main_button
+                  }
+                >
                   <h3>
-                    {" "}
                     <span className={styles.spinout}>
                       <FontAwesomeIcon icon={faFolderPlus} />
-                    </span>{" "}
+                    </span>
                     Start a new Project
                   </h3>
-                  <p> Add description - of the element </p>
+                  <p>
+                    {" "}
+                    Here, you can add a Project and assign it to your friends to
+                    start sharing your payments.{" "}
+                  </p>
                 </div>
               </Link>
 
               <Link href="/projects">
-                <div className={"col-sm-12 col-md-5 mr-2 mb-2 " + styles.main_button}>
+                <div
+                  className={
+                    "col-sm-12 col-md-5 mr-2 mb-2 " + styles.main_button
+                  }
+                >
                   <h3>
-                    {" "}
                     <span className={styles.spinout}>
                       <FontAwesomeIcon icon={faProjectDiagram} />
-                    </span>{" "}
+                    </span>
                     On going Projects
                   </h3>
-                  <p> Add List of last projects - Or display "there is no project to displa" </p>
+                  <p>
+                    {" "}
+                    Add List of last projects - Or display "there is no project
+                    to displa"{" "}
+                  </p>
                 </div>
               </Link>
 
               <Link href="/profile">
-                <div className={"col-sm-12 col-md-5 mr-2 mb-2 " + styles.main_button}>
+                <div
+                  className={
+                    "col-sm-12 col-md-5 mr-2 mb-2 " + styles.main_button
+                  }
+                >
                   <h3>
-                    {" "}
                     <span className={styles.spinout}>
                       <FontAwesomeIcon icon={faUserAstronaut} />
-                    </span>{" "}
+                    </span>
                     Profile
                   </h3>
                   <p> Add description - of the element </p>
@@ -72,9 +99,13 @@ const Home: NextPage<Props> = ({ session, user }) => {
               </Link>
 
               <Link href="">
-                <div className={"col-sm-12 col-md-5 mr-2 mb-2 " + styles.main_button}>
-                  <h3>Feature to determine</h3>
-                  <p>Feature to determine</p>
+                <div
+                  className={
+                    "col-sm-12 col-md-5 mr-2 mb-2 " + styles.main_button
+                  }
+                >
+                  <h3>Payments Story </h3>
+                  <p>Consult your payments History.</p>
                 </div>
               </Link>
             </div>

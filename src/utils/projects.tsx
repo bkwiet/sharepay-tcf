@@ -1,5 +1,5 @@
 import { getDatabase } from "./database";
-import { Projects } from "../types/Projects";
+import { Projects } from "../types/projects";
 
 export async function newProjectIdKey(): Promise<number> {
   const mongodb = await getDatabase();

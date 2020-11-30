@@ -1,6 +1,6 @@
 import { getDatabase } from "./database";
-import { Users } from "../types/Users";
-import { Projects } from "../types/Projects";
+import { Users } from "../types/users.d";
+import { Projects } from "../types/projects.d";
 
 export async function newUserIdKey(): Promise<number> {
   const mongodb = await getDatabase();
@@ -29,6 +29,51 @@ export async function findUserByEmail(email: string): Promise<Users> {
   const mongodb = await getDatabase();
   const user = await mongodb.db().collection("users").findOne({ email: email });
   return user;
+}
+
+export async function findIdKeyByEmail(email: string): Promise<number> {
+  const mongodb = await getDatabase();
+  const user = await mongodb.db().collection("users").findOne({ email: email });
+  let user_idkey;
+  if (user) {
+    user_idkey = user.user_idkey;
+  }
+  else {
+    user_idkey=0;
+  }
+  console.log("findIdKeyByEmail retour",user_idkey )
+  return user_idkey;
+}
+
+export async function addUserProject(user_idkey: number, project_idkey: number): Promise<number> {
+  const mongodb = await getDatabase();
+  const data = await mongodb.db().collection("users").findOne({ user_idkey: user_idkey });
+  let ret_OK=1; // return 0 si insertion project OK sinon autre valeur
+  
+  const user: Users = {
+    name: data.name,
+    email: data.email,
+    createdAt: data.createdAt,
+    updatedAt: data.updatedAt,
+    user_idkey: data.user_idkey,
+    username: data.username,
+    firstname: data.firstname,
+    lastname: data.lastname,
+    rib: data.rib,
+    date_last_connect: data.date_last_connect,
+    date_last_payment: data.date_last_payment,
+    actif: data.actif,
+    projects: data.projects,
+  };
+
+  // recherche si le projet n'est pas déjà affecté à l'utilisateur
+  let present=0
+  user.projects.map((projet) => {
+    if ( projet.idkey === project_idkey ) present=1;
+    
+  })
+
+  return ret_OK;
 }
 
 export async function findUserProjects(user_idkey: string): Promise<Projects[]> {
