@@ -3,8 +3,8 @@ import { getDatabase } from "../../../utils/database";
 import { newProjectIdKey } from "../../../utils/projects";
 import { findUserByEmail } from "../../../utils/users";
 import { firstUpper } from "../../../utils/functions";
-import { Users } from "../../../types/Users";
-import { Projects } from "../../../types/Projects";
+import { Users } from "../../../types/users.d";
+import { Projects } from "../../../types/projects.d";
 
 export default async (request: NextApiRequest, response: NextApiResponse): Promise<void> => {
   // Will need to check if a new user or not ( maybe before the API endpoint call)
@@ -22,14 +22,15 @@ export default async (request: NextApiRequest, response: NextApiResponse): Promi
     const user: Users = {
       name: data.name,
       email: data.email,
-      createdAt: data.createAt,
-      updatedAt: data.updateAt,
+      createdAt: data.createdAt,
+      updatedAt: data.updatedAt,
       user_idkey: data.user_idkey,
+      username: data.username,
       firstname: data.firstname,
       lastname: data.lastname,
       rib: data.rib,
       date_last_connect: data.date_last_connect,
-      date_last_payment: data.last_payment,
+      date_last_payment: data.date_last_payment,
       actif: data.actif,
       projects: data.projects,
     };

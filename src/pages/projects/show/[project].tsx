@@ -1,7 +1,7 @@
 import { GetServerSideProps } from "next";
 import React from "react";
 import { findProjectById } from "../../../utils/projects";
-import { Projects } from "../../../types/Projects";
+import { Projects } from "../../../types/projects";
 import Layout from "../../../components/layout";
 
 const affOneProject: React.FC<{ project: Projects }> = ({ project }) => {
