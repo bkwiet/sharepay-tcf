@@ -123,3 +123,13 @@ a {
   padding-left: 1rem;
   color: rgb(66, 66, 194);
 }
+#WarningText {
+  padding-top: 2vh;
+  font-variant: all-small-caps;
+  text-align: -webkit-center;
+  font-size: x-large;
+}
+#warningTextbis {
+  text-align: center;
+  padding-top: 15vh;
+}
