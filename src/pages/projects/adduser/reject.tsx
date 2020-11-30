@@ -31,7 +31,11 @@ const affAddUserReject: React.FC<{}> = ({}) => {
                 de donnée.
               </p>
               <p>
-                Pour reessayer,
+                Soit l'utilisateur que vous essayez d'integrer existe déjà dans
+                votre projet.
+              </p>
+              <p>
+                Pour réessayer,
                 <Link href={"/projects/adduser"}> click ICI</Link>
               </p>
             </div>
