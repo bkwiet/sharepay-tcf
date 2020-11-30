@@ -26,7 +26,8 @@ const options = {
       clientSecret: process.env.CONNECT_CLIENT_SECRET,
       scope: "openid email phone",
       params: { grant_type: "authorization_code" },
-      authorizationUrl: "https://fewlines.connect.prod.fewlines.tech/oauth/authorize?response_type=code",
+      authorizationUrl:
+        "https://fewlines.connect.prod.fewlines.tech/oauth/authorize?response_type=code",
       accessTokenUrl: "https://fewlines.connect.prod.fewlines.tech/oauth/token",
       profileUrl: "https://fewlines.connect.prod.fewlines.tech/oauth/userinfo",
       idToken: true,
@@ -70,7 +71,10 @@ const options = {
 
         const oauthClient = new OAuth2Client(oauthClientConstructorProps);
 
-        const decoded = await oauthClient.verifyJWT(tokens.accessToken, String(process.env.CONNECT_JWT_ALGORITHM));
+        const decoded = await oauthClient.verifyJWT(
+          tokens.accessToken,
+          String(process.env.CONNECT_JWT_ALGORITHM)
+        );
 
         if (decoded) {
           user.accessToken = tokens.accessToken;
@@ -103,7 +107,10 @@ const options = {
     },
 
     redirect: async (url, baseUrl) => {
-      return url.startsWith(baseUrl) ? Promise.resolve("/") : Promise.resolve(baseUrl);
+      console.log("redirect ", url, baseUrl);
+      return url.startsWith(baseUrl)
+        ? Promise.resolve("/")
+        : Promise.resolve(baseUrl);
     },
   },
 
