@@ -6,7 +6,7 @@ import Head from "next/head";
 import { Button, Container, Form } from "react-bootstrap";
 import styles from "../../../public/styles/Registration.module.css";
 import { findUserByEmail } from "../../utils/users";
-import { Sharepay_user } from "../../types/Users";
+import { Sharepay_user } from "../../types/users";
 
 type Props = {
   session: Session;
