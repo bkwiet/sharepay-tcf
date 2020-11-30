@@ -1,10 +1,6 @@
 .home {
-  margin-top: -58px;
-  padding-top: 20vh;
-  height: 100vh;
-  min-height: 250px;
+  /* //empty */
 }
-
 .username {
   color: rgb(169 9 9);
 }
@@ -25,6 +21,12 @@
 }
 .main_button h3 {
   color: rgb(234 141 24);
+}
+
+.spinout svg {
+  height: 40px;
+  color: rgb(253 229 207);
+  margin-right: 1rem;
 }
 
 div.main_button:hover {

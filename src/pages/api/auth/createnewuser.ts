@@ -28,9 +28,10 @@ export default async (request: NextApiRequest, response: NextApiResponse): Promi
     const user_email = request.body.user_email;
 
     const user_idkey = await newUserIdKey();
+    console.log("What going on user ", user_idkey);
 
     const user: User = {
-      username: request.body.user_username.toUpperCase(),
+      username: firstUpper(request.body.user_username),
       firstname: firstUpper(request.body.user_firstname),
       lastname: firstUpper(request.body.user_lastname),
       phonenum: request.body.user_phonenum,
@@ -47,7 +48,6 @@ export default async (request: NextApiRequest, response: NextApiResponse): Promi
       .db()
       .collection("users")
       .updateOne({ email: user_email }, { $set: { ...user } })
-      .then((result) => console.log("DB ========= ", result))
       .catch((error) => console.log(error))
       .finally(() => response.redirect("/"));
   } else {

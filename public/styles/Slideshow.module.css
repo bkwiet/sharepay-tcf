@@ -5,7 +5,7 @@
 }
 .carousucre img {
   height: 100vh;
-  filter: blur(4px);
+  filter: blur(2px);
 }
 
 .caption h3 {

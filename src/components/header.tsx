@@ -1,8 +1,10 @@
 import React from "react";
-import { Navbar, Nav } from "react-bootstrap";
+import { Navbar, Nav, Dropdown } from "react-bootstrap";
 import Link from "next/link";
 import { Session, signin, signout } from "next-auth/client";
 import styles from "../../public/styles/Header.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCampground, faProjectDiagram, faQrcode, faPlusSquare, faHandHoldingUsd } from "@fortawesome/free-solid-svg-icons";
 
 type Props = {
   session: Session | undefined | null;
@@ -19,46 +21,59 @@ export const Header: React.FC<Props> = ({ session, loading }) => {
         <Navbar.Toggle aria-controls="tfc-navbar" />
         <Navbar.Collapse id="tfc-navbar">
           <Nav className={"mr-auto " + styles.navbar}>
-            {session && <Nav.Link href={"/projects?email=" + session.user.email}>Projects</Nav.Link>}
-            <Nav.Link href="#features">Contact</Nav.Link>
+            {session && (
+              <>
+                <Nav.Link href={"/"}>
+                  <FontAwesomeIcon icon={faCampground} /> Home
+                </Nav.Link>
+                <Nav.Link href={"/projects"}>
+                  <FontAwesomeIcon icon={faProjectDiagram} /> My Projects
+                </Nav.Link>
+                <Nav.Link href={"/projects/create"}>
+                  <FontAwesomeIcon icon={faPlusSquare} /> Start Project
+                </Nav.Link>
+                <Nav.Link href={"#"}>
+                  <FontAwesomeIcon icon={faHandHoldingUsd} /> Paiement
+                </Nav.Link>
+              </>
+            )}
+            <Nav.Link href="/us">
+              <FontAwesomeIcon icon={faQrcode} /> `Bout Us
+            </Nav.Link>
           </Nav>
           <Nav className={styles.navbar}>
             {!session && (
-              <Link href="/api/auth/signin">
-                <Nav.Link
-                  onClick={(e) => {
-                    e.preventDefault();
-                    signin();
-                  }}
-                  className="signInButton"
-                  href="login"
-                >
-                  Sign in
-                </Nav.Link>
-              </Link>
+              <Nav.Link
+                onClick={(e) => {
+                  e.preventDefault();
+                  signin();
+                }}
+                href="/login"
+              >
+                Sign in
+              </Nav.Link>
             )}
 
             {session && (
               <>
-                <Nav.Link href={"/projects/createproject"}>Create New Project</Nav.Link>
-                <Link href="/profile" passHref>
-                  <Nav.Link>
+                <Dropdown className={styles.droppin}>
+                  <Dropdown.Toggle variant="none" id="drp_profile">
                     <span className={styles.username}>{session.user.email}</span>
-                  </Nav.Link>
-                </Link>
+                  </Dropdown.Toggle>
 
-                <Link href="/api/auth/signout">
-                  <Nav.Link
-                    onClick={(e) => {
-                      e.preventDefault();
-                      signout();
-                    }}
-                    className="signOutButton"
-                    href="logout"
-                  >
-                    Sign out
-                  </Nav.Link>
-                </Link>
+                  <Dropdown.Menu>
+                    <Dropdown.Item href="/profile">Profile</Dropdown.Item>
+                    <Dropdown.Item
+                      onClick={(e) => {
+                        e.preventDefault();
+                        signout();
+                      }}
+                      href="logout"
+                    >
+                      Sign out
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
               </>
             )}
           </Nav>
