@@ -38,14 +38,14 @@
 
 .username {
   padding: 6px;
-  color:  rgb(159, 6, 6);
+  color: rgb(117 113 113);
   border: 1px solid rgb(128 8 8);
   background-color: rgb(0 0 0 / 38%);
   border-radius: 15px;
 }
 
 .username:hover {
-  color: rgb(11, 159, 60);
+  color: rgb(159, 6, 6);
   border: 1px solid rgb(208, 208, 208);
   background-color: rgb(0 0 0 / 50%);
 }
