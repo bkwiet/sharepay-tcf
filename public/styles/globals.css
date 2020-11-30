@@ -1,10 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=Nerko+One&display=swap");
 html,
 body {
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  color: dark;
+  color: white;
   background-image: url("/pictures/background.jpeg");
   background-attachment: fixed;
   background-size: cover;
@@ -15,8 +16,11 @@ body {
 h1 {
   color: black;
   text-align: center;
+  font-family: "Nerko One", cursive;
 }
-
+h3 {
+  font-family: "Nerko One", cursive;
+}
 a {
   color: inherit;
   text-decoration: none;
@@ -107,4 +111,10 @@ a {
 }
 .container {
   margin-top: 8vh;
+}
+.dontTouchPoka {
+  margin-top: -58px;
+  padding-top: 15vh;
+  height: 100vh;
+  min-height: 250px;
 }
