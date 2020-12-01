@@ -14,6 +14,7 @@ import {
   faFolderPlus,
   faProjectDiagram,
   faUserAstronaut,
+  faFileInvoiceDollar,
 } from "@fortawesome/free-solid-svg-icons";
 
 type Props = {
@@ -104,7 +105,12 @@ const Home: NextPage<Props> = ({ session, user }) => {
                     "col-sm-12 col-md-5 mr-2 mb-2 " + styles.main_button
                   }
                 >
-                  <h3>Payments Story </h3>
+                  <h3>
+                    <span className={styles.spinout}>
+                      <FontAwesomeIcon icon={faFileInvoiceDollar} />
+                    </span>
+                    Payments Story
+                  </h3>
                   <p>Consult your payments History.</p>
                 </div>
               </Link>
