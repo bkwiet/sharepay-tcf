@@ -103,7 +103,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const session = await getSession(context);
   const project_idkey = context.query.project_idkey;
   const project_name = context.query.project_name;
-  console.log("recup project_name", project_name);
+  console.log("recup project_name",project_name);
   return {
     props: {
       session,
