@@ -1,7 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-//import { getDatabase } from "../../../utils/database";
 import { findIdKeyByEmail, addUserProject } from "../../../utils/users";
-//import { Projects } from "../../../types/Projects";
 
 export default async (request: NextApiRequest, response: NextApiResponse): Promise<void> => {
   // Will need to check if a new user or not ( maybe before the API endpoint call)
@@ -13,14 +11,15 @@ export default async (request: NextApiRequest, response: NextApiResponse): Promi
     // recup des datas du formulaire
     rejet=0;
     const add_user_email = request.body.email;
-    const admin_email = request.body.user_email;
-    const project_idkey = request.body.project_idkey;
+    const param1 = request.body.param1; // n° du projet a affecter
+    const param2 = request.body.param2; // nom du projet
+    const param3 = request.body.param3; // email de l'administrateur du projet
     let add_user_idkey=0;
     let add_user_project=0;
 
     // rejet l'administrateur ne peut pas s'ajouter dan sle projet
     // il est déja ajouter automatiquement à la creation du projet
-    if (add_user_email === admin_email) rejet=1;
+    if (add_user_email === param3) rejet=1;
 
     // controle existence user dans DB (par son email) pour recuperer son idkey
     if ( rejet === 0) {
@@ -32,8 +31,8 @@ export default async (request: NextApiRequest, response: NextApiResponse): Promi
 
     // ajout du user dans le projet + controle doublon user dans projet
     if ( rejet === 0 ) {
-      add_user_project = await addUserProject(add_user_idkey, project_idkey);
-      if ( add_user_project === 0) rejet=1;
+      add_user_project = await addUserProject(add_user_idkey, param1, param2);
+      if ( add_user_project != 0) rejet=1;
     }
   } 
 

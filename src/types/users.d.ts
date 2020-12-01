@@ -5,7 +5,7 @@ export type Users = {
   email: string;
   createdAt: Date;
   updatedAt: Date;
-  user_idkey: string;
+  user_idkey: number;
   username: string;
   firstname: string;
   lastname: string;
