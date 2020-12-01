@@ -14,7 +14,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCogs, faUserPlus } from "@fortawesome/free-solid-svg-icons";
 
 const ProjectIndex: React.FC<{ projects: Projects[] }> = ({ projects }) => {
-  console.log("Gimme", projects);
   return (
     <>
       <Head>
@@ -62,10 +61,9 @@ const ProjectIndex: React.FC<{ projects: Projects[] }> = ({ projects }) => {
                     <hr className={styles.separator} />
                     <Card.Link href={"/projects/show/" + project.idkey}>
                       <FontAwesomeIcon icon={faCogs} /> Manage Project
-                    </Card.Link>
-                    <Card.Link href={"/projects/adduser"}>
-                      <FontAwesomeIcon icon={faUserPlus} id="iconAddUser" /> Add
-                      User
+                    </Card.Link>                    
+                    <Card.Link href={"/projects/adduser?project_idkey="+project.idkey+"&project_name="+project.name}>
+                      <FontAwesomeIcon icon={faUserPlus} id="iconAddUser" /> Add User
                     </Card.Link>
                   </Card.Body>
                 </Card>

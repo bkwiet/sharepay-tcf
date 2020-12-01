@@ -1,6 +1,7 @@
 import { getDatabase } from "./database";
 import { Users } from "../types/users.d";
 import { Projects } from "../types/projects.d";
+import { addProjectUser } from "./projects";
 
 export async function newUserIdKey(): Promise<number> {
   const mongodb = await getDatabase();
@@ -41,14 +42,17 @@ export async function findIdKeyByEmail(email: string): Promise<number> {
   else {
     user_idkey=0;
   }
-  console.log("findIdKeyByEmail retour",user_idkey )
   return user_idkey;
 }
 
-export async function addUserProject(user_idkey: number, project_idkey: number): Promise<number> {
+export async function addUserProject(user_idkey: number, project_idkey: number, project_name: string ): Promise<number> {
+  console.log(user_idkey);
+  console.log(project_idkey);
+  console.log(project_name);
+  let ret_OK=0; // return 0 si insertion project OK sinon autre valeur
+  
   const mongodb = await getDatabase();
   const data = await mongodb.db().collection("users").findOne({ user_idkey: user_idkey });
-  let ret_OK=1; // return 0 si insertion project OK sinon autre valeur
   
   const user: Users = {
     name: data.name,
@@ -67,12 +71,26 @@ export async function addUserProject(user_idkey: number, project_idkey: number):
   };
 
   // recherche si le projet n'est pas déjà affecté à l'utilisateur
-  let present=0
   user.projects.map((projet) => {
-    if ( projet.idkey === project_idkey ) present=1;
-    
+    if ( projet.idkey === project_idkey ) ret_OK=1;
   })
+  
+  // ajout du projet dans la liste des projets/User & maj du user dans la collection "users"
+  if ( ret_OK === 0 ) {
+    user.projects.push({ idkey: project_idkey, name: project_name });
 
+    await mongodb
+      .db()
+      .collection("users")
+      .updateOne({ user_idkey: user.user_idkey }, { $set: { ...user } })
+      .catch( (error) => { console.log(error); ret_OK=1 } )
+  }
+
+  // ajout du user dans le projet 
+  if (ret_OK === 0 ) {
+    ret_OK = await addProjectUser(project_idkey, user.user_idkey, user.firstname, user.lastname);
+  }
+  // envoie le code retour 
   return ret_OK;
 }
 

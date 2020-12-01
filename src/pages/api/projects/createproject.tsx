@@ -9,15 +9,15 @@ import { Projects } from "../../../types/projects.d";
 export default async (request: NextApiRequest, response: NextApiResponse): Promise<void> => {
   // Will need to check if a new user or not ( maybe before the API endpoint call)
   const mongodb = await getDatabase();
-  console.log("Request : ", request.body);
+  console.log("Request CREATEPROJECT: ", request.body);
 
   if (request.body) {
     // recherche du nouveau projectIdKey
     const newidkey = await newProjectIdKey();
 
-    // recherche du user_IdKey qui cree le project
-    const data = await findUserByEmail(request.body.user_email);
-    console.log(data);
+    // recherche du user_IdKey qui cree le project- recherche sur email
+    // param1  provient du champ hidden du formulaire projects/create/index
+    const data = await findUserByEmail(request.body.param1);
 
     const user: Users = {
       name: data.name,
@@ -74,7 +74,7 @@ export default async (request: NextApiRequest, response: NextApiResponse): Promi
       .then((result) => console.log("DB ========= ", result))
       .catch((error) => console.log(error));
 
-    // ajout du projet dans la liste des projets du user (le createur du projet et l'adminsitrateur)
+    // ajout du projet dans la liste des projets du user (le createur du projet et l'administrateur)
     user.projects.push({ idkey: project.idkey, name: project.name });
     console.log(user);
 

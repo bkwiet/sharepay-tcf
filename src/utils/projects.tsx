@@ -16,10 +16,46 @@ export async function newProjectIdKey(): Promise<number> {
   return IdKey;
 }
 
-export async function findProjectById(idkey: Number): Promise<Projects> {
-  console.log("appel ouverture getDatabase");
-  console.log("valeur de idkey", idkey);
+
+export async function findProjectById(idkey: number): Promise<Projects> {
   const mongodb = await getDatabase();
   const project = await mongodb.db().collection("projects").findOne({ idkey: idkey });
   return project;
+}
+
+
+export async function addProjectUser( idkey:Number, user_idkey:number, user_firstname:string, user_lastname:string ): Promise<number> {
+
+  let ret_OK=0; // return 0 si insertion project OK sinon autre valeur
+  const mongodb = await getDatabase();
+  const data = await mongodb.db().collection("projects").findOne({ idkey: Number(idkey) });
+  if (data) {
+    const project: Projects = {
+      name: data.name,
+      summary: data.summary,
+      idkey: data.idkey,
+      actif: data.actif,
+      amount: data.amount,
+      admin_idkey: data.admin_idkey,
+      date_opened: data.date_opened,
+      date_ended: data.date_ended,
+      users: data.users,
+      payments: data.payments,
+    };
+
+    // ajout du user dans la liste des users du porojet
+    project.users.push( { user_idkey: user_idkey, firstname: user_firstname, lastname: user_lastname } )
+
+    await mongodb
+      .db()
+      .collection("projects")
+      .updateOne({ idkey: project.idkey }, { $set: { ...project } })
+      .catch( (error) => { console.log(error); ret_OK=1 } )
+
+  } else {
+    console.log("data prospect not retrieved");
+    ret_OK=1;
+  }
+
+  return ret_OK;
 }
