@@ -46,11 +46,13 @@ const affOneProject: React.FC<{ project: Projects }> = ({ project }) => {
             })}
           </div>
         </div>
+
         <div className="payment">
           <a id="payment" href="#">
             <span>Add a Payment!</span>
           </a>
         </div>
+        
       </div>
     </Layout>
   );

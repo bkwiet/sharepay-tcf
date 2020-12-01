@@ -7,6 +7,8 @@ import { Button, Container, Form } from "react-bootstrap";
 import styles from "../../../public/styles/Registration.module.css";
 import { findUserByEmail } from "../../utils/users";
 import { Sharepay_user } from "../../types/users";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 type Props = {
   session: Session;

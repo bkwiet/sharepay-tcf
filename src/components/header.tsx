@@ -33,7 +33,7 @@ export const Header: React.FC<Props> = ({ session, loading }) => {
                   <FontAwesomeIcon icon={faPlusSquare} /> Start Project
                 </Nav.Link>
                 <Nav.Link href={"#"}>
-                  <FontAwesomeIcon icon={faHandHoldingUsd} /> Paiement
+                  <FontAwesomeIcon icon={faHandHoldingUsd} /> Payment
                 </Nav.Link>
               </>
             )}

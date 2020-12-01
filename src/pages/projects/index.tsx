@@ -3,17 +3,18 @@ import { GetServerSideProps } from "next";
 import { getSession, Session } from "next-auth/client";
 import { findUserByEmail } from "../../utils/users";
 import { findProjectById } from "../../utils/projects";
-import { Users } from "../../types/users";
+//import { Users } from "../../types/users";
 import { Projects } from "../../types/projects";
 import Head from "next/head";
-import Link from "next/link";
+//import Link from "next/link";
 import Layout from "../../components/layout";
 import { Container, Card } from "react-bootstrap";
 import styles from "../../../public/styles/Projects.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCogs, faUserPlus } from "@fortawesome/free-solid-svg-icons";
+import { faCogs, faUserPlus, faPiggyBank } from "@fortawesome/free-solid-svg-icons";
 
 const ProjectIndex: React.FC<{ projects: Projects[] }> = ({ projects }) => {
+  let solde=0;
   return (
     <>
       <Head>
@@ -64,6 +65,9 @@ const ProjectIndex: React.FC<{ projects: Projects[] }> = ({ projects }) => {
                     </Card.Link>                    
                     <Card.Link href={"/projects/adduser?project_idkey="+project.idkey+"&project_name="+project.name}>
                       <FontAwesomeIcon icon={faUserPlus} id="iconAddUser" /> Add User
+                    </Card.Link>
+                    <Card.Link href={"/projects/addpayment?project_idkey="+project.idkey+"&project_name="+project.name+"&project_amount="+project.amount+"&project_solde="+solde}>
+                      <FontAwesomeIcon icon={faPiggyBank} id="iconAddPayment" /> Add Payment
                     </Card.Link>
                   </Card.Body>
                 </Card>

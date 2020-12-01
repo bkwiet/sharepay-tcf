@@ -8,21 +8,24 @@ import styles from "../../../../public/styles/CreateProject.module.css";
 
 type Props = {
   session: Session;
+  project_idkey: number;
+  project_name: string;
+  project_amount: number;
+  project_solde: number;
 };
 
-const Registration: NextPage<Props> = ({ session }) => {
-  const [name, setName] = React.useState("");
+const Registration: NextPage<Props> = ({ session, project_idkey, project_name, project_amount, project_solde }) => {
+  const [payment, setPayment] = React.useState(0);
   const [summary, setSummary] = React.useState("");
-  const [amount, setAmount] = React.useState(0.0);
-
+  
   return (
     <>
       <Head>
-        <title>Tout Compte Fait - New Project</title>
+        <title>Tout Compte Fait - Add User Payment</title>
         <style>{`
           html,
           body {
-            background-image: url("/pictures/newproject.jpg") !important;
+            background-image: url("/pictures/background_create.jpeg") !important;
           }
         `}</style>
       </Head>
@@ -30,33 +33,25 @@ const Registration: NextPage<Props> = ({ session }) => {
         <Container className={"dontTouchPoka " + styles.creation}>
           {session && (
             <>
-              <h1>Create a new project</h1>
+              <h1>Add a Payment</h1>
+              <div>
+                <h3>{project_name}</h3>
+                <h3>Initial Budget {project_amount}</h3>
+                <h3>It remains to pay {project_solde}</h3>
+              </div>
+              
 
-              <Form method="POST" action="/api/projects/createproject" className="mt-3">
+              {/* <Form method="POST" action="/api/projects/payment" className="mt-3"> */}
+              <Form method="POST" action="/projects/addpayment/cardpayment" className="mt-3">
                 <Form.Group>
-                  <Form.Label htmlFor="name">Name</Form.Label>
+                  <Form.Label htmlFor="payment">Payment</Form.Label>
                   <Form.Control
                     required
-                    id="name"
-                    name="name"
-                    type="text"
-                    value={name}
-                    placeholder="Name of your project"
-                    onChange={(e) => setName(e.target.value)}
-                  />
-                </Form.Group>
-
-                <Form.Group>
-                  <Form.Label htmlFor="amount">Budget €</Form.Label>
-                  <Form.Control
-                    required
-                    id="amount"
-                    min="0.0"
-                    step="any"
-                    name="amount"
+                    id="payment"
+                    name="payment"
                     type="number"
-                    value={amount}
-                    onChange={(e) => setAmount(parseInt(e.target.value))}
+                    value={payment}
+                    onChange={(e) => setPayment(parseInt(e.target.value))}
                   />
                 </Form.Group>
 
@@ -76,16 +71,18 @@ const Registration: NextPage<Props> = ({ session }) => {
                 </Form.Group>
 
                 <Button className="mt-2" variant="primary" type="submit">
-                  Create project
+                  Transaction Card Payment
                 </Button>
-                
+
                 {/* les donnees en dessous sont des données masquées pour le passage de paramétre à l'api */}
                 <Form.Group className={styles.mail}>
                   <Form.Label htmlFor="param1"></Form.Label>
-                  <Form.Control id="param1" name="param1" type="hidden" value={session.user.email} readOnly />
+                  <Form.Control id="param1" name="param1" type="hidden" value={project_idkey} readOnly />
+                
+                  <Form.Label htmlFor="param2"></Form.Label>
+                  <Form.Control id="param2" name="param2" type="hidden" value={session.user.email} readOnly />
                 </Form.Group>
                 {/* fin des données masquees */}
-
                 
               </Form>
             </>
@@ -100,10 +97,19 @@ export default Registration;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const session = await getSession(context);
+  const project_idkey = context.query.project_idkey;
+  const project_name = context.query.project_name;
+  const project_amount = context.query.project_amount;
+  const project_solde = context.query.project_solde;
 
+  
   return {
     props: {
       session,
+      project_idkey,
+      project_name,
+      project_amount,
+      project_solde,
     },
   };
 };
