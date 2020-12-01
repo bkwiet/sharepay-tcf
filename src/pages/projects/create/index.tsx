@@ -74,14 +74,18 @@ const Registration: NextPage<Props> = ({ session }) => {
                   />
                 </Form.Group>
 
-                <Form.Group className={styles.mail}>
-                  <Form.Label htmlFor="user_email">Your Mail</Form.Label>
-                  <Form.Control id="user_email" name="user_email" type="email" value={session.user.email} readOnly />
-                </Form.Group>
-
                 <Button className="mt-2" variant="primary" type="submit">
                   Create project
                 </Button>
+                
+                {/* les donnees en dessous sont des données masquées pour le passage de paramétre à l'api */}
+                <Form.Group className={styles.mail}>
+                  <Form.Label htmlFor="param1"></Form.Label>
+                  <Form.Control id="param1" name="param1" type="hidden" value={session.user.email} readOnly />
+                </Form.Group>
+                {/* fin des données masquees */}
+
+                
               </Form>
             </>
           )}

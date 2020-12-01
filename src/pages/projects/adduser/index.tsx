@@ -8,9 +8,11 @@ import styles from "../../../../public/styles/CreateProject.module.css";
 
 type Props = {
   session: Session;
+  project_idkey: number;
+  project_name;
 };
 
-const Registration: NextPage<Props> = ({ session }) => {
+const Registration: NextPage<Props> = ({ session, project_idkey, project_name }) => {
   const [email, setEmail] = React.useState("");
   
   return (
@@ -44,19 +46,23 @@ const Registration: NextPage<Props> = ({ session }) => {
                   />
                 </Form.Group>
 
-                <Form.Group className={styles.mail}>
-                  <Form.Label htmlFor="project_idkey"></Form.Label>
-                  <Form.Control id="project_idkey" name="uproject_idkey" type="email" value={session.user.email} readOnly />
-                
-
-                
-                  <Form.Label htmlFor="user_email"></Form.Label>
-                  <Form.Control id="user_email" name="user_email" type="email" value={session.user.email} readOnly />
-                </Form.Group>
-
                 <Button className="mt-2" variant="primary" type="submit">
                   Add User
                 </Button>
+
+                {/* les donnees en dessous sont des données masquées pour le passage de paramétre à l'api */}
+                <Form.Group className={styles.mail}>
+                  <Form.Label htmlFor="param1"></Form.Label>
+                  <Form.Control id="param1" name="param1" type="hidden" value={project_idkey} readOnly />
+
+                  <Form.Label htmlFor="param2"></Form.Label>
+                  <Form.Control id="param2" name="param2" type="hidden" value={project_name} readOnly />
+                
+                  <Form.Label htmlFor="param3"></Form.Label>
+                  <Form.Control id="param3" name="param3" type="hidden" value={session.user.email} readOnly />
+                </Form.Group>
+                {/* fin des données masquees */}
+                
               </Form>
             </>
           )}
@@ -70,10 +76,14 @@ export default Registration;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const session = await getSession(context);
-
+  const project_idkey = context.query.project_idkey;
+  const project_name = context.query.project_name;
+  console.log("recup project_name",project_name);
   return {
     props: {
       session,
+      project_idkey,
+      project_name,
     },
   };
 };
