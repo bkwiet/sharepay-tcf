@@ -15,7 +15,7 @@ const affAddUserReject: React.FC<{}> = ({}) => {
               <FontAwesomeIcon icon={faExclamationTriangle} />
             </span>
             <div className="col text-warning" id="WarningText">
-              Erreur lors de l'ajout d'un utilisateur au projet
+              Erreur lors de votre paiement
             </div>
             <span className={styles.spinout}>
               <FontAwesomeIcon icon={faExclamationTriangle} />
@@ -24,17 +24,7 @@ const affAddUserReject: React.FC<{}> = ({}) => {
 
           <div className="row" id="warningTextbis">
             <div className="col">
-              <p>Soit l'email est identique à celui de l'administrateur.</p>
-              <p>
-                Soit l'email du nouvel utilisateur n'existe pas dans notre base
-                de donnée.
-              </p>
-              <p>
-                Soit l'utilisateur que vous essayez d'integrer existe déjà dans
-                votre projet.
-              </p>
-              <p>Soit une erreur technique est survenue</p>
-    
+              <p>Une erreur technique est survenue</p>
             </div>
           </div>
         </div>

@@ -9,7 +9,7 @@ import styles from "../../../../public/styles/CreateProject.module.css";
 type Props = {
   session: Session;
   project_idkey: number;
-  project_name;
+  project_name: string;
 };
 
 const Registration: NextPage<Props> = ({ session, project_idkey, project_name }) => {
@@ -22,7 +22,7 @@ const Registration: NextPage<Props> = ({ session, project_idkey, project_name })
         <style>{`
           html,
           body {
-            background-image: url("/pictures/background_create.jpeg") !important;
+            background-image: url("/pictures/SearchUser.jpg") !important;
           }
         `}</style>
       </Head>
