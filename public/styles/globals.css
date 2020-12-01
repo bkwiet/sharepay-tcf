@@ -135,19 +135,24 @@ a {
   text-align: -webkit-center;
   font-size: x-large;
 }
+
 #warningTextbis {
   text-align: center;
   padding-top: 15vh;
 }
+
 #iconAddUser {
   color: rgb(66, 66, 194);
 }
+
 #iconAddPayment {
   color: orange;
 }
+
 #divRegisterIconUser {
   text-align: center;
 }
+
 #RegisterIconUser {
   height: 50px;
   width: 50px;
