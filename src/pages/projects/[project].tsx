@@ -33,7 +33,7 @@ const affOneProject: React.FC<{ project: Projects }> = ({ project }) => {
           </div>
 
           <div className="row">
-            <h3 className="col p-3 text-justify">Paiements</h3>
+            <h3 className="col p-3 text-justify">Paiements </h3>
             {project.payments.map((payment) => {
               return (
                 <div className="col">
@@ -46,6 +46,7 @@ const affOneProject: React.FC<{ project: Projects }> = ({ project }) => {
             })}
           </div>
         </div>
+
         <div className="payment">
           <a id="payment" href="#">
             <span>Add a Payment!</span>

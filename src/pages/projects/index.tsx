@@ -11,7 +11,11 @@ import Layout from "../../components/layout";
 import { Container, Card } from "react-bootstrap";
 import styles from "../../../public/styles/Projects.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCogs, faUserPlus } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCogs,
+  faUserPlus,
+  faPiggyBank,
+} from "@fortawesome/free-solid-svg-icons";
 
 const ProjectIndex: React.FC<{ projects: Projects[] }> = ({ projects }) => {
   return (
@@ -61,9 +65,28 @@ const ProjectIndex: React.FC<{ projects: Projects[] }> = ({ projects }) => {
                     <hr className={styles.separator} />
                     <Card.Link href={"/projects/show/" + project.idkey}>
                       <FontAwesomeIcon icon={faCogs} /> Manage Project
-                    </Card.Link>                    
-                    <Card.Link href={"/projects/adduser?project_idkey="+project.idkey+"&project_name="+project.name}>
-                      <FontAwesomeIcon icon={faUserPlus} id="iconAddUser" /> Add User
+                    </Card.Link>
+                    <Card.Link
+                      href={
+                        "/projects/adduser?project_idkey=" +
+                        project.idkey +
+                        "&project_name=" +
+                        project.name
+                      }
+                    >
+                      <FontAwesomeIcon icon={faUserPlus} id="iconAddUser" /> Add
+                      User
+                    </Card.Link>
+                    <Card.Link
+                      href={
+                        "/projects/adduser?project_idkey=" +
+                        project.idkey +
+                        "&project_name=" +
+                        project.name
+                      }
+                    >
+                      <FontAwesomeIcon icon={faPiggyBank} id="iconAddPayment" />{" "}
+                      Add Payment
                     </Card.Link>
                   </Card.Body>
                 </Card>

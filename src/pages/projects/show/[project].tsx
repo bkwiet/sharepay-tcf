@@ -3,6 +3,8 @@ import React from "react";
 import { findProjectById } from "../../../utils/projects";
 import { Projects } from "../../../types/projects";
 import Layout from "../../../components/layout";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faDonate } from "@fortawesome/free-solid-svg-icons";
 
 const affOneProject: React.FC<{ project: Projects }> = ({ project }) => {
   console.log("arrivee typeof datas", typeof project);
@@ -48,7 +50,14 @@ const affOneProject: React.FC<{ project: Projects }> = ({ project }) => {
         </div>
         <div className="payment">
           <a id="payment" href="#">
-            <span>Add a Payment!</span>
+            <span>
+              <div>
+                <span>
+                  <FontAwesomeIcon icon={faDonate} id="iconDonate" />
+                </span>
+              </div>
+              Add a Payment!
+            </span>
           </a>
         </div>
       </div>

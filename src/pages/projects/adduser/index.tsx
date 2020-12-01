@@ -12,9 +12,13 @@ type Props = {
   project_name;
 };
 
-const Registration: NextPage<Props> = ({ session, project_idkey, project_name }) => {
+const Registration: NextPage<Props> = ({
+  session,
+  project_idkey,
+  project_name,
+}) => {
   const [email, setEmail] = React.useState("");
-  
+
   return (
     <>
       <Head>
@@ -22,7 +26,7 @@ const Registration: NextPage<Props> = ({ session, project_idkey, project_name })
         <style>{`
           html,
           body {
-            background-image: url("/pictures/background_create.jpeg") !important;
+            background-image: url("/pictures/SearchUser.jpg") !important;
           }
         `}</style>
       </Head>
@@ -32,7 +36,11 @@ const Registration: NextPage<Props> = ({ session, project_idkey, project_name })
             <>
               <h1>Add a User on Project</h1>
 
-              <Form method="POST" action="/api/projects/adduser" className="mt-3">
+              <Form
+                method="POST"
+                action="/api/projects/adduser"
+                className="mt-3"
+              >
                 <Form.Group>
                   <Form.Label htmlFor="email">Email</Form.Label>
                   <Form.Control
@@ -53,16 +61,33 @@ const Registration: NextPage<Props> = ({ session, project_idkey, project_name })
                 {/* les donnees en dessous sont des données masquées pour le passage de paramétre à l'api */}
                 <Form.Group className={styles.mail}>
                   <Form.Label htmlFor="param1"></Form.Label>
-                  <Form.Control id="param1" name="param1" type="hidden" value={project_idkey} readOnly />
+                  <Form.Control
+                    id="param1"
+                    name="param1"
+                    type="hidden"
+                    value={project_idkey}
+                    readOnly
+                  />
 
                   <Form.Label htmlFor="param2"></Form.Label>
-                  <Form.Control id="param2" name="param2" type="hidden" value={project_name} readOnly />
-                
+                  <Form.Control
+                    id="param2"
+                    name="param2"
+                    type="hidden"
+                    value={project_name}
+                    readOnly
+                  />
+
                   <Form.Label htmlFor="param3"></Form.Label>
-                  <Form.Control id="param3" name="param3" type="hidden" value={session.user.email} readOnly />
+                  <Form.Control
+                    id="param3"
+                    name="param3"
+                    type="hidden"
+                    value={session.user.email}
+                    readOnly
+                  />
                 </Form.Group>
                 {/* fin des données masquees */}
-                
               </Form>
             </>
           )}
@@ -78,7 +103,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const session = await getSession(context);
   const project_idkey = context.query.project_idkey;
   const project_name = context.query.project_name;
-  console.log("recup project_name",project_name);
+  console.log("recup project_name", project_name);
   return {
     props: {
       session,

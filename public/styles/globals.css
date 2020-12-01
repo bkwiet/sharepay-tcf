@@ -38,7 +38,7 @@ a {
   margin-top: 10px;
   display: block;
   width: 200px;
-  height: 40px;
+  height: 100px;
   line-height: 40px;
   font-size: 18px;
   font-family: sans-serif;
@@ -49,6 +49,8 @@ a {
   text-align: center;
   position: relative;
   transition: all 0.35s;
+  background-color: beige;
+  border-radius: 8%;
 }
 
 #payment span {
@@ -65,6 +67,7 @@ a {
   height: 100%;
   background: #d0917e;
   transition: all 0.35s;
+  border-radius: 8%;
 }
 
 #payment:hover {
@@ -74,6 +77,13 @@ a {
 #payment:hover:after {
   width: 100%;
 }
+
+#iconDonate {
+  margin-top: 5px;
+  height: 50px;
+  width: 50px;
+}
+
 .marquee-rtl {
   color: black;
   max-width: 30em; /* largeur de la fenêtre */
@@ -119,10 +129,6 @@ a {
   min-height: 250px;
 }
 
-#iconAddUser {
-  padding-left: 1rem;
-  color: rgb(66, 66, 194);
-}
 #WarningText {
   padding-top: 2vh;
   font-variant: all-small-caps;
@@ -132,4 +138,18 @@ a {
 #warningTextbis {
   text-align: center;
   padding-top: 15vh;
+}
+#iconAddUser {
+  color: rgb(66, 66, 194);
+}
+#iconAddPayment {
+  color: orange;
+}
+#divRegisterIconUser {
+  text-align: center;
+}
+#RegisterIconUser {
+  height: 50px;
+  width: 50px;
+  color: black;
 }
