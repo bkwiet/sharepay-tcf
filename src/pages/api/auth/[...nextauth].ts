@@ -1,8 +1,9 @@
 import NextAuth from "next-auth";
 import Providers from "next-auth/providers";
+import { Session } from "next-auth/client";
 import { NextApiHandler } from "next";
 import OAuth2Client, { OAuth2ClientConstructor } from "@fwl/oauth2";
-import { Profile, Tokens, User } from "../../../types/fewlines_connect";
+import { Profile, Tokens, User, token } from "../../../types/fewlines_connect";
 
 const options = {
   site: process.env.SITE || "http://localhost:3000",
@@ -26,8 +27,7 @@ const options = {
       clientSecret: process.env.CONNECT_CLIENT_SECRET,
       scope: "openid email phone",
       params: { grant_type: "authorization_code" },
-      authorizationUrl:
-        "https://fewlines.connect.prod.fewlines.tech/oauth/authorize?response_type=code",
+      authorizationUrl: "https://fewlines.connect.prod.fewlines.tech/oauth/authorize?response_type=code",
       accessTokenUrl: "https://fewlines.connect.prod.fewlines.tech/oauth/token",
       profileUrl: "https://fewlines.connect.prod.fewlines.tech/oauth/userinfo",
       idToken: true,
@@ -58,7 +58,7 @@ const options = {
   ],
 
   callbacks: {
-    signIn: async (user: User, tokens: Tokens, profile: Profile) => {
+    signIn: async (user: User, tokens: Tokens) => {
       if (tokens.provider === "connect" && tokens.accessToken) {
         const oauthClientConstructorProps: OAuth2ClientConstructor = {
           openIDConfigurationURL: process.env.CONNECT_OPEN_ID || "",
@@ -71,10 +71,7 @@ const options = {
 
         const oauthClient = new OAuth2Client(oauthClientConstructorProps);
 
-        const decoded = await oauthClient.verifyJWT(
-          tokens.accessToken,
-          String(process.env.CONNECT_JWT_ALGORITHM)
-        );
+        const decoded = await oauthClient.verifyJWT(tokens.accessToken, String(process.env.CONNECT_JWT_ALGORITHM));
 
         if (decoded) {
           user.accessToken = tokens.accessToken;
@@ -86,7 +83,7 @@ const options = {
       return Promise.resolve(false);
     },
 
-    jwt: async function jwt(token, user: User) {
+    jwt: async function jwt(token: token, user: User) {
       if (user) {
         token = {
           username: user.name,
@@ -98,7 +95,7 @@ const options = {
       return Promise.resolve(token);
     },
 
-    session: async function session(session, token) {
+    session: async function session(session: Session, token: token) {
       session.user.name = token.username;
       session.user.email = token.email;
       session.accessToken = token.accessToken;
@@ -106,11 +103,8 @@ const options = {
       return Promise.resolve(session);
     },
 
-    redirect: async (url, baseUrl) => {
-      console.log("redirect ", url, baseUrl);
-      return url.startsWith(baseUrl)
-        ? Promise.resolve("/")
-        : Promise.resolve(baseUrl);
+    redirect: async (url: string, baseUrl: string) => {
+      return url.startsWith(baseUrl) ? Promise.resolve("/") : Promise.resolve(baseUrl);
     },
   },
 
