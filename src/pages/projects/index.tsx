@@ -8,7 +8,7 @@ import { Projects } from "../../types/projects";
 import Head from "next/head";
 //import Link from "next/link";
 import Layout from "../../components/layout";
-import { Container, Card } from "react-bootstrap";
+import { Container, Card, Row } from "react-bootstrap";
 import styles from "../../../public/styles/Projects.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCogs, faUserPlus, faPiggyBank } from "@fortawesome/free-solid-svg-icons";
@@ -32,18 +32,24 @@ const ProjectIndex: React.FC<{ projects: Projects[] }> = ({ projects }) => {
           <div className={styles.timeline}>
             {projects.map((project) => {
               return (
+
+
                 <Card className={"mb-4 " + styles.card} key={project.idkey}>
                   <Card.Body className={styles.body}>
-                    <Card.Subtitle className={"mb-2 text-muted " + styles.muted}>Project name</Card.Subtitle>
                     <Card.Title className={styles.title}>{project.name}</Card.Title>
+
                     <Card.Subtitle className={"mb-2 text-muted " + styles.cupcup}>
-                      Creation date : To fix no creation date or end creation
+                      Created date {project.date_opened}
                     </Card.Subtitle>
-                    <Card.Subtitle className={"mb-2 text-muted " + styles.cupcup}>Participants : To add</Card.Subtitle>
+
+                    <Card.Subtitle className={"mb-2 text-muted " + styles.cupcup}>
+                      Budget Initial {project.amount + " €"}
+                    </Card.Subtitle>
+                    
+                    {/* <Card.Subtitle className={"mb-2 text-muted " + styles.cupcup}>Participants : To add</Card.Subtitle> */}
+                   
                     <hr className={styles.separator} />
-                    <Card.Subtitle className={"mb-2 text-muted " + styles.muted}>Budget</Card.Subtitle>
-                    <Card.Text>{project.amount + " €"}</Card.Text>
-                    <Card.Subtitle className={"mb-2 text-muted " + styles.muted}>Summary</Card.Subtitle>
+                    <Card.Subtitle className={"mb-2 text-muted " + styles.cupcup}>Summary</Card.Subtitle>
                     <Card.Text>{project.summary}</Card.Text>
                     <hr className={styles.separator} />
                     <Card.Link href={"/projects/show/" + project.idkey}>
