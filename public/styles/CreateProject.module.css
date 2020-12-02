@@ -9,6 +9,8 @@
   background-color: rgb(0 0 0 / 18%);
   border: 1px solid rgb(154 154 154);
   border-radius: 15px;
+  text-align: -webkit-center;
+  width: min-content;
   /* justify-content: center; */
 }
 

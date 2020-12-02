@@ -1,0 +1,17 @@
+img.card-img-top {
+  height: 12rem;
+  margin-top: 0.5rem;
+  width: 12 rem;
+}
+.card-body {
+  text-align: center;
+}
+.card {
+  padding-bottom: 0.5rem;
+}
+
+.formpayment img {
+  height: 12rem;
+  margin-top: 0.5rem;
+  width: 12rem;
+}

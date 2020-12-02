@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { getDatabase } from "../../../utils/database";
 import { newProjectIdKey } from "../../../utils/projects";
 import { findUserByEmail } from "../../../utils/users";
-import { firstUpper } from "../../../utils/functions";
+import { convertDate, firstUpper } from "../../../utils/functions";
 import { Users } from "../../../types/users.d";
 import { Projects } from "../../../types/projects.d";
 
@@ -43,7 +43,7 @@ export default async (request: NextApiRequest, response: NextApiResponse): Promi
       actif: true,
       amount: request.body.amount,
       admin_idkey: user.user_idkey,
-      date_opened: "",
+      date_opened: convertDate(new Date()),
       date_ended: "",
       users: [
         {

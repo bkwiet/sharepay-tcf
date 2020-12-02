@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { getDatabase } from "../../../utils/database";
 import { newUserIdKey } from "../../../utils/users";
-import { firstUpper } from "../../../utils/functions";
+import { firstUpper, convertDate } from "../../../utils/functions"; 
 
 type User = {
   username: string;
@@ -38,8 +38,8 @@ export default async (request: NextApiRequest, response: NextApiResponse): Promi
       user_idkey: user_idkey,
       actif: true,
       rib: "",
-      date_last_connect: "",
-      date_last_payment: "",
+      date_last_connect: convertDate(new Date()),
+      date_last_payment: convertDate(new Date()),
       projects: [],
     };
 
