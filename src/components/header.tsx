@@ -1,28 +1,29 @@
 import React from "react";
 import { Navbar, Nav, Dropdown } from "react-bootstrap";
-import Link from "next/link";
 import { Session, signin, signout } from "next-auth/client";
 import styles from "../../public/styles/Header.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCampground, faProjectDiagram, faQrcode, faPlusSquare, faHandHoldingUsd } from "@fortawesome/free-solid-svg-icons";
+import { faCampground, faProjectDiagram, faQrcode, faPlusSquare } from "@fortawesome/free-solid-svg-icons";
 
 type Props = {
   session: Session | undefined | null;
   loading: boolean;
 };
-export const Header: React.FC<Props> = ({ session, loading }) => {
+export const Header: React.FC<Props> = ({ session }) => {
   const [scrollState, setScrollState] = React.useState("top");
 
   React.useEffect(() => {
-    const documentScollState = (event) => {
-      const scrolled = document.scrollingElement.scrollTop;
-      if (scrolled >= 120) {
-        if (scrollState !== "bottom") {
-          setScrollState("bottom");
-        }
-      } else {
-        if (scrollState !== "top") {
-          setScrollState("top");
+    const documentScollState = () => {
+      if (document.scrollingElement) {
+        const scrolled = document.scrollingElement.scrollTop;
+        if (scrolled >= 120) {
+          if (scrollState !== "bottom") {
+            setScrollState("bottom");
+          }
+        } else {
+          if (scrollState !== "top") {
+            setScrollState("top");
+          }
         }
       }
     };
@@ -63,7 +64,7 @@ export const Header: React.FC<Props> = ({ session, loading }) => {
           <Nav className={styles.navbar}>
             {!session && (
               <Nav.Link
-                onClick={(e) => {
+                onClick={(e: React.MouseEvent<HTMLElement>) => {
                   e.preventDefault();
                   signin();
                 }}

@@ -52,7 +52,6 @@ const affOneProject: React.FC<{ project: Projects }> = ({ project }) => {
             <span>Add a Payment!</span>
           </a>
         </div>
-        
       </div>
     </Layout>
   );
@@ -60,7 +59,7 @@ const affOneProject: React.FC<{ project: Projects }> = ({ project }) => {
 export default affOneProject;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const idkey = context.params?.project;
+  const idkey = String(context.params?.project);
   console.log("valeur de params = ", idkey);
 
   const project = await findProjectById(parseInt(idkey));
