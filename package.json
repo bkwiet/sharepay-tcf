@@ -23,7 +23,8 @@
     "react-bootstrap": "^1.4.0",
     "react-dom": "17.0.1",
     "reflect-metadata": "^0.1.13",
-    "swr": "^0.3.9"
+    "swr": "^0.3.9",
+    "ts-node": "^9.0.0"
   },
   "devDependencies": {
     "@types/mongodb": "^3.5.34",

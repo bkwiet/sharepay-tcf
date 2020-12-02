@@ -11,9 +11,31 @@ type Props = {
   loading: boolean;
 };
 export const Header: React.FC<Props> = ({ session, loading }) => {
+  const [scrollState, setScrollState] = React.useState("top");
+
+  React.useEffect(() => {
+    const documentScollState = (event) => {
+      const scrolled = document.scrollingElement.scrollTop;
+      if (scrolled >= 120) {
+        if (scrollState !== "bottom") {
+          setScrollState("bottom");
+        }
+      } else {
+        if (scrollState !== "top") {
+          setScrollState("top");
+        }
+      }
+    };
+
+    document.addEventListener("scroll", documentScollState);
+    return () => {
+      document.removeEventListener("scroll", documentScollState);
+    };
+  }, [scrollState]);
+
   return (
     <header>
-      <Navbar className={styles.nav} expand="lg" fixed="top">
+      <Navbar className={scrollState === "top" ? styles.navtop : styles.navbot} expand="lg" fixed="top">
         <Navbar.Brand className={styles.logo_brand} href="/">
           {" "}
           <span>TCF</span>
