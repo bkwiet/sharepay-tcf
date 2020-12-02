@@ -101,7 +101,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   if (session) {
     const _projects = await findUserByEmail(String(session.user.email)).then((user) => {
-      return async () => Promise.all(user.projects.map(async (project) => await findProjectById(parseInt(project.idkey))));
+      return async () => Promise.all(user.projects.map(async (project) => await findProjectById(project.idkey)));
     });
 
     const swap = await _projects();
