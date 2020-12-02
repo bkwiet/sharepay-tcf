@@ -82,7 +82,7 @@ const Registration: NextPage<Props> = ({ session }) => {
                 {/* les donnees en dessous sont des données masquées pour le passage de paramétre à l'api */}
                 <Form.Group className={styles.mail}>
                   <Form.Label htmlFor="param1"></Form.Label>
-                  <Form.Control id="param1" name="param1" type="hidden" value={session.user.email} readOnly />
+                  <Form.Control id="param1" name="param1" type="hidden" value={String(session.user.email)} readOnly />
                 </Form.Group>
                 {/* fin des données masquees */}
               </Form>

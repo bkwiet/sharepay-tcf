@@ -6,9 +6,6 @@ import Head from "next/head";
 import { Button, Container, Form } from "react-bootstrap";
 import styles from "../../../public/styles/Registration.module.css";
 import { findUserByEmail } from "../../utils/users";
-import { Sharepay_user } from "../../types/users";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 type Props = {
   session: Session;
@@ -34,7 +31,7 @@ const Registration: NextPage<Props> = ({ session }) => {
               <Form method="POST" action="/api/auth/createnewuser" className="mt-3">
                 <Form.Group className={styles.mail}>
                   <Form.Label htmlFor="user_email">Your Mail</Form.Label>
-                  <Form.Control id="user_email" name="user_email" type="email" value={session.user.email} readOnly />
+                  <Form.Control id="user_email" name="user_email" type="email" value={session.user.email || " "} readOnly />
                 </Form.Group>
 
                 <Form.Group>
