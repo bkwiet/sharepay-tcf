@@ -14,7 +14,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCogs, faUserPlus, faPiggyBank } from "@fortawesome/free-solid-svg-icons";
 
 const ProjectIndex: React.FC<{ projects: Projects[] }> = ({ projects }) => {
-  let solde=0;
+  let solde = 0;
   return (
     <>
       <Head>
@@ -27,46 +27,47 @@ const ProjectIndex: React.FC<{ projects: Projects[] }> = ({ projects }) => {
         `}</style>
       </Head>
       <Layout>
-        <Container className={"dontTouchPoka "}>
+        <Container className={"dontTouchPoka " + styles.couan}>
           <h1>My projects</h1>
           <div className={styles.timeline}>
             {projects.map((project) => {
               return (
                 <Card className={"mb-4 " + styles.card} key={project.idkey}>
                   <Card.Body className={styles.body}>
-                    <Card.Subtitle className="mb-2 text-muted">
-                      Project name
+                    <Card.Title className={styles.title}>{project.name}</Card.Title>
+                    <Card.Subtitle className={"mb-2 text-muted " + styles.cupcup}>
+                      Creation date : {project.date_opened}
                     </Card.Subtitle>
-                    <Card.Title className={styles.title}>
-                      {project.name}
-                    </Card.Title>
-                    <Card.Subtitle
-                      className={"mb-2 text-muted " + styles.cupcup}
-                    >
-                      Creation date : To fix no creation date or end creation
+                    <Card.Subtitle className={"mb-2 text-muted " + styles.cupcup}>
+                      Participants :{" "}
+                      {project.users.map((user, id) => {
+                        if (project.users.length - 1 === id) return <span className={styles.particpant}>{user.firstname}</span>;
+                        else return <span className={styles.particpant}>{user.firstname + ", "}</span>;
+                      })}
                     </Card.Subtitle>
-                    <Card.Subtitle
-                      className={"mb-2 text-muted " + styles.cupcup}
-                    >
-                      Participants : To add
-                    </Card.Subtitle>
+                    <Card.Subtitle className={"mb-2 text-muted " + styles.cupcup}>Budget : {project.amount + " €"}</Card.Subtitle>
                     <hr className={styles.separator} />
-                    <Card.Subtitle className="mb-2 text-muted">
-                      Budget
-                    </Card.Subtitle>
-                    <Card.Text>{project.amount + " €"}</Card.Text>
-                    <Card.Subtitle className="mb-2 text-muted">
-                      Summary
-                    </Card.Subtitle>
+                    <Card.Subtitle className={"mb-2 text-muted " + styles.muted}>Summary</Card.Subtitle>
                     <Card.Text>{project.summary}</Card.Text>
                     <hr className={styles.separator} />
                     <Card.Link href={"/projects/show/" + project.idkey}>
                       <FontAwesomeIcon icon={faCogs} /> Manage Project
-                    </Card.Link>                    
-                    <Card.Link href={"/projects/adduser?project_idkey="+project.idkey+"&project_name="+project.name}>
-                      <FontAwesomeIcon icon={faUserPlus} id="iconAddUser" /> Add User
                     </Card.Link>
-                    <Card.Link href={"/projects/addpayment?project_idkey="+project.idkey+"&project_name="+project.name+"&project_amount="+project.amount+"&project_solde="+solde}>
+                    <Card.Link href={"/projects/adduser?project_idkey=" + project.idkey + "&project_name=" + project.name}>
+                      <FontAwesomeIcon icon={faUserPlus} id="iconAddUser" /> Add Participant
+                    </Card.Link>
+                    <Card.Link
+                      href={
+                        "/projects/addpayment?project_idkey=" +
+                        project.idkey +
+                        "&project_name=" +
+                        project.name +
+                        "&project_amount=" +
+                        project.amount +
+                        "&project_solde=" +
+                        solde
+                      }
+                    >
                       <FontAwesomeIcon icon={faPiggyBank} id="iconAddPayment" /> Add Payment
                     </Card.Link>
                   </Card.Body>
@@ -88,16 +89,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const session = await getSession(context);
 
   if (session) {
-    const _projects = await findUserByEmail(String(session.user.email)).then(
-      (user) => {
-        return async () =>
-          Promise.all(
-            user.projects.map(
-              async (project) => await findProjectById(parseInt(project.idkey))
-            )
-          );
-      }
-    );
+    const _projects = await findUserByEmail(String(session.user.email)).then((user) => {
+      return async () => Promise.all(user.projects.map(async (project) => await findProjectById(parseInt(project.idkey))));
+    });
 
     const swap = await _projects();
     const projects = JSON.parse(JSON.stringify(swap));

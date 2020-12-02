@@ -22,7 +22,7 @@ const Registration: NextPage<Props> = ({ session }) => {
         <style>{`
           html,
           body {
-            background-image: url("/pictures/newproject.jpg") !important;
+            background-image: url("/pictures/background_create.jpeg") !important;
           }
         `}</style>
       </Head>
@@ -78,15 +78,13 @@ const Registration: NextPage<Props> = ({ session }) => {
                 <Button className="mt-2" variant="primary" type="submit">
                   Create project
                 </Button>
-                
+
                 {/* les donnees en dessous sont des données masquées pour le passage de paramétre à l'api */}
                 <Form.Group className={styles.mail}>
                   <Form.Label htmlFor="param1"></Form.Label>
                   <Form.Control id="param1" name="param1" type="hidden" value={session.user.email} readOnly />
                 </Form.Group>
                 {/* fin des données masquees */}
-
-                
               </Form>
             </>
           )}

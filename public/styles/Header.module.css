@@ -1,27 +1,56 @@
 @import url("https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@600&display=swap");
-.nav {
+.navtop {
   /* background-color: rgb(39 39 39); */
-  background-color: rgb(0 0 0 / 85%);
-  border-bottom: 1px solid rgb(185 185 185);
+  /* background-color: rgb(0 0 0 / 85%);
+  border-bottom: 1px solid rgb(185 185 185); */
+  background-color: rgb(152 152 152 / 0%);
+  border-bottom: 1px solid rgb(0 0 0);
 }
-.nav {
+
+.navtop {
   color: rgb(161, 6, 6) !important;
 }
 
-.nav svg {
+.navtop svg {
   height: 11px;
-  color: rgb(152 152 152);
+  /* color: rgb(152 152 152); */
+  color: rgb(140 3 3);
 }
 
-.nav svg:hover {
-  color: rgb(132 129 129);
+.navtop a {
+  /* color: rgb(210 210 210) !important;
+   */
+  color: rgb(4 4 4) !important;
+  font-weight: bold;
 }
 
-.nav a {
-  color: rgb(210 210 210) !important;
+.navtop a:hover {
+  color: rgb(42, 42, 42) !important;
 }
 
-.nav a:hover {
+.navtop .username {
+  color: rgb(252, 252, 252);
+}
+
+.navbot {
+  background-color: rgba(0, 0, 0, 0.86);
+  border-bottom: 1px solid rgb(0 0 0);
+}
+
+.navbot svg {
+  height: 11px;
+  /* color: rgb(152 152 152); */
+  color: rgb(140 3 3);
+}
+
+.navbot a {
+  /* color: rgb(210 210 210) !important;
+   */
+  color: white !important;
+  font-weight: bold;
+}
+
+.navbot a:hover {
   color: rgb(217, 157, 74) !important;
 }
 
@@ -35,10 +64,13 @@
   color: hsl(0deg 97% 34% / 75%);
   text-shadow: 1px 1px 1px hsl(0deg 0% 0%);
 }
-
+.navbot .username {
+  color: white;
+}
 .username {
   padding: 6px;
-  color: rgb(117 113 113);
+  color: rgb(4 4 4);
+  /* color: rgb(117 113 113); */
   border: 1px solid rgb(128 8 8);
   background-color: rgb(0 0 0 / 38%);
   border-radius: 15px;
@@ -71,4 +103,10 @@
 .droppin div {
   background-color: rgb(0 0 0 / 60%);
   border: 1px solid rgb(140 137 137);
+}
+
+@media screen and (max-width: 991px) {
+  .navtop {
+    background-color: rgb(152 152 152 / 80%);
+  }
 }
