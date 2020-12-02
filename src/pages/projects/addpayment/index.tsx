@@ -5,7 +5,7 @@ import { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 import { Button, Container, Form } from "react-bootstrap";
 import styles from "../../../../public/styles/CreateProject.module.css";
-import App from "../../../components/stripeCard";
+// import App from "../../../components/stripeCard";
 type Props = {
   session: Session;
   project_idkey: number;
@@ -14,13 +14,7 @@ type Props = {
   project_solde: number;
 };
 
-const Registration: NextPage<Props> = ({
-  session,
-  project_idkey,
-  project_name,
-  project_amount,
-  project_solde,
-}) => {
+const Registration: NextPage<Props> = ({ session, project_idkey, project_name, project_amount, project_solde }) => {
   const [payment, setPayment] = React.useState(0);
   const [summary, setSummary] = React.useState("");
 
@@ -47,11 +41,7 @@ const Registration: NextPage<Props> = ({
               </div>
 
               {/* <Form method="POST" action="/api/projects/payment" className="mt-3"> */}
-              <Form
-                method="POST"
-                action="/projects/addpayment/cardpayment"
-                className="mt-3"
-              >
+              <Form method="POST" action="/projects/addpayment/cardpayment" className="mt-3">
                 <Form.Group>
                   <Form.Label htmlFor="payment">Payment</Form.Label>
                   <Form.Control
@@ -84,29 +74,17 @@ const Registration: NextPage<Props> = ({
                 {/* les donnees en dessous sont des données masquées pour le passage de paramétre à l'api */}
                 <Form.Group className={styles.mail}>
                   <Form.Label htmlFor="param1"></Form.Label>
-                  <Form.Control
-                    id="param1"
-                    name="param1"
-                    type="hidden"
-                    value={project_idkey}
-                    readOnly
-                  />
+                  <Form.Control id="param1" name="param1" type="hidden" value={project_idkey} readOnly />
 
                   <Form.Label htmlFor="param2"></Form.Label>
-                  <Form.Control
-                    id="param2"
-                    name="param2"
-                    type="hidden"
-                    value={session.user.email}
-                    readOnly
-                  />
+                  <Form.Control id="param2" name="param2" type="hidden" value={session.user.email} readOnly />
                 </Form.Group>
                 {/* fin des données masquees */}
               </Form>
             </>
           )}
         </Container>
-        <App></App>
+        {/* <App></App> */}
       </Layout>
     </>
   );
