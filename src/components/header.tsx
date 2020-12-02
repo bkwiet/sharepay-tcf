@@ -54,9 +54,6 @@ export const Header: React.FC<Props> = ({ session, loading }) => {
                 <Nav.Link href={"/projects/create"}>
                   <FontAwesomeIcon icon={faPlusSquare} /> Start Project
                 </Nav.Link>
-                <Nav.Link href={"#"}>
-                  <FontAwesomeIcon icon={faHandHoldingUsd} /> Payment
-                </Nav.Link>
               </>
             )}
             <Nav.Link href="/us">

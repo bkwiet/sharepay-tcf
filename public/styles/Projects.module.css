@@ -1,9 +1,9 @@
-.couan h1 {
+/* .couan h1 {
   margin-left: 2rem;
   color: rgb(226 226 226);
   text-shadow: 1px 0px 5px #4a0202;
   border-bottom: 1px solid #5f0606;
-}
+} */
 
 .timeline {
   margin-top: 5rem;
@@ -26,7 +26,11 @@
 }
 
 .timeline .muted {
-  color: rgb(210 209 209) !important;
+  color: rgb(150 150 150) !important;
+}
+.particpant {
+  color: rgb(206 206 206);
+  margin-right: 2rem;
 }
 .timeline .card:before {
   content: "";
@@ -44,7 +48,7 @@
 }
 
 .timeline .card:hover {
-  background-color: rgb(0 0 0 / 60%);
+  background-color: rgb(0 0 0 / 90%);
   border: 1px solid rgb(117, 2, 2);
 }
 
@@ -66,7 +70,7 @@
 }
 
 .timeline .title {
-  color: rgb(171 170 170);
+  color: rgb(11 177 162);
   font-weight: bold;
 }
 

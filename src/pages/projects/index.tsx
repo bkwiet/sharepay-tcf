@@ -50,20 +50,26 @@ const ProjectIndex: React.FC<{ projects: Projects[] }> = ({ projects }) => {
                     </Card.Subtitle>
 
                     <Card.Subtitle className={"mb-2 text-muted " + styles.cupcup}>
-                      {"Budget Initial : " + project.amount + " € - All Payment(s) : " + allpayment + " € - Sold to pay : "+ solde + " €"}
+                      Creation date : {project.date_opened}
                     </Card.Subtitle>
-                    
-                    {/* <Card.Subtitle className={"mb-2 text-muted " + styles.cupcup}>Participants : To add</Card.Subtitle> */}
-                   
+                    <Card.Subtitle className={"mb-2 text-muted " + styles.cupcup}>
+                      Participants :{" "}
+                      {project.users.map((user, id) => {
+                        if (project.users.length - 1 === id) return <span className={styles.particpant}>{user.firstname}</span>;
+                        else return <span className={styles.particpant}>{user.firstname + ", "}</span>;
+                      })}
+                    </Card.Subtitle>
+                    <Card.Subtitle className={"mb-2 text-muted " + styles.cupcup}>Budget : {project.amount + " €"}</Card.Subtitle>
                     <hr className={styles.separator} />
-                    <Card.Subtitle className={"mb-2 text-muted " + styles.cupcup}>Summary</Card.Subtitle>
+                    <Card.Subtitle className={"mb-2 text-muted " + styles.muted}>Summary</Card.Subtitle>
+
                     <Card.Text>{project.summary}</Card.Text>
                     <hr className={styles.separator} />
                     <Card.Link href={"/projects/show/" + project.idkey}>
                       <FontAwesomeIcon icon={faCogs} /> Manage Project
                     </Card.Link>
                     <Card.Link href={"/projects/adduser?project_idkey=" + project.idkey + "&project_name=" + project.name}>
-                      <FontAwesomeIcon icon={faUserPlus} id="iconAddUser" /> Add User
+                      <FontAwesomeIcon icon={faUserPlus} id="iconAddUser" /> Add Participant
                     </Card.Link>
                     <Card.Link
                       href={
