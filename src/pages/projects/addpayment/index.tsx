@@ -5,7 +5,7 @@ import { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 import { Button, Container, Form } from "react-bootstrap";
 import styles from "../../../../public/styles/CreateProject.module.css";
-
+import App from "../../../components/stripeCard";
 type Props = {
   session: Session;
   project_idkey: number;
@@ -14,10 +14,16 @@ type Props = {
   project_solde: number;
 };
 
-const Registration: NextPage<Props> = ({ session, project_idkey, project_name, project_amount, project_solde }) => {
+const Registration: NextPage<Props> = ({
+  session,
+  project_idkey,
+  project_name,
+  project_amount,
+  project_solde,
+}) => {
   const [payment, setPayment] = React.useState(0);
   const [summary, setSummary] = React.useState("");
-  
+
   return (
     <>
       <Head>
@@ -25,7 +31,7 @@ const Registration: NextPage<Props> = ({ session, project_idkey, project_name, p
         <style>{`
           html,
           body {
-            background-image: url("/pictures/background_create.jpeg") !important;
+            background-image: url("/pictures/carte-bancaire-haut-de-gamme.jpg") !important;
           }
         `}</style>
       </Head>
@@ -39,10 +45,13 @@ const Registration: NextPage<Props> = ({ session, project_idkey, project_name, p
                 <h3>Initial Budget {project_amount}</h3>
                 <h3>It remains to pay {project_solde}</h3>
               </div>
-              
 
               {/* <Form method="POST" action="/api/projects/payment" className="mt-3"> */}
-              <Form method="POST" action="/projects/addpayment/cardpayment" className="mt-3">
+              <Form
+                method="POST"
+                action="/projects/addpayment/cardpayment"
+                className="mt-3"
+              >
                 <Form.Group>
                   <Form.Label htmlFor="payment">Payment</Form.Label>
                   <Form.Control
@@ -54,13 +63,12 @@ const Registration: NextPage<Props> = ({ session, project_idkey, project_name, p
                     onChange={(e) => setPayment(parseInt(e.target.value))}
                   />
                 </Form.Group>
-
                 <Form.Group>
                   <Form.Label htmlFor="summary">Summary</Form.Label>
                   <Form.Control
                     required
                     as="textarea"
-                    rows={6}
+                    rows={3}
                     id="summary"
                     name="summary"
                     value={summary}
@@ -73,21 +81,32 @@ const Registration: NextPage<Props> = ({ session, project_idkey, project_name, p
                 <Button className="mt-2" variant="primary" type="submit">
                   Transaction Card Payment
                 </Button>
-
                 {/* les donnees en dessous sont des données masquées pour le passage de paramétre à l'api */}
                 <Form.Group className={styles.mail}>
                   <Form.Label htmlFor="param1"></Form.Label>
-                  <Form.Control id="param1" name="param1" type="hidden" value={project_idkey} readOnly />
-                
+                  <Form.Control
+                    id="param1"
+                    name="param1"
+                    type="hidden"
+                    value={project_idkey}
+                    readOnly
+                  />
+
                   <Form.Label htmlFor="param2"></Form.Label>
-                  <Form.Control id="param2" name="param2" type="hidden" value={session.user.email} readOnly />
+                  <Form.Control
+                    id="param2"
+                    name="param2"
+                    type="hidden"
+                    value={session.user.email}
+                    readOnly
+                  />
                 </Form.Group>
                 {/* fin des données masquees */}
-                
               </Form>
             </>
           )}
         </Container>
+        <App></App>
       </Layout>
     </>
   );
@@ -102,7 +121,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const project_amount = context.query.project_amount;
   const project_solde = context.query.project_solde;
 
-  
   return {
     props: {
       session,

@@ -51,7 +51,6 @@ const affOneProject: React.FC<{ project: Projects }> = ({ project }) => {
 
         <div className="payment">
           <a id="payment" href="#">
-            <span>Add a Payment!</span>
             <span>
               <div>
                 <span>
@@ -62,7 +61,6 @@ const affOneProject: React.FC<{ project: Projects }> = ({ project }) => {
             </span>
           </a>
         </div>
-
       </div>
     </Layout>
   );
