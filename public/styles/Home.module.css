@@ -12,21 +12,20 @@
 .main_button {
   width: 450px;
   height: 250px;
-
-  background-color: rgb(21 20 20 / 49%);
-  border: 1px solid rgb(144 136 136);
+  background-color: rgb(39 38 38 / 78%);
+  border: 1px solid rgb(243 243 243);
   border-radius: 15px;
   padding: 2rem;
   cursor: pointer;
   color: rgb(225, 217, 217);
 }
 .main_button h3 {
-  color: rgb(234 141 24);
+  color: rgb(255 255 255);
 }
 
 .spinout svg {
   height: 40px;
-  color: rgb(253 229 207);
+  color: rgb(41 208 12);
   margin-right: 1rem;
 }
 
