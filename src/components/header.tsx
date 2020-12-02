@@ -14,14 +14,16 @@ export const Header: React.FC<Props> = ({ session }) => {
 
   React.useEffect(() => {
     const documentScollState = () => {
-      const scrolled = document.scrollingElement.scrollTop;
-      if (scrolled >= 120) {
-        if (scrollState !== "bottom") {
-          setScrollState("bottom");
-        }
-      } else {
-        if (scrollState !== "top") {
-          setScrollState("top");
+      if (document.scrollingElement) {
+        const scrolled = document.scrollingElement.scrollTop;
+        if (scrolled >= 120) {
+          if (scrollState !== "bottom") {
+            setScrollState("bottom");
+          }
+        } else {
+          if (scrollState !== "top") {
+            setScrollState("top");
+          }
         }
       }
     };
