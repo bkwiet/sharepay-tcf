@@ -64,7 +64,7 @@ export const Header: React.FC<Props> = ({ session }) => {
           <Nav className={styles.navbar}>
             {!session && (
               <Nav.Link
-                onClick={(e) => {
+                onClick={(e: React.MouseEvent<HTMLElement>) => {
                   e.preventDefault();
                   signin();
                 }}
