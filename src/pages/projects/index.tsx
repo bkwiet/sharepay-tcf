@@ -34,15 +34,19 @@ const ProjectIndex: React.FC<{ projects: Projects[] }> = ({ projects }) => {
               return (
                 <Card className={"mb-4 " + styles.card} key={project.idkey}>
                   <Card.Body className={styles.body}>
-                    <Card.Subtitle className={"mb-2 text-muted " + styles.muted}>Project name</Card.Subtitle>
                     <Card.Title className={styles.title}>{project.name}</Card.Title>
                     <Card.Subtitle className={"mb-2 text-muted " + styles.cupcup}>
-                      Creation date : To fix no creation date or end creation
+                      Creation date : {project.date_opened}
                     </Card.Subtitle>
-                    <Card.Subtitle className={"mb-2 text-muted " + styles.cupcup}>Participants : To add</Card.Subtitle>
+                    <Card.Subtitle className={"mb-2 text-muted " + styles.cupcup}>
+                      Participants :{" "}
+                      {project.users.map((user, id) => {
+                        if (project.users.length - 1 === id) return <span className={styles.particpant}>{user.firstname}</span>;
+                        else return <span className={styles.particpant}>{user.firstname + ", "}</span>;
+                      })}
+                    </Card.Subtitle>
+                    <Card.Subtitle className={"mb-2 text-muted " + styles.cupcup}>Budget : {project.amount + " €"}</Card.Subtitle>
                     <hr className={styles.separator} />
-                    <Card.Subtitle className={"mb-2 text-muted " + styles.muted}>Budget</Card.Subtitle>
-                    <Card.Text>{project.amount + " €"}</Card.Text>
                     <Card.Subtitle className={"mb-2 text-muted " + styles.muted}>Summary</Card.Subtitle>
                     <Card.Text>{project.summary}</Card.Text>
                     <hr className={styles.separator} />
@@ -50,7 +54,7 @@ const ProjectIndex: React.FC<{ projects: Projects[] }> = ({ projects }) => {
                       <FontAwesomeIcon icon={faCogs} /> Manage Project
                     </Card.Link>
                     <Card.Link href={"/projects/adduser?project_idkey=" + project.idkey + "&project_name=" + project.name}>
-                      <FontAwesomeIcon icon={faUserPlus} id="iconAddUser" /> Add User
+                      <FontAwesomeIcon icon={faUserPlus} id="iconAddUser" /> Add Participant
                     </Card.Link>
                     <Card.Link
                       href={

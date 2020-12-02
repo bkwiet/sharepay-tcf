@@ -159,3 +159,11 @@ a {
   width: 50px;
   color: black;
 }
+#PAYYYEMENT {
+  background-color: black;
+  text-align: -webkit-center;
+}
+#CardPayment {
+  background-color: blue;
+}
+
