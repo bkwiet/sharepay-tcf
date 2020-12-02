@@ -1,13 +1,9 @@
-.creation h1 {
-  color: white;
-}
-
 .creation form {
   min-width: 500px;
   margin: auto;
   padding: 2rem;
-  background-color: rgb(0 0 0 / 18%);
-  border: 1px solid rgb(154 154 154);
+  background-color: rgb(0 0 0 / 80%);
+  border: 1px solid rgb(255 255 255);
   border-radius: 15px;
   text-align: -webkit-center;
   width: min-content;
@@ -28,7 +24,7 @@
 .creation form label {
   width: 80px;
   margin-right: 2rem;
-  color: rgb(0 0 0);
+  color: white;
   font-weight: bold;
 }
 
