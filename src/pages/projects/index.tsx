@@ -1,20 +1,17 @@
 import React from "react";
 import { GetServerSideProps } from "next";
-import { getSession, Session } from "next-auth/client";
+import { getSession } from "next-auth/client";
 import { findUserByEmail } from "../../utils/users";
 import { findProjectById } from "../../utils/projects";
-//import { Users } from "../../types/users";
 import { Projects } from "../../types/projects";
 import Head from "next/head";
-//import Link from "next/link";
 import Layout from "../../components/layout";
-import { Container, Card, Row } from "react-bootstrap";
+import { Container, Card } from "react-bootstrap";
 import styles from "../../../public/styles/Projects.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCogs, faUserPlus, faPiggyBank } from "@fortawesome/free-solid-svg-icons";
 
 const ProjectIndex: React.FC<{ projects: Projects[] }> = ({ projects }) => {
-  let solde = 0;
   return (
     <>
       <Head>
@@ -31,12 +28,11 @@ const ProjectIndex: React.FC<{ projects: Projects[] }> = ({ projects }) => {
           <h1>My projects</h1>
           <div className={styles.timeline}>
             {projects.map((project) => {
-              
               // calcul du solde a payer sur le projet
-              let allpayment:number = 0;
-              project.payments.map((paiement)=>{
+              let allpayment: number = 0;
+              project.payments.map((paiement) => {
                 allpayment = allpayment + Number(paiement.amount);
-              })
+              });
               const solde = project.amount - allpayment;
               // fin de calcul du solde
 
@@ -46,12 +42,9 @@ const ProjectIndex: React.FC<{ projects: Projects[] }> = ({ projects }) => {
                     <Card.Title className={styles.title}>{project.name}</Card.Title>
 
                     <Card.Subtitle className={"mb-2 text-muted " + styles.cupcup}>
-                      Created date {project.date_opened}
-                    </Card.Subtitle>
-
-                    <Card.Subtitle className={"mb-2 text-muted " + styles.cupcup}>
                       Creation date : {project.date_opened}
                     </Card.Subtitle>
+
                     <Card.Subtitle className={"mb-2 text-muted " + styles.cupcup}>
                       Participants :{" "}
                       {project.users.map((user, id) => {
@@ -59,8 +52,11 @@ const ProjectIndex: React.FC<{ projects: Projects[] }> = ({ projects }) => {
                         else return <span className={styles.particpant}>{user.firstname + ", "}</span>;
                       })}
                     </Card.Subtitle>
+
                     <Card.Subtitle className={"mb-2 text-muted " + styles.cupcup}>Budget : {project.amount + " €"}</Card.Subtitle>
+
                     <hr className={styles.separator} />
+
                     <Card.Subtitle className={"mb-2 text-muted " + styles.muted}>Summary</Card.Subtitle>
 
                     <Card.Text>{project.summary}</Card.Text>

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Mitr:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mitr:wght@700&display=swap");
 html,
 body {
   padding: 0;
@@ -19,6 +19,7 @@ h1 {
   /* border-bottom: 1px solid #5f0606; */
   text-align: center;
   font-family: "Mitr", sans-serif;
+  text-shadow: 0px 1px 4px rgb(193 193 193);
 }
 h3 {
   font-family: "Mitr", sans-serif;
@@ -166,4 +167,3 @@ a {
 #CardPayment {
   background-color: blue;
 }
-

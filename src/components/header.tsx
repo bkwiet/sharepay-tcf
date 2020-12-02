@@ -1,10 +1,9 @@
 import React from "react";
 import { Navbar, Nav, Dropdown } from "react-bootstrap";
-import Link from "next/link";
 import { Session, signin, signout } from "next-auth/client";
 import styles from "../../public/styles/Header.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCampground, faProjectDiagram, faQrcode, faPlusSquare, faHandHoldingUsd } from "@fortawesome/free-solid-svg-icons";
+import { faCampground, faProjectDiagram, faQrcode, faPlusSquare } from "@fortawesome/free-solid-svg-icons";
 
 type Props = {
   session: Session | undefined | null;

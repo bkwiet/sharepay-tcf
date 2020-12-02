@@ -1,10 +1,8 @@
 import React from "react";
-import { getSession, Session } from "next-auth/client";
 import Layout from "../../components/layout";
-import { GetServerSideProps, NextPage } from "next";
+import { NextPage } from "next";
 import Head from "next/head";
-import { Button, Container, Form } from "react-bootstrap";
-import styles from "../../../public/styles/CreateProject.module.css";
+import { Container } from "react-bootstrap";
 
 const Registration: NextPage = () => {
   return (

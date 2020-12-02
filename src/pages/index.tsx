@@ -6,16 +6,11 @@ import Slideshow from "../components/slideshow";
 import styles from "../../public/styles/Home.module.css";
 import { findUserByEmail } from "../utils/users";
 import { Users } from "../types/users";
-import { Container, Button } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import Link from "next/link";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faFolderPlus,
-  faProjectDiagram,
-  faUserAstronaut,
-  faFileInvoiceDollar,
-} from "@fortawesome/free-solid-svg-icons";
+import { faFolderPlus, faProjectDiagram, faUserAstronaut, faFileInvoiceDollar } from "@fortawesome/free-solid-svg-icons";
 
 type Props = {
   session: Session;
@@ -44,51 +39,31 @@ const Home: NextPage<Props> = ({ session, user }) => {
 
             <div className={"row mt-3 " + styles.base_button}>
               <Link href="/projects/create">
-                <div
-                  className={
-                    "col-sm-12 col-md-5 mr-2 mb-2 " + styles.main_button
-                  }
-                >
+                <div className={"col-sm-12 col-md-5 mr-2 mb-2 " + styles.main_button}>
                   <h3>
                     <span className={styles.spinout}>
                       <FontAwesomeIcon icon={faFolderPlus} />
                     </span>
                     Start a new Project
                   </h3>
-                  <p>
-                    {" "}
-                    Here, you can add a Project and assign it to your friends to
-                    start sharing your payments.{" "}
-                  </p>
+                  <p> Here, you can add a Project and assign it to your friends to start sharing your payments. </p>
                 </div>
               </Link>
 
               <Link href="/projects">
-                <div
-                  className={
-                    "col-sm-12 col-md-5 mr-2 mb-2 " + styles.main_button
-                  }
-                >
+                <div className={"col-sm-12 col-md-5 mr-2 mb-2 " + styles.main_button}>
                   <h3>
                     <span className={styles.spinout}>
                       <FontAwesomeIcon icon={faProjectDiagram} />
                     </span>
                     On going Projects
                   </h3>
-                  <p>
-                    {" "}
-                    Add List of last projects - Or display "there is no project
-                    to displa"{" "}
-                  </p>
+                  <p> Add List of last projects - Or display "there is no project to displa" </p>
                 </div>
               </Link>
 
               <Link href="/profile">
-                <div
-                  className={
-                    "col-sm-12 col-md-5 mr-2 mb-2 " + styles.main_button
-                  }
-                >
+                <div className={"col-sm-12 col-md-5 mr-2 mb-2 " + styles.main_button}>
                   <h3>
                     <span className={styles.spinout}>
                       <FontAwesomeIcon icon={faUserAstronaut} />
@@ -100,11 +75,7 @@ const Home: NextPage<Props> = ({ session, user }) => {
               </Link>
 
               <Link href="">
-                <div
-                  className={
-                    "col-sm-12 col-md-5 mr-2 mb-2 " + styles.main_button
-                  }
-                >
+                <div className={"col-sm-12 col-md-5 mr-2 mb-2 " + styles.main_button}>
                   <h3>
                     <span className={styles.spinout}>
                       <FontAwesomeIcon icon={faFileInvoiceDollar} />
