@@ -9,11 +9,11 @@ type Props = {
   session: Session | undefined | null;
   loading: boolean;
 };
-export const Header: React.FC<Props> = ({ session, loading }) => {
+export const Header: React.FC<Props> = ({ session }) => {
   const [scrollState, setScrollState] = React.useState("top");
 
   React.useEffect(() => {
-    const documentScollState = (event) => {
+    const documentScollState = () => {
       const scrolled = document.scrollingElement.scrollTop;
       if (scrolled >= 120) {
         if (scrollState !== "bottom") {
