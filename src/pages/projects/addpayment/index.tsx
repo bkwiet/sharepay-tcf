@@ -77,7 +77,7 @@ const Registration: NextPage<Props> = ({ session, project_idkey, project_name, p
                   <Form.Control id="param1" name="param1" type="hidden" value={project_idkey} readOnly />
 
                   <Form.Label htmlFor="param2"></Form.Label>
-                  <Form.Control id="param2" name="param2" type="hidden" value={session.user.email} readOnly />
+                  <Form.Control id="param2" name="param2" type="hidden" value={String(session.user.email)} readOnly />
                 </Form.Group>
                 {/* fin des données masquees */}
               </Form>
