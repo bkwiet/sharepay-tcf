@@ -31,9 +31,16 @@ const ProjectIndex: React.FC<{ projects: Projects[] }> = ({ projects }) => {
           <h1>My projects</h1>
           <div className={styles.timeline}>
             {projects.map((project) => {
+              
+              // calcul du solde a payer sur le projet
+              let allpayment:number = 0;
+              project.payments.map((paiement)=>{
+                allpayment = allpayment + Number(paiement.amount);
+              })
+              const solde = project.amount - allpayment;
+              // fin de calcul du solde
+
               return (
-
-
                 <Card className={"mb-4 " + styles.card} key={project.idkey}>
                   <Card.Body className={styles.body}>
                     <Card.Title className={styles.title}>{project.name}</Card.Title>
@@ -43,7 +50,7 @@ const ProjectIndex: React.FC<{ projects: Projects[] }> = ({ projects }) => {
                     </Card.Subtitle>
 
                     <Card.Subtitle className={"mb-2 text-muted " + styles.cupcup}>
-                      Budget Initial {project.amount + " €"}
+                      {"Budget Initial : " + project.amount + " € - All Payment(s) : " + allpayment + " € - Sold to pay : "+ solde + " €"}
                     </Card.Subtitle>
                     
                     {/* <Card.Subtitle className={"mb-2 text-muted " + styles.cupcup}>Participants : To add</Card.Subtitle> */}

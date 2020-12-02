@@ -21,31 +21,35 @@ const affOneProject: React.FC<{ project: Projects }> = ({ project }) => {
           </div>
 
           <div className="row">
-            <h3 className="col p-3 text-justify">Participants</h3>
+            <h6 className="col p-3 text-justify">Participants</h6>
             {project.users.map((user) => {
               return (
                 <div className="col">
-                  <p>{user.user_idkey}</p>
-                  <p>{user.firstname}</p>
-                  <p>{user.lastname}</p>
+                  <p>{user.firstname + " " +user.lastname}</p>
                 </div>
               );
             })}
           </div>
 
           <div className="row">
-            <h3 className="col p-3 text-justify">Paiements</h3>
+            <h6 className="col p-3 text-justify">Payment(s)</h6>
+          </div>
+
+          <div>
             {project.payments.map((payment) => {
               return (
-                <div className="col">
+                <div className="row">
+                  <p className="col ml-6">{payment.date_payment}</p>
+                  <p className="col ml-6">{payment.amount + "€"}</p>
                   <p>{payment.user_idkey}</p>
                   <p>{payment.summary}</p>
-                  <p>{payment.date_payment}</p>
-                  <p>{payment.amount}</p>
+                  
+                  
                 </div>
               );
             })}
           </div>
+
         </div>
 
       </div>
