@@ -105,7 +105,7 @@ const affOneProject: React.FC<{ project: Projects }> = ({ project }) => {
                     return (
                       <tr key={id + payment.user_idkey}>
                         <td>{id}</td>
-                        <td>{firstname}</td>
+                        <td>{firstname + " " + lastname}</td>
                         <td>{payment.date_payment}</td>
                         <td>{formatAmountForDisplay(payment.amount, CURRENCY)}</td>
                         <td>{payment.summary}</td>
