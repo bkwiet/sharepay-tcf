@@ -25,16 +25,9 @@ const affAddUserReject: React.FC<{}> = ({}) => {
           <div className="row" id="warningTextbis">
             <div className="col">
               <p>Soit l'email est identique à celui de l'administrateur.</p>
-              <p>
-                Soit l'email du nouvel utilisateur n'existe pas dans notre base
-                de donnée.
-              </p>
-              <p>
-                Soit l'utilisateur que vous essayez d'integrer existe déjà dans
-                votre projet.
-              </p>
+              <p>Soit l'email du nouvel utilisateur n'existe pas dans notre base de donnée.</p>
+              <p>Soit l'utilisateur que vous essayez d'integrer existe déjà dans votre projet.</p>
               <p>Soit une erreur technique est survenue</p>
-    
             </div>
           </div>
         </div>
