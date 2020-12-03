@@ -30,7 +30,6 @@
 }
 .particpant {
   color: rgb(206 206 206);
-  margin-right: 2rem;
 }
 .timeline .card:before {
   content: "";

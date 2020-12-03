@@ -52,8 +52,8 @@ a {
   text-align: center;
   position: relative;
   transition: all 0.35s;
-  background-color: beige;
-  border-radius: 8%;
+  background-color: rgb(189 189 189);
+  border-radius: 10px;
 }
 
 #payment span {

@@ -3,6 +3,10 @@ import Head from "next/head";
 import Header from "./header";
 import styles from "../../public/styles/Layout.module.css";
 import { useSession } from "next-auth/client";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+
+const stripePromise = loadStripe(process.env.STRIP_PUB!);
 
 export const Layout: React.FC = ({ children }) => {
   const [session, loading] = useSession();
@@ -15,9 +19,11 @@ export const Layout: React.FC = ({ children }) => {
         <link rel="bkwiet corp icon" href="/pictures/wallet.ico" type="image/x-icon" />
       </Head>
 
-      <Header session={session} loading={loading} />
+      <Elements stripe={stripePromise}>
+        <Header session={session} loading={loading} />
 
-      <main className={" " + styles.main}>{children}</main>
+        <main className={" " + styles.main}>{children}</main>
+      </Elements>
     </>
   );
 };

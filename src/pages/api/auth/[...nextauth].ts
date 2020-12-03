@@ -34,7 +34,7 @@ const options = {
       state: false,
       profile: (profile: Profile) => {
         return {
-          id: "connect",
+          id: profile.sub,
           name: profile.email,
           aud: profile.aud,
           email: profile.email,
@@ -59,6 +59,7 @@ const options = {
 
   callbacks: {
     signIn: async (user: User, tokens: Tokens) => {
+      console.log("Next auth variable : user : ", user);
       if (tokens.provider === "connect" && tokens.accessToken) {
         const oauthClientConstructorProps: OAuth2ClientConstructor = {
           openIDConfigurationURL: process.env.CONNECT_OPEN_ID || "",
@@ -111,7 +112,7 @@ const options = {
   // XAV ->> Solve the issue for :
   //[next-auth][error][adapter_connection_error] MongoServerSelectionError: getaddrinfo ENOTFOUND cluster0.wkttl.mongodb.net
   // https://github.com/nextauthjs/next-auth/issues/833
-  database: process.env.MONGODB_URI_TEST,
+  database: process.env.MONGODB_URI,
 };
 
 const authHandler: NextApiHandler = (req, res) => NextAuth(req, res, options);
