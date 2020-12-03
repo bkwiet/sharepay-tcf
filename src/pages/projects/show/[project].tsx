@@ -4,7 +4,7 @@ import { findProjectById } from "../../../utils/projects";
 import { Projects } from "../../../types/projects";
 import Layout from "../../../components/layout";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDonate } from "@fortawesome/free-solid-svg-icons";
+import { faPiggyBank } from "@fortawesome/free-solid-svg-icons";
 const affOneProject: React.FC<{ project: Projects }> = ({ project }) => {
   console.log("arrivee typeof datas", typeof project);
   console.log(project);
@@ -53,7 +53,7 @@ const affOneProject: React.FC<{ project: Projects }> = ({ project }) => {
               <span>
                 <div>
                   <span>
-                    <FontAwesomeIcon icon={faDonate} id="iconDonate" />
+                    <FontAwesomeIcon icon={faPiggyBank} id="iconDonate" />
                   </span>
                 </div>
                 Add a Payment!
