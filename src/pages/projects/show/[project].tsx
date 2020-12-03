@@ -96,6 +96,7 @@ const affOneProject: React.FC<{ project: Projects }> = ({ project }) => {
                     // recherche du nom/prenom de la personne qui a fait le réglement
                     let firstname = "";
                     let lastname = "";
+
                     project.users.map((user) => {
                       if (user.user_idkey === payment.user_idkey) {
                         firstname = user.firstname;
