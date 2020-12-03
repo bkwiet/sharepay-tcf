@@ -36,7 +36,7 @@ export default async (request: NextApiRequest, response: NextApiResponse): Promi
 
   // redirect page projects ou erreur
   if (ret_OK === 0) {
-    response.redirect("/projects");
+    response.redirect("/projects/addpayment/payment");
   } else {
     response.redirect("/projects/addpayment/reject");
   }
