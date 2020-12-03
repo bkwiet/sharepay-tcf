@@ -19,10 +19,11 @@ export async function newUserIdKey(): Promise<number> {
   return userIdKey;
 }
 
-export async function findUserById(user_idkey: string): Promise<Users> {
-  console.log("appel ouverture getDatabase");
+export async function findUserById(user_idkey: number): Promise<Users> {
+  console.log("appel ouverture getDatabase appel lecture user", user_idkey);
   const mongodb = await getDatabase();
   const user = await mongodb.db().collection("users").findOne({ user_idkey: user_idkey });
+  console.log(user.firstname,user.lastname);
   return user;
 }
 
