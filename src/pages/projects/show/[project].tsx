@@ -1,121 +1,153 @@
 import { GetServerSideProps } from "next";
 import React from "react";
+import Head from "next/head";
 import { findProjectById } from "../../../utils/projects";
 import { Projects } from "../../../types/projects";
 import Layout from "../../../components/layout";
+import Sharepay from "../../../components/sharepay";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPiggyBank } from "@fortawesome/free-solid-svg-icons";
-
-
+import { Container, Table } from "react-bootstrap";
+import { formatAmountForDisplay, CURRENCY } from "../../../utils/stripe";
 
 const affOneProject: React.FC<{ project: Projects }> = ({ project }) => {
   console.log("arrivee typeof datas", typeof project);
   console.log(project);
 
   // calcul du solde a payer sur le projet
-  let allpayment:number = 0;
-  project.payments.map((paiement)=>{
+  let allpayment: number = 0;
+  project.payments.map((paiement) => {
     allpayment = allpayment + Number(paiement.amount);
-  })
+  });
   const solde = project.amount - allpayment;
   // fin de calcul du solde
 
   return (
     <Layout>
-      <div className="container">
-        <div className="mt-1">
-          <div className="row">
-            <h1 className="col text-center">{project.name}</h1>
-          </div>
+      <Head>
+        <title>Tout Compte Fait - Manage : {project.name}</title>
+        <style>{`
+          html,
+          body {
+            background-image: url("/pictures/background_manage.jpg") !important;
+          }
+        `}</style>
+      </Head>
+      <Container className={"dontTouchPoka "}>
+        <div className={"dontTouchJhon"}>
+          <h1 className="">{project.name}</h1>
+          <div className="">
+            <div className="row text-dark">
+              <h5>⦿ Summary</h5>
+            </div>
+            <div className="row">
+              <p className="col">
+                <span className="infoxmation">{project.summary}</span>
+              </p>
+            </div>
 
-          <div className="row text-dark">
-            <h6>Summary</h6>
-          </div>
-          <div className="row">
-              <p className="col">{project.summary}</p>   
-          </div>
-
-
-          <div className="row text-dark">
-            <h6>Budget</h6>
-          </div>
-          <div className="row">
-              <p className="col">{"Inital : " +project.amount + "€ - " + "All Payment : "+ allpayment+ " € - SOLD TO PAY : " + solde + " €"}</p>   
-          </div>
-
-
-          <div className="row text-dark">
-            <h6>User(s)</h6>
-          </div> 
-          <div>
-            {project.users.map((user) => {
+            <div className="row text-dark">
+              <h5>⦿ Participant(s)</h5>
+            </div>
+            <div>
+              {project.users.map((user, id) => {
                 return (
-                  <div className="row" key={user.user_idkey}>
-                    <p className="col">{user.firstname + " " +user.lastname}</p>
+                  <div className="row" key={user.user_idkey + id}>
+                    <p className="col">
+                      <span className="infoxmation">{user.firstname + " " + user.lastname}</span>
+                    </p>
                   </div>
                 );
               })}
-          </div>
-
-          
-          <div className="row text-dark">
-            <h6>Payment(s)</h6>
-          </div>
-          <div>
-            {project.payments.map((payment) => {
-              // recherche du nom/prenom de la personne qui a fait le réglement
-              let firstname="";
-              let lastname="";
-                project.users.map((user)=> {
-                  if (user.user_idkey === payment.user_idkey) {
-                    firstname = user.firstname;
-                    lastname = user.lastname;
-                  }
-                }) // fin recherche nom prenom
-              return (
-                <div>
-                  <div className="row">
-                    <p className="col-3">{payment.date_payment}</p>
-                    <p className="col-3">{payment.amount} €</p>
-                    <p className="col-3">{"by "+ firstname + " " + lastname}</p>
-                  </div>
-                  <div className="row">
-                    <p className="col">{payment.summary}</p>
-                  </div>
-                </div>
-                
-              );
-            })}
-          </div>
-
-          { project.actif === true
-           ? <div className="payment">
-              <a id="payment" 
-                href={
-                  "/projects/addpayment?project_idkey=" +
-                  project.idkey +
-                  "&project_name=" +
-                  project.name +
-                  "&project_amount=" +
-                  project.amount +
-                  "&project_solde=" +
-                  solde
-                }>
-                <span>
-                  <div>
-                    <span>
-                    <FontAwesomeIcon icon={faPiggyBank} id="iconDonate" />
-                    </span>
-                  </div>
-                  Add a Payment!
-                </span>
-              </a>
             </div>
-            : null  
-          }
+            <hr className={"separ"} />
+            <div className="row text-dark">
+              <h5>⦿ Budget</h5>
+            </div>
+            <div className="">
+              <p>
+                Initial : <span className="infoxmation">{formatAmountForDisplay(project.amount, CURRENCY)}</span>{" "}
+              </p>
+              <p>
+                Total payment : <span className="infoxmation">{formatAmountForDisplay(allpayment, CURRENCY)}</span>{" "}
+              </p>
+            </div>
 
+            <Sharepay project={project} />
+
+            <hr className={"separ"} />
+
+            <div className="row text-dark">
+              <h5>⦿ Payment history</h5>
+            </div>
+            <div>
+              <Table striped bordered hover>
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Participant</th>
+                    <th>Transaction date</th>
+                    <th>Amount</th>
+                    <th>Summary</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {project.payments.map((payment, id) => {
+                    // recherche du nom/prenom de la personne qui a fait le réglement
+                    let firstname = "";
+                    let lastname = "";
+
+                    project.users.map((user) => {
+                      if (user.user_idkey === payment.user_idkey) {
+                        firstname = user.firstname;
+                        lastname = user.lastname;
+                      }
+                    }); // fin recherche nom prenom
+                    return (
+                      <tr key={id + payment.user_idkey}>
+                        <td>{id}</td>
+                        <td>{firstname + " " + lastname}</td>
+                        <td>{payment.date_payment}</td>
+                        <td>{formatAmountForDisplay(payment.amount, CURRENCY)}</td>
+                        <td>{payment.summary}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </Table>
+            </div>
+
+            <hr className={"separ"} />
+
+            {project.actif === true ? (
+              <div className="payment">
+                <a
+                  id="payment"
+                  href={
+                    "/projects/addpayment?project_idkey=" +
+                    project.idkey +
+                    "&project_name=" +
+                    project.name +
+                    "&project_amount=" +
+                    project.amount +
+                    "&project_solde=" +
+                    solde
+                  }
+                >
+                  <span>
+                    <div>
+                      <span>
+                        <FontAwesomeIcon icon={faPiggyBank} id="iconDonate" />
+                      </span>
+                    </div>
+                    Add a Payment!
+                  </span>
+                </a>
+              </div>
+            ) : null}
+          </div>
         </div>
-      </div>
+      </Container>
     </Layout>
   );
 };
