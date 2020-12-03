@@ -65,7 +65,7 @@ const ProjectIndex: React.FC<{ projects: Projects[] }> = ({ projects }) => {
                     <Card.Text>{project.summary}</Card.Text>
                     <hr className={styles.separator} />
                     <Card.Link href={"/projects/show/" + project.idkey}>
-                      <FontAwesomeIcon icon={faCogs} /> Manage Project
+                      <FontAwesomeIcon icon={faCogs} /> Detail Project
                     </Card.Link>
                     <Card.Link href={"/projects/adduser?project_idkey=" + project.idkey + "&project_name=" + project.name}>
                       <FontAwesomeIcon icon={faUserPlus} id="iconAddUser" /> Add Participant
