@@ -12,7 +12,7 @@ const Registration: NextPage = () => {
         <style>{`
           html,
           body {
-            background-image: url("/pictures/background_adduser.jpg") !important;
+            background-image: url("/pictures/background_about.jpg") !important;
           }
         `}</style>
       </Head>

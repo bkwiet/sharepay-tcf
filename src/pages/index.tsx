@@ -30,7 +30,7 @@ const Home: NextPage<Props> = ({ session, user }) => {
         {!session ? (
           <Slideshow />
         ) : (
-          <Container className={"dontTouchPoka " + styles.home}>
+          <Container className={"dontTouchPoka "}>
             <div className="marquee-rtl">
               <h1>
                 Welcome <span className={styles.username}>{user.username}</span>

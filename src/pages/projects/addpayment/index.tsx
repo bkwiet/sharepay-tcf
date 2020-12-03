@@ -54,57 +54,64 @@ const Registration: NextPage<Props> = ({ session, project_idkey, project_name, p
         <style>{`
           html,
           body {
-            background-image: url("/pictures/carte-bancaire-haut-de-gamme.jpg") !important;
+            background-image: url("/pictures/background_checkout.jpg") !important;
           }
         `}</style>
       </Head>
       <Layout>
         <Container className={"dontTouchPoka " + styles.creation}>
-          {session && (
-            <>
-              <h1>Add a Payment</h1>
-              <div>
-                <h3>{project_name}</h3>
-                <h3>Initial Budget {project_amount}</h3>
-                <h3>It remains to pay {project_solde}</h3>
-              </div>
+          <div className={"dontTouchMoney"}>
+            {session && (
+              <>
+                <h1>Add a Payment</h1>
+                <div>
+                  <p>
+                    Project name : <span className="infoxmation">{project_name}</span>
+                  </p>
+                  <p>
+                    Initial Budget : <span className="infoxmation">{formatAmountForDisplay(project_amount, CURRENCY)}</span>
+                  </p>
+                  <p>
+                    It remains to pay : <span className="infoxmation">{formatAmountForDisplay(project_solde, CURRENCY)}</span>
+                  </p>
+                </div>
 
-              <Form method="POST" onSubmit={handleSubmit} className="mt-3">
-                <Form.Group>
-                  <Form.Label htmlFor="payment">Payment</Form.Label>
-                  <Form.Control
-                    required
-                    id="payment"
-                    name="payment"
-                    type="number"
-                    min="0"
-                    value={payment}
-                    onChange={(e) => setPayment(parseInt(e.target.value))}
-                  />
-                </Form.Group>
-                <Form.Group>
-                  <Form.Label htmlFor="summary">Summary</Form.Label>
-                  <Form.Control
-                    required
-                    as="textarea"
-                    rows={3}
-                    id="summary"
-                    name="summary"
-                    value={summary}
-                    placeholder="Enter the summary of your project"
-                    onChange={(e) => setSummary(e.target.value)}
-                    type="textarea"
-                  />
-                </Form.Group>
-
-                <Button className="mt-2" variant="primary" type="submit" disabled={loading}>
-                  Pay {formatAmountForDisplay(payment, CURRENCY)}
-                </Button>
-              </Form>
-            </>
-          )}
+                <Form method="POST" onSubmit={handleSubmit} className="mt-3">
+                  <Form.Group>
+                    <Form.Label htmlFor="payments">Payment</Form.Label>
+                    <Form.Control
+                      required
+                      id="payments"
+                      name="paymentw"
+                      type="number"
+                      min="0"
+                      value={payment}
+                      onChange={(e) => setPayment(parseInt(e.target.value))}
+                    />
+                  </Form.Group>
+                  <Form.Group>
+                    <Form.Label htmlFor="summary">Summary</Form.Label>
+                    <Form.Control
+                      required
+                      as="textarea"
+                      rows={3}
+                      id="summary"
+                      name="summary"
+                      value={summary}
+                      placeholder="Enter the summary for this payment"
+                      onChange={(e) => setSummary(e.target.value)}
+                      type="textarea"
+                    />
+                  </Form.Group>
+                  *You will be redirect to Stripe.com to finish the transaction
+                  <Button className="mt-2" variant="primary" type="submit" disabled={loading}>
+                    Pay {formatAmountForDisplay(payment, CURRENCY)}
+                  </Button>
+                </Form>
+              </>
+            )}
+          </div>
         </Container>
-        {/* <App></App> */}
       </Layout>
     </>
   );

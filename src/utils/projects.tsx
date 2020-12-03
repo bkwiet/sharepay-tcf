@@ -17,19 +17,26 @@ export async function newProjectIdKey(): Promise<number> {
   return IdKey;
 }
 
-
 export async function findProjectById(idkey: number): Promise<Projects> {
   const mongodb = await getDatabase();
   const project = await mongodb.db().collection("projects").findOne({ idkey: idkey });
+  console.log("Function project result of findProjectById : ", project);
+  console.log("Function project result of findProjectById idkey : ", idkey);
   return project;
 }
 
-
-export async function addProjectUser( idkey:Number, user_idkey:number, user_firstname:string, user_lastname:string ): Promise<number> {
-
-  let ret_OK=0; // return 0 si insertion project OK sinon autre valeur
+export async function addProjectUser(
+  idkey: Number,
+  user_idkey: number,
+  user_firstname: string,
+  user_lastname: string
+): Promise<number> {
+  let ret_OK = 0; // return 0 si insertion project OK sinon autre valeur
   const mongodb = await getDatabase();
-  const data = await mongodb.db().collection("projects").findOne({ idkey: Number(idkey) });
+  const data = await mongodb
+    .db()
+    .collection("projects")
+    .findOne({ idkey: Number(idkey) });
   if (data) {
     const project: Projects = {
       name: data.name,
@@ -45,28 +52,31 @@ export async function addProjectUser( idkey:Number, user_idkey:number, user_firs
     };
 
     // ajout du user dans la liste des users du porojet
-    project.users.push( { user_idkey: user_idkey, firstname: user_firstname, lastname: user_lastname } )
+    project.users.push({ user_idkey: user_idkey, firstname: user_firstname, lastname: user_lastname });
 
     await mongodb
       .db()
       .collection("projects")
       .updateOne({ idkey: project.idkey }, { $set: { ...project } })
-      .catch( (error) => { console.log(error); ret_OK=1 } )
-
+      .catch((error) => {
+        console.log(error);
+        ret_OK = 1;
+      });
   } else {
     console.log("data prospect not retrieved");
-    ret_OK=1;
+    ret_OK = 1;
   }
 
   return ret_OK;
 }
 
-
-export async function addProjectPayment( idkey:Number, user_idkey:number, summary:string, amount:number ): Promise<number> {
-
-  let ret_OK=0; // return 0 si insertion project OK sinon autre valeur
+export async function addProjectPayment(idkey: Number, user_idkey: number, summary: string, amount: number): Promise<number> {
+  let ret_OK = 0; // return 0 si insertion project OK sinon autre valeur
   const mongodb = await getDatabase();
-  const data = await mongodb.db().collection("projects").findOne({ idkey: Number(idkey) });
+  const data = await mongodb
+    .db()
+    .collection("projects")
+    .findOne({ idkey: Number(idkey) });
   if (data) {
     const project: Projects = {
       name: data.name,
@@ -82,19 +92,21 @@ export async function addProjectPayment( idkey:Number, user_idkey:number, summar
     };
 
     // ajout du user dans la liste des users du porojet
-    let datepayment=convertDate(new Date());
+    let datepayment = convertDate(new Date());
     console.log(datepayment);
-        project.payments.push( { user_idkey: user_idkey, date_payment: datepayment, summary: summary, amount:amount  } )
+    project.payments.push({ user_idkey: user_idkey, date_payment: datepayment, summary: summary, amount: amount });
 
     await mongodb
       .db()
       .collection("projects")
       .updateOne({ idkey: project.idkey }, { $set: { ...project } })
-      .catch( (error) => { console.log(error); ret_OK=1 } )
-
+      .catch((error) => {
+        console.log(error);
+        ret_OK = 1;
+      });
   } else {
     console.log("data prospect not retrieved");
-    ret_OK=1;
+    ret_OK = 1;
   }
 
   return ret_OK;

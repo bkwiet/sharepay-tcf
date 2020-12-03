@@ -28,66 +28,68 @@ const Registration: NextPage<Props> = ({ session }) => {
       </Head>
       <Layout>
         <Container className={"dontTouchPoka " + styles.creation}>
-          {session && (
-            <>
-              <h1>Create a new project</h1>
+          <div className={"dontTouchJhon"}>
+            {session && (
+              <>
+                <h1>Create a new project</h1>
 
-              <Form method="POST" action="/api/projects/createproject" className="mt-3">
-                <Form.Group>
-                  <Form.Label htmlFor="name">Name</Form.Label>
-                  <Form.Control
-                    required
-                    id="name"
-                    name="name"
-                    type="text"
-                    value={name}
-                    placeholder="Name of your project"
-                    onChange={(e) => setName(e.target.value)}
-                  />
-                </Form.Group>
+                <Form method="POST" action="/api/projects/createproject" className="mt-3">
+                  <Form.Group>
+                    <Form.Label htmlFor="name">Name</Form.Label>
+                    <Form.Control
+                      required
+                      id="name"
+                      name="name"
+                      type="text"
+                      value={name}
+                      placeholder="Name of your project"
+                      onChange={(e) => setName(e.target.value)}
+                    />
+                  </Form.Group>
 
-                <Form.Group>
-                  <Form.Label htmlFor="amount">Budget €</Form.Label>
-                  <Form.Control
-                    required
-                    id="amount"
-                    min="0.0"
-                    step="any"
-                    name="amount"
-                    type="number"
-                    value={amount}
-                    onChange={(e) => setAmount(parseInt(e.target.value))}
-                  />
-                </Form.Group>
+                  <Form.Group>
+                    <Form.Label htmlFor="amount">Budget €</Form.Label>
+                    <Form.Control
+                      required
+                      id="amount"
+                      min="0.0"
+                      step="any"
+                      name="amount"
+                      type="number"
+                      value={amount}
+                      onChange={(e) => setAmount(parseInt(e.target.value))}
+                    />
+                  </Form.Group>
 
-                <Form.Group>
-                  <Form.Label htmlFor="summary">Summary</Form.Label>
-                  <Form.Control
-                    required
-                    as="textarea"
-                    rows={6}
-                    id="summary"
-                    name="summary"
-                    value={summary}
-                    placeholder="Enter the summary of your project"
-                    onChange={(e) => setSummary(e.target.value)}
-                    type="textarea"
-                  />
-                </Form.Group>
+                  <Form.Group>
+                    <Form.Label htmlFor="summary">Summary</Form.Label>
+                    <Form.Control
+                      required
+                      as="textarea"
+                      rows={6}
+                      id="summary"
+                      name="summary"
+                      value={summary}
+                      placeholder="Enter the summary of your project"
+                      onChange={(e) => setSummary(e.target.value)}
+                      type="textarea"
+                    />
+                  </Form.Group>
 
-                <Button className="mt-2" variant="primary" type="submit">
-                  Create project
-                </Button>
+                  <Button className="mt-2" variant="primary" type="submit">
+                    Create project
+                  </Button>
 
-                {/* les donnees en dessous sont des données masquées pour le passage de paramétre à l'api */}
-                <Form.Group className={styles.mail}>
-                  <Form.Label htmlFor="param1"></Form.Label>
-                  <Form.Control id="param1" name="param1" type="hidden" value={String(session.user.email)} readOnly />
-                </Form.Group>
-                {/* fin des données masquees */}
-              </Form>
-            </>
-          )}
+                  {/* les donnees en dessous sont des données masquées pour le passage de paramétre à l'api */}
+                  <Form.Group className={styles.mail}>
+                    <Form.Label htmlFor="param1"></Form.Label>
+                    <Form.Control id="param1" name="param1" type="hidden" value={String(session.user.email)} readOnly />
+                  </Form.Group>
+                  {/* fin des données masquees */}
+                </Form>
+              </>
+            )}
+          </div>
         </Container>
       </Layout>
     </>

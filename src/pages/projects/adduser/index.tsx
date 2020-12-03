@@ -18,7 +18,7 @@ const Registration: NextPage<Props> = ({ session, project_idkey, project_name })
   return (
     <>
       <Head>
-        <title>Tout Compte Fait - Add User Project</title>
+        <title>Tout Compte Fait - Add a Participant</title>
         <style>{`
           html,
           body {
@@ -30,7 +30,7 @@ const Registration: NextPage<Props> = ({ session, project_idkey, project_name })
         <Container className={"dontTouchPoka " + styles.creation}>
           {session && (
             <>
-              <h1>Add a User on Project</h1>
+              <h1>Add a Participant on Project</h1>
 
               <Form method="POST" action="/api/projects/adduser" className="mt-3">
                 <Form.Group>
