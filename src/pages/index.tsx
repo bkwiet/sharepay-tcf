@@ -74,7 +74,7 @@ const Home: NextPage<Props> = ({ session, user }) => {
                 </div>
               </Link>
 
-              <Link href="">
+              <Link href="/projects/storypayments">
                 <div className={"col-sm-12 col-md-5 mr-2 mb-2 " + styles.main_button}>
                   <h3>
                     <span className={styles.spinout}>
@@ -92,7 +92,6 @@ const Home: NextPage<Props> = ({ session, user }) => {
     </>
   );
 };
-
 export default Home;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
