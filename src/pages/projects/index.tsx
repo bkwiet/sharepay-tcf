@@ -9,9 +9,10 @@ import Layout from "../../components/layout";
 import { Container, Card } from "react-bootstrap";
 import styles from "../../../public/styles/Projects.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { formatAmountForDisplay, CURRENCY } from "../../utils/stripe";
 import { faCogs, faUserPlus, faPiggyBank, faExclamation } from "@fortawesome/free-solid-svg-icons";
 
-const ProjectIndex: React.FC<{ projects: Projects[], my_user_idkey:number }> = ({ projects, my_user_idkey }) => {
+const ProjectIndex: React.FC<{ projects: Projects[]; my_user_idkey: number }> = ({ projects, my_user_idkey }) => {
   return (
     <>
       <Head>
@@ -35,7 +36,7 @@ const ProjectIndex: React.FC<{ projects: Projects[], my_user_idkey:number }> = (
               });
               const solde = project.amount - allpayment;
               // fin de calcul du solde
-              
+
               return (
                 <Card className={"mb-4 " + styles.card} key={project.idkey}>
                   <Card.Body className={styles.body}>
@@ -44,7 +45,6 @@ const ProjectIndex: React.FC<{ projects: Projects[], my_user_idkey:number }> = (
                     <Card.Subtitle className={"mb-2 text-muted " + styles.cupcup}>
                       {"Creation date : " + project.date_opened}
                     </Card.Subtitle>
-                    
 
                     <Card.Subtitle className={"mb-2 text-muted " + styles.cupcup}>
                       Participants :{" "}
@@ -54,7 +54,9 @@ const ProjectIndex: React.FC<{ projects: Projects[], my_user_idkey:number }> = (
                       })}
                     </Card.Subtitle>
 
-                    <Card.Subtitle className={"mb-2 text-muted " + styles.cupcup}>Budget : {project.amount + " €"}</Card.Subtitle>
+                    <Card.Subtitle className={"mb-2 text-muted " + styles.cupcup}>
+                      Budget : {formatAmountForDisplay(project.amount, CURRENCY)}
+                    </Card.Subtitle>
 
                     <hr className={styles.separator} />
 
@@ -67,35 +69,32 @@ const ProjectIndex: React.FC<{ projects: Projects[], my_user_idkey:number }> = (
                       <FontAwesomeIcon icon={faCogs} /> Detail Project
                     </Card.Link>
 
-                    { project.admin_idkey === my_user_idkey 
-                      ? <Card.Link href={"/projects/adduser?project_idkey=" + project.idkey + "&project_name=" + project.name}>
-                          <FontAwesomeIcon icon={faUserPlus} id="iconAddUser" /> Add Participant
-                        </Card.Link>
-                      : null
-                    }                              
+                    {project.admin_idkey === my_user_idkey ? (
+                      <Card.Link href={"/projects/adduser?project_idkey=" + project.idkey + "&project_name=" + project.name}>
+                        <FontAwesomeIcon icon={faUserPlus} id="iconAddUser" /> Add Participant
+                      </Card.Link>
+                    ) : null}
 
-                    
-                    { project.actif === true
-                      ? <Card.Link
-                          href={
-                            "/projects/addpayment?project_idkey=" +
-                            project.idkey +
-                            "&project_name=" +
-                            project.name +
-                            "&project_amount=" +
-                            project.amount +
-                            "&project_solde=" +
-                            solde
-                          }
-                          >
-                          <FontAwesomeIcon icon={faPiggyBank} id="iconAddPayment" /> Add Payment
-                        </Card.Link>
-                      : <Card.Link href={"#"}>
-                          <FontAwesomeIcon icon={faExclamation} id="iconWarning" /> Project Closed since {project.date_ended}
-                        </Card.Link>
-                    
-                    }  
-
+                    {project.actif === true ? (
+                      <Card.Link
+                        href={
+                          "/projects/addpayment?project_idkey=" +
+                          project.idkey +
+                          "&project_name=" +
+                          project.name +
+                          "&project_amount=" +
+                          project.amount +
+                          "&project_solde=" +
+                          solde
+                        }
+                      >
+                        <FontAwesomeIcon icon={faPiggyBank} id="iconAddPayment" /> Add Payment
+                      </Card.Link>
+                    ) : (
+                      <Card.Link href={"#"}>
+                        <FontAwesomeIcon icon={faExclamation} id="iconWarning" /> Project Closed since {project.date_ended}
+                      </Card.Link>
+                    )}
                   </Card.Body>
                 </Card>
               );
@@ -112,7 +111,7 @@ export default ProjectIndex;
 export const getServerSideProps: GetServerSideProps = async (context) => {
   // dans le contexte on recupere email dans le query
   const session = await getSession(context);
-  let my_user_idkey=0;
+  let my_user_idkey = 0;
 
   if (session) {
     const _projects = await findUserByEmail(String(session.user.email)).then((user) => {

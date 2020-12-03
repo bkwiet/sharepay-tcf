@@ -6,7 +6,7 @@ import { useSession } from "next-auth/client";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 
-const stripePromise = loadStripe(process.env.STRIP_PUB!);
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIP_PUB!);
 
 export const Layout: React.FC = ({ children }) => {
   const [session, loading] = useSession();

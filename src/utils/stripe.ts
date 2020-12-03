@@ -1,13 +1,10 @@
 import { Stripe, loadStripe } from "@stripe/stripe-js";
-export const CURRENCY = "usd";
-// Set your amount limits: Use float for decimal currencies and
-// Integer for zero-decimal currencies: https://stripe.com/docs/currencies#zero-decimal.
+export const CURRENCY = "eur";
 export const MIN_AMOUNT = 10.0;
 export const MAX_AMOUNT = 5000.0;
-export const AMOUNT_STEP = 5.0;
 
 export function formatAmountForDisplay(amount: number, currency: string): string {
-  let numberFormat = new Intl.NumberFormat(["en-US"], {
+  let numberFormat = new Intl.NumberFormat(["fr-FR"], {
     style: "currency",
     currency: currency,
     currencyDisplay: "symbol",
@@ -16,7 +13,7 @@ export function formatAmountForDisplay(amount: number, currency: string): string
 }
 
 export function formatAmountForStripe(amount: number, currency: string): number {
-  let numberFormat = new Intl.NumberFormat(["en-US"], {
+  let numberFormat = new Intl.NumberFormat(["fr-FR"], {
     style: "currency",
     currency: currency,
     currencyDisplay: "symbol",
@@ -32,9 +29,10 @@ export function formatAmountForStripe(amount: number, currency: string): number 
 }
 
 let stripePromise: Promise<Stripe | null>;
+
 const getStripe = () => {
   if (!stripePromise) {
-    stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
+    stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIP_PUB!);
   }
   return stripePromise;
 };
@@ -50,21 +48,19 @@ export async function API_fetchGetJSON(url: string) {
 
 export async function API_fetchPostJSON(url: string, data?: {}) {
   try {
-    // Default options are marked with *
     const response = await fetch(url, {
-      method: "POST", // *GET, POST, PUT, DELETE, etc.
-      mode: "cors", // no-cors, *cors, same-origin
-      cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-      credentials: "same-origin", // include, *same-origin, omit
+      method: "POST",
+      mode: "cors",
+      cache: "no-cache",
+      credentials: "same-origin",
       headers: {
         "Content-Type": "application/json",
-        // 'Content-Type': 'application/x-www-form-urlencoded',
       },
-      redirect: "follow", // manual, *follow, error
-      referrerPolicy: "no-referrer", // no-referrer, *client
-      body: JSON.stringify(data || {}), // body data type must match "Content-Type" header
+      redirect: "follow",
+      referrerPolicy: "no-referrer",
+      body: JSON.stringify(data || {}),
     });
-    return await response.json(); // parses JSON response into native JavaScript objects
+    return await response.json();
   } catch (err) {
     throw new Error(err.message);
   }
