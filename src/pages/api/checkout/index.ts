@@ -22,7 +22,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             quantity: 1,
           },
         ],
+<<<<<<< HEAD
         success_url: `${req.headers.origin}/api/projects/addpayment?session_id={CHECKOUT_SESSION_ID}&idkey=${req.body.idkey}&email=${req.body.email}&amount=${req.body.amount}&summary=${req.body.summary}`,
+=======
+        success_url: `${req.headers.origin}/api/projects/addpayment?session_id={CHECKOUT_SESSION_ID}&idkey=${req.body.idkey}&email=${req.body.idkey}&amount=${req.body.amount}&summary=${req.body.summary}`,
+>>>>>>> main
         cancel_url: `${req.headers.origin}/projects/addpayment/reject`,
       };
       const checkoutSession: Stripe.Checkout.Session = await stripe.checkout.sessions.create(params);
