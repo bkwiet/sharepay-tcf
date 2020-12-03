@@ -10,6 +10,7 @@ import { Container, Card } from "react-bootstrap";
 import styles from "../../../public/styles/Projects.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCogs, faUserPlus, faPiggyBank } from "@fortawesome/free-solid-svg-icons";
+import { formatAmountForDisplay, CURRENCY } from "../../utils/stripe";
 
 const ProjectIndex: React.FC<{ projects: Projects[] }> = ({ projects }) => {
   return (
@@ -53,7 +54,9 @@ const ProjectIndex: React.FC<{ projects: Projects[] }> = ({ projects }) => {
                       })}
                     </Card.Subtitle>
 
-                    <Card.Subtitle className={"mb-2 text-muted " + styles.cupcup}>Budget : {project.amount + " €"}</Card.Subtitle>
+                    <Card.Subtitle className={"mb-2 text-muted " + styles.cupcup}>
+                      Budget : {formatAmountForDisplay(project.amount, CURRENCY)}
+                    </Card.Subtitle>
 
                     <hr className={styles.separator} />
 

@@ -5,7 +5,8 @@ import { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 import { Button, Container, Form } from "react-bootstrap";
 import styles from "../../../../public/styles/CreateProject.module.css";
-// import App from "../../../components/stripeCard";
+import getStripe, { formatAmountForDisplay, API_fetchPostJSON, CURRENCY } from "../../../utils/stripe";
+
 type Props = {
   session: Session;
   project_idkey: number;
@@ -14,9 +15,37 @@ type Props = {
   project_solde: number;
 };
 
+console.log("Project pub", process.env.STRIP_PUB);
+console.log("Project sec", process.env.STRIP_SEC);
+
 const Registration: NextPage<Props> = ({ session, project_idkey, project_name, project_amount, project_solde }) => {
   const [payment, setPayment] = React.useState(0);
   const [summary, setSummary] = React.useState("");
+  const [loading, setLoading] = React.useState(false);
+
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    const response = await API_fetchPostJSON("/api/checkout", {
+      amount: payment,
+      idkey: project_idkey,
+      email: session.user.email,
+      summary: summary,
+    });
+
+    if (response.statusCode === 500) {
+      console.error(response.message);
+      return;
+    }
+
+    const stripe = await getStripe();
+
+    const { error } = await stripe!.redirectToCheckout({
+      sessionId: response.id,
+    });
+    console.warn(error.message);
+    setLoading(false);
+  };
 
   return (
     <>
@@ -40,8 +69,7 @@ const Registration: NextPage<Props> = ({ session, project_idkey, project_name, p
                 <h3>It remains to pay {project_solde}</h3>
               </div>
 
-              {/* <Form method="POST" action="/api/projects/payment" className="mt-3"> */}
-              <Form method="POST" action="/projects/addpayment/cardpayment" className="mt-3">
+              <Form method="POST" onSubmit={handleSubmit} className="mt-3">
                 <Form.Group>
                   <Form.Label htmlFor="payment">Payment</Form.Label>
                   <Form.Control
@@ -49,6 +77,7 @@ const Registration: NextPage<Props> = ({ session, project_idkey, project_name, p
                     id="payment"
                     name="payment"
                     type="number"
+                    min="0"
                     value={payment}
                     onChange={(e) => setPayment(parseInt(e.target.value))}
                   />
@@ -68,18 +97,9 @@ const Registration: NextPage<Props> = ({ session, project_idkey, project_name, p
                   />
                 </Form.Group>
 
-                <Button className="mt-2" variant="primary" type="submit">
-                  Transaction Card Payment
+                <Button className="mt-2" variant="primary" type="submit" disabled={loading}>
+                  Pay {formatAmountForDisplay(payment, CURRENCY)}
                 </Button>
-                {/* les donnees en dessous sont des données masquées pour le passage de paramétre à l'api */}
-                <Form.Group className={styles.mail}>
-                  <Form.Label htmlFor="param1"></Form.Label>
-                  <Form.Control id="param1" name="param1" type="hidden" value={project_idkey} readOnly />
-
-                  <Form.Label htmlFor="param2"></Form.Label>
-                  <Form.Control id="param2" name="param2" type="hidden" value={String(session.user.email)} readOnly />
-                </Form.Group>
-                {/* fin des données masquees */}
               </Form>
             </>
           )}

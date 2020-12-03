@@ -1,34 +1,29 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { CURRENCY, MIN_AMOUNT, MAX_AMOUNT, formatAmountForStripe } from "../../../utils/stripe";
-
+import { CURRENCY, formatAmountForStripe } from "../../../utils/stripe";
 import Stripe from "stripe";
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  // https://github.com/stripe/stripe-node#configuration
+
+const stripe = new Stripe(process.env.STRIP_SEC!, {
   apiVersion: "2020-08-27",
 });
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "POST") {
+    console.log("Api checkout req body", req.body);
     const amount: number = req.body.amount;
     try {
-      // Validate the amount that was passed from the client.
-      if (!(amount >= MIN_AMOUNT && amount <= MAX_AMOUNT)) {
-        throw new Error("Invalid amount.");
-      }
-      // Create Checkout Sessions from body params.
       const params: Stripe.Checkout.SessionCreateParams = {
-        submit_type: "donate",
+        submit_type: "pay",
         payment_method_types: ["card"],
         line_items: [
           {
-            name: "Custom amount donation",
+            name: "Tout compte fait",
             amount: formatAmountForStripe(amount, CURRENCY),
             currency: CURRENCY,
             quantity: 1,
           },
         ],
-        success_url: `${req.headers.origin}/result?session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url: `${req.headers.origin}/donate-with-checkout`,
+        success_url: `${req.headers.origin}/api/projects/addpayment?session_id={CHECKOUT_SESSION_ID}&idkey=${req.body.idkey}&email=${req.body.idkey}&amount=${req.body.amount}&summary=${req.body.summary}`,
+        cancel_url: `${req.headers.origin}/projects/addpayment/reject`,
       };
       const checkoutSession: Stripe.Checkout.Session = await stripe.checkout.sessions.create(params);
 
