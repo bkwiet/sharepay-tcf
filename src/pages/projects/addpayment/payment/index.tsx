@@ -2,9 +2,6 @@ import { GetServerSideProps } from "next";
 import Link from "next/link";
 import React from "react";
 import Layout from "../../../../components/layout";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
-import styles from "../../../../../public/styles/Home.module.css";
 
 const affAddUserReject: React.FC<{}> = ({}) => {
   return (
