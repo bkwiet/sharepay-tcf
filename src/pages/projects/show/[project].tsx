@@ -88,29 +88,31 @@ const affOneProject: React.FC<{ project: Projects }> = ({ project }) => {
             })}
           </div>
 
-
-          <div className="payment">
-            <a id="payment" 
-              href={
-                "/projects/addpayment?project_idkey=" +
-                project.idkey +
-                "&project_name=" +
-                project.name +
-                "&project_amount=" +
-                project.amount +
-                "&project_solde=" +
-                solde
-              }>
-              <span>
-                <div>
-                  <span>
-                  <FontAwesomeIcon icon={faPiggyBank} id="iconDonate" />
-                  </span>
-                </div>
-                Add a Payment!
-              </span>
-            </a>
-          </div>
+          { project.actif === true
+           ? <div className="payment">
+              <a id="payment" 
+                href={
+                  "/projects/addpayment?project_idkey=" +
+                  project.idkey +
+                  "&project_name=" +
+                  project.name +
+                  "&project_amount=" +
+                  project.amount +
+                  "&project_solde=" +
+                  solde
+                }>
+                <span>
+                  <div>
+                    <span>
+                    <FontAwesomeIcon icon={faPiggyBank} id="iconDonate" />
+                    </span>
+                  </div>
+                  Add a Payment!
+                </span>
+              </a>
+            </div>
+            : null  
+          }
 
         </div>
       </div>
