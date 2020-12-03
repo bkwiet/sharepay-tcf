@@ -6,7 +6,7 @@ import { Projects } from "../../../types/projects";
 import Layout from "../../../components/layout";
 import Sharepay from "../../../components/sharepay";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPiggyBank, faPlusSquare } from "@fortawesome/free-solid-svg-icons";
+import { faPiggyBank } from "@fortawesome/free-solid-svg-icons";
 import { Container, Table } from "react-bootstrap";
 import { formatAmountForDisplay, CURRENCY } from "../../../utils/stripe";
 
