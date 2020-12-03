@@ -25,3 +25,9 @@ export type User = {
   image: string;
   accessToken?: string;
 };
+
+export type token = {
+  username: string;
+  email: string;
+  accessToken: string | undefined;
+};

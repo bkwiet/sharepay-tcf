@@ -5,7 +5,6 @@ import { Projects } from "../../../types/projects";
 import Layout from "../../../components/layout";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDonate } from "@fortawesome/free-solid-svg-icons";
-
 const affOneProject: React.FC<{ project: Projects }> = ({ project }) => {
   console.log("arrivee typeof datas", typeof project);
   console.log(project);
@@ -22,44 +21,45 @@ const affOneProject: React.FC<{ project: Projects }> = ({ project }) => {
           </div>
 
           <div className="row">
-            <h3 className="col p-3 text-justify">Participants</h3>
+            <h6 className="col p-3 text-justify">Participants</h6>
             {project.users.map((user) => {
               return (
                 <div className="col">
-                  <p>{user.user_idkey}</p>
-                  <p>{user.firstname}</p>
-                  <p>{user.lastname}</p>
+                  <p>{user.firstname + " " + user.lastname}</p>
                 </div>
               );
             })}
           </div>
 
           <div className="row">
-            <h3 className="col p-3 text-justify">Paiements</h3>
+            <h6 className="col p-3 text-justify">Payment(s)</h6>
+          </div>
+
+          <div>
             {project.payments.map((payment) => {
               return (
-                <div className="col">
+                <div className="row">
+                  <p className="col ml-6">{payment.date_payment}</p>
+                  <p className="col ml-6">{payment.amount + "€"}</p>
                   <p>{payment.user_idkey}</p>
                   <p>{payment.summary}</p>
-                  <p>{payment.date_payment}</p>
-                  <p>{payment.amount}</p>
                 </div>
               );
             })}
           </div>
-        </div>
 
-        <div className="payment">
-          <a id="payment" href="#">
-            <span>
-              <div>
-                <span>
-                  <FontAwesomeIcon icon={faDonate} id="iconDonate" />
-                </span>
-              </div>
-              Add a Payment!
-            </span>
-          </a>
+          <div className="payment">
+            <a id="payment" href="#">
+              <span>
+                <div>
+                  <span>
+                    <FontAwesomeIcon icon={faDonate} id="iconDonate" />
+                  </span>
+                </div>
+                Add a Payment!
+              </span>
+            </a>
+          </div>
         </div>
       </div>
     </Layout>
@@ -71,7 +71,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const idkey = context.params?.project;
   console.log("valeur de params = ", idkey);
 
-  const project = await findProjectById(parseInt(idkey));
+  const project = await findProjectById(Number(idkey));
   console.log(project);
   if (project) {
     const data = {

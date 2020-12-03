@@ -3,11 +3,26 @@ import { providers, signIn } from "next-auth/client";
 import { GetServerSideProps, NextPage } from "next";
 import Layout from "../../components/layout";
 import Head from "next/head";
-import { Button, Form } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import styles from "../../../public/styles/Signin.module.css";
 
-const SignIn: NextPage = ({ providers }) => {
-  const [email, setEmail] = React.useState("");
+type Connect = {
+  id: string;
+  name: string;
+  type: string;
+  signinUrl: string;
+  callbackUrl: string;
+};
+
+interface _Providers {
+  [key: string]: Connect;
+}
+type Props = {
+  providers: _Providers;
+};
+
+const SignIn: NextPage<Props> = ({ providers }) => {
+  console.log("proviser", providers);
 
   return (
     <>

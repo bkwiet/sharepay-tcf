@@ -4,6 +4,7 @@ import Layout from "../../../components/layout";
 import Head from "next/head";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import styles from "../../../../public/styles/Cardpayment.module.css";
+
 const affCardPayment: React.FC<{}> = ({}) => {
   return (
     <>
@@ -20,11 +21,7 @@ const affCardPayment: React.FC<{}> = ({}) => {
             </div>
           </div>
           ​
-          <Form
-            method="POST"
-            action="/projects/cardpayment/payment"
-            className="mt-3 ml-5"
-          >
+          <Form method="POST" action="/projects/cardpayment/payment" className="mt-3 ml-5">
             <Form.Group>
               <Form.Label htmlFor="cardnumber">Card Number</Form.Label>
 
@@ -66,64 +63,36 @@ const affCardPayment: React.FC<{}> = ({}) => {
             ​
             <Form.Group>
               <Form.Label htmlFor="security">ID Security</Form.Label>
-              <Form.Control
-                required
-                id="security"
-                name="security"
-                type="text"
-              />
+              <Form.Control required id="security" name="security" type="text" />
             </Form.Group>
             ​
             <Form.Group className={styles.formpayment} as={Row}>
               <Form.Group>
                 <Form.Label as="legend" column sm={2}></Form.Label>
 
-                <img
-                  src="/pictures/cards/mastercard.jpg"
-                  alt="mastercard"
-                ></img>
-                <Form.Check
-                  type="radio"
-                  label="Mastercard"
-                  name="formHorizontalRadios1"
-                  id="formHorizontalRadios1"
-                />
+                <img src="/pictures/cards/mastercard.jpg" alt="mastercard"></img>
+                <Form.Check type="radio" label="Mastercard" name="formHorizontalRadios1" id="formHorizontalRadios1" />
               </Form.Group>
 
               <Form.Group>
                 <Form.Label as="legend" column sm={2}></Form.Label>
 
                 <img src="/pictures/cards/googlepay.png" alt="googlepay"></img>
-                <Form.Check
-                  type="radio"
-                  label="GooglePay"
-                  name="formHorizontalRadios1"
-                  id="formHorizontalRadios1"
-                />
+                <Form.Check type="radio" label="GooglePay" name="formHorizontalRadios1" id="formHorizontalRadios1" />
               </Form.Group>
 
               <Form.Group>
                 <Form.Label as="legend" column sm={2}></Form.Label>
 
                 <img src="/pictures/cards/bitcoin.png" alt="bitcoin"></img>
-                <Form.Check
-                  type="radio"
-                  label="Bitcoin"
-                  name="formHorizontalRadios1"
-                  id="formHorizontalRadios1"
-                />
+                <Form.Check type="radio" label="Bitcoin" name="formHorizontalRadios1" id="formHorizontalRadios1" />
               </Form.Group>
 
               <Form.Group>
                 <Form.Label as="legend" column sm={2}></Form.Label>
 
                 <img src="/pictures/cards/paypal.png" alt="paypal"></img>
-                <Form.Check
-                  type="radio"
-                  label="Paypal"
-                  name="formHorizontalRadios1"
-                  id="formHorizontalRadios1"
-                />
+                <Form.Check type="radio" label="Paypal" name="formHorizontalRadios1" id="formHorizontalRadios1" />
               </Form.Group>
             </Form.Group>
             ​
