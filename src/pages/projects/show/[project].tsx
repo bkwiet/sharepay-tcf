@@ -31,6 +31,9 @@ const affOneProject: React.FC<{ project: Projects }> = ({ project }) => {
           body {
             background-image: url("/pictures/background_manage.jpg") !important;
           }
+          h5, h6 {
+              color: rgb(52 138 138);
+          }
         `}</style>
       </Head>
       <Container className={"dontTouchPoka "}>

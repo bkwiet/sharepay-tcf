@@ -23,72 +23,90 @@ const Home: NextPage<Props> = ({ session, user }) => {
 
   return (
     <>
-      <Head>
-        <title>Tout Compte Fait - Homepage</title>
-      </Head>
-      <Layout>
-        {!session ? (
-          <Slideshow />
-        ) : (
-          <Container className={"dontTouchPoka "}>
-            <div className="marquee-rtl">
-              <h1>
-                Welcome <span className={styles.username}>{user.username}</span>
-              </h1>
-            </div>
+      {!session ? (
+        <>
+          <Head>
+            <title>Tout Compte Fait - Welcome</title>
+            <style>{`
+              #peer nav { background-color: rgb(0 0 0 / 78%);}
+              #peer a {
+                color: white !important;
+            }
+        `}</style>
+          </Head>
+          <Layout>
+            <Slideshow />
+          </Layout>
+        </>
+      ) : (
+        <>
+          <Head>
+            <title>Tout Compte Fait - Homepage</title>
+          </Head>
+          <Layout>
+            <Container className={"dontTouchPoka "}>
+              <div className="marquee-rtl">
+                <h1>
+                  Welcome <span className={styles.username}>{user.username}</span>
+                </h1>
+              </div>
 
-            <div className={"row mt-3 " + styles.base_button}>
-              <Link href="/projects/create">
-                <div className={"col-sm-12 col-md-5 mr-2 mb-2 " + styles.main_button}>
-                  <h3>
-                    <span className={styles.spinout}>
-                      <FontAwesomeIcon icon={faFolderPlus} />
-                    </span>
-                    Start a new Project
-                  </h3>
-                  <p> Here, you can add a Project and assign it to your friends to start sharing your payments. </p>
-                </div>
-              </Link>
+              <div className={"row mt-3 " + styles.base_button}>
+                <Link href="/projects/create">
+                  <div className={"col-sm-12 col-md-5 mr-2 mb-2 " + styles.main_button}>
+                    <h3>
+                      <span className={styles.spinout}>
+                        <FontAwesomeIcon icon={faFolderPlus} />
+                      </span>
+                      Start a new Project
+                    </h3>
+                    <p> Here, you can add a Project and assign it to your friends to start sharing your payments. </p>
+                    <p>Start your journey now !</p>
+                  </div>
+                </Link>
 
-              <Link href="/projects">
-                <div className={"col-sm-12 col-md-5 mr-2 mb-2 " + styles.main_button}>
-                  <h3>
-                    <span className={styles.spinout}>
-                      <FontAwesomeIcon icon={faProjectDiagram} />
-                    </span>
-                    On going Projects
-                  </h3>
-                  <p> Add List of last projects - Or display "there is no project to displa" </p>
-                </div>
-              </Link>
+                <Link href="/projects">
+                  <div className={"col-sm-12 col-md-5 mr-2 mb-2 " + styles.main_button}>
+                    <h3>
+                      <span className={styles.spinout}>
+                        <FontAwesomeIcon icon={faProjectDiagram} />
+                      </span>
+                      On going Projects
+                    </h3>
+                    <p>List of all your active project, add a payment to your project, add a participant to your project</p>
+                    <p>New feature comming soon : Add activities and share the dime by activities and particpant </p>
+                  </div>
+                </Link>
 
-              <Link href="/profile">
-                <div className={"col-sm-12 col-md-5 mr-2 mb-2 " + styles.main_button}>
-                  <h3>
-                    <span className={styles.spinout}>
-                      <FontAwesomeIcon icon={faUserAstronaut} />
-                    </span>
-                    Profile
-                  </h3>
-                  <p> Add description - of the element </p>
-                </div>
-              </Link>
+                <Link href="/profile">
+                  <div className={"col-sm-12 col-md-5 mr-2 mb-2 " + styles.main_button}>
+                    <h3>
+                      <span className={styles.spinout}>
+                        <FontAwesomeIcon icon={faUserAstronaut} />
+                      </span>
+                      Profile
+                    </h3>
+                    <p>This feature will coming soon ! </p>
+                    <p>You will have the possibility to update the informations about you and tell us more about you.</p>
+                  </div>
+                </Link>
 
-              <Link href="/projects/storypayments">
-                <div className={"col-sm-12 col-md-5 mr-2 mb-2 " + styles.main_button}>
-                  <h3>
-                    <span className={styles.spinout}>
-                      <FontAwesomeIcon icon={faFileInvoiceDollar} />
-                    </span>
-                    Payments Story
-                  </h3>
-                  <p>Consult your payments History.</p>
-                </div>
-              </Link>
-            </div>
-          </Container>
-        )}
-      </Layout>
+                <Link href="/projects/storypayments">
+                  <div className={"col-sm-12 col-md-5 mr-2 mb-2 " + styles.main_button}>
+                    <h3>
+                      <span className={styles.spinout}>
+                        <FontAwesomeIcon icon={faFileInvoiceDollar} />
+                      </span>
+                      Payments Story
+                    </h3>
+                    <p>You will find the payment history for all your projects</p>
+                  </div>
+                </Link>
+              </div>
+            </Container>
+          </Layout>
+        </>
+      )}
     </>
   );
 };
