@@ -19,7 +19,7 @@ h1 {
   /* border-bottom: 1px solid #5f0606; */
   text-align: center;
   font-family: "Mitr", sans-serif;
-  text-shadow: 0px 1px 4px rgb(193 193 193);
+  /* text-shadow: 0px 1px 4px rgb(193 193 193); */
 }
 h3 {
   font-family: "Mitr", sans-serif;
@@ -31,6 +31,10 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+.separ {
+  background-color: black;
 }
 
 .payment {
@@ -68,9 +72,9 @@ a {
   left: 0;
   width: 0;
   height: 100%;
-  background: #ebd4a2;
+  background: #03d93c;
   transition: all 0.35s;
-  border-radius: 8%;
+  border-radius: 10px;
 }
 
 #payment:hover {
@@ -124,13 +128,41 @@ a {
 .container {
   margin-top: 8vh;
 }
+
+span.infoxmation {
+  font-weight: bold;
+  color: #1f1f1f;
+}
+
 .dontTouchPoka {
   margin-top: -58px;
   padding-top: 15vh;
+  padding-bottom: 2vh;
   height: 100vh;
   min-height: 250px;
 }
 
+.dontTouchJhon {
+  background-color: rgb(218 218 218 / 43%);
+  border-radius: 15px;
+  border: 1px solid rgb(93 92 92);
+  padding: 4rem;
+  color: rgb(0 0 0);
+}
+
+.dontTouchMoney {
+  background-color: rgb(16 16 16 / 72%);
+  border-radius: 15px;
+  border: 1px solid rgb(8 241 38);
+  padding: 4rem;
+  color: rgb(255 255 255);
+}
+.dontTouchMoney h1 {
+  color: rgb(184 239 191);
+}
+.dontTouchMoney span {
+  color: rgb(24 251 9);
+}
 #WarningText {
   padding-top: 2vh;
   font-variant: all-small-caps;
@@ -152,9 +184,8 @@ a {
 }
 
 #iconWarning {
-  color : red;
+  color: red;
 }
-
 
 #divRegisterIconUser {
   text-align: center;

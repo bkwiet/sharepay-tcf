@@ -28,7 +28,7 @@ export default async (request: NextApiRequest, response: NextApiResponse): Promi
       if (user_idkey === 0) {
         ret_OK = 1;
       }
-
+      console.log("user idkey api :", user_idkey);
       // ajout du paiement dans le projet
       ret_OK = await addProjectPayment(idkey, user_idkey, summary, amount);
     }
