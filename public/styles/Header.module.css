@@ -1,8 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@600&display=swap");
+.peer {
+  padding: 1rem;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+}
+.peer nav {
+  border-radius: 15px;
+  border: 1px solid white;
+}
 .navtop {
-  /* background-color: rgb(39 39 39); */
-  /* background-color: rgb(0 0 0 / 85%);
-  border-bottom: 1px solid rgb(185 185 185); */
   background-color: rgb(152 152 152 / 0%);
   border-bottom: 1px solid rgb(0 0 0);
 }

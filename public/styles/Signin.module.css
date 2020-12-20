@@ -1,14 +1,14 @@
 .login {
-  margin-top: -58px;
+  /* margin-top: -58px;
   padding-top: 20vh;
   height: 100vh;
   min-height: 250px;
-  flex-direction: column;
+  flex-direction: column; */
   align-items: center;
-  background-image: url("/pictures/background_green.png");
+  /* background-image: url("/pictures/background_green.png");
   background-attachment: fixed;
   background-size: cover;
-  background-position: center;
+  background-position: center; */
 }
 
 .logo {
@@ -18,12 +18,17 @@
   border: 1px solid rgb(130 126 126);
 }
 
+.providers {
+  text-align: center;
+}
+
 .login button {
   /* background-color: rgb(86 86 86 / 41%); */
-  background-color: rgb(84 84 84 / 52%);
-  color: rgb(249 249 249);
+  margin: auto;
+  background-color: rgb(212 212 212 / 24%);
+  color: rgb(128 2 2);
   border-radius: 15px;
-  border-color: rgb(95 1 1);
+  border-color: rgb(0 0 0);
   width: 17rem;
   font-weight: bold;
   text-align: start;
@@ -36,9 +41,9 @@
 }
 
 .login button:hover {
-  background-color: rgb(87 87 87 / 80%);
-  color: rgb(113 228 85);
-  border-color: rgb(171 168 168);
+  background-color: rgb(25 25 25 / 49%);
+  color: rgb(39 197 0);
+  border-color: rgb(255 255 255);
 }
 
 @media only screen and (max-width: 768px) {

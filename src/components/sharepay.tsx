@@ -3,6 +3,7 @@ import { Projects } from "../types/projects";
 import { formatAmountForDisplay, CURRENCY } from "../utils/stripe";
 import { Doughnut } from "react-chartjs-2";
 import styles from "../../public/styles/Sharepay.module.css";
+import { pathToFileURL } from "url";
 
 type Props = {
   project: Projects;
@@ -78,13 +79,17 @@ export const ShareTheDime: React.FC<Props> = ({ project }) => {
       </div>
       <div>
         {participantsToPay.map((participant) => {
-          return (
-            <p className="col">
-              <span className="infoxmation">
-                {participant.name} will receive {formatAmountForDisplay(participant.earn!, CURRENCY)}{" "}
-              </span>
-            </p>
-          );
+          let html = <></>;
+          if (participant.earn! > 0) {
+            html = (
+              <p className="col">
+                <span className="infoxmation">
+                  {participant.name} will receive {formatAmountForDisplay(participant.earn!, CURRENCY)}{" "}
+                </span>
+              </p>
+            );
+          }
+          return html;
         })}
       </div>
       <div className="row text-dark">
@@ -92,13 +97,17 @@ export const ShareTheDime: React.FC<Props> = ({ project }) => {
       </div>
       <div>
         {participantsToPick.map((participant) => {
-          return (
-            <p className="col">
-              <span className="infoxmation">
-                {participant.name} will pay {formatAmountForDisplay(participant.debt!, CURRENCY)}{" "}
-              </span>
-            </p>
-          );
+          let html = <></>;
+          if (participant.debt! > 0) {
+            html = (
+              <p className="col">
+                <span className="infoxmation">
+                  {participant.name} will pay {formatAmountForDisplay(participant.debt!, CURRENCY)}{" "}
+                </span>
+              </p>
+            );
+          }
+          return html;
         })}
       </div>
       <div className="row text-dark">
@@ -125,13 +134,16 @@ export const ShareTheDime: React.FC<Props> = ({ project }) => {
               participantToPay.earn = 0;
               return html;
             } else {
-              const html = (
-                <p className="col">
-                  <span className="infoxmation">
-                    {participantToPick.name} will give {participantToPay.name} {formatAmountForDisplay(debt!, CURRENCY)}{" "}
-                  </span>
-                </p>
-              );
+              let html = <></>;
+              if (debt > 0) {
+                html = (
+                  <p className="col">
+                    <span className="infoxmation">
+                      {participantToPick.name} will give {participantToPay.name} {formatAmountForDisplay(debt!, CURRENCY)}{" "}
+                    </span>
+                  </p>
+                );
+              }
               participantToPay.earn = participantToPay.earn! - debt;
               debt = 0;
               return html;

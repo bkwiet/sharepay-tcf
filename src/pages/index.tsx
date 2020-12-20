@@ -2,7 +2,7 @@ import Head from "next/head";
 import { GetServerSideProps, NextPage } from "next";
 import { getSession, Session } from "next-auth/client";
 import Layout from "../components/layout";
-import Slideshow from "../components/slideshow";
+import Slidehome from "../components/slidehome";
 import styles from "../../public/styles/Home.module.css";
 import { findUserByEmail } from "../utils/users";
 import { Users } from "../types/users";
@@ -27,15 +27,16 @@ const Home: NextPage<Props> = ({ session, user }) => {
         <>
           <Head>
             <title>Tout Compte Fait - Welcome</title>
-            <style>{`
-              #peer nav { background-color: rgb(0 0 0 / 78%);}
+            <style>{`         
+              #peer nav { background-color: rgb(0 0 0 / 90%);
+                          }
               #peer a {
                 color: white !important;
             }
         `}</style>
           </Head>
           <Layout>
-            <Slideshow />
+            <Slidehome />
           </Layout>
         </>
       ) : (

@@ -28,7 +28,7 @@ const Registration: NextPage<Props> = ({ session }) => {
               <h1>Welcome</h1>
               <small>Lets start to register some informations about you</small>
 
-              <Form method="POST" action="/api/auth/createnewuser" className="mt-3">
+              <Form method="POST" action="/api/auth/registration" className="mt-3">
                 <Form.Group className={styles.mail}>
                   <Form.Label htmlFor="user_email">Your Mail</Form.Label>
                   <Form.Control id="user_email" name="user_email" type="email" value={session.user.email || " "} readOnly />

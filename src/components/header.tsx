@@ -35,8 +35,8 @@ export const Header: React.FC<Props> = ({ session }) => {
   }, [scrollState]);
 
   return (
-    <header id="peer">
-      <Navbar className={scrollState === "top" ? styles.navtop : styles.navbot} expand="lg" fixed="top">
+    <header id="peer" className={styles.peer}>
+      <Navbar className={scrollState === "top" ? styles.navtop : styles.navbot} expand="lg">
         <Navbar.Brand className={styles.logo_brand} href="/">
           {" "}
           <span>TCF</span>
